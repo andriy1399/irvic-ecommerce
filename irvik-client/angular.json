@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "irvik-client"
+  "defaultProject": "irvik-client",
+  "cli": {
+    "analytics": false
+  }
 }
