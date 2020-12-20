@@ -26,8 +26,9 @@
       padding: .22em;
       transition: background-image .3s ease-in-out;
       a {
-        font-size: 1.775rem;
-        padding: 0.3em 0;
+        font-size: 1.5rem;
+        line-height: 1.3;
+        padding: 0.25em 0;
         width: 170px;
         display: block;
         text-align: center;
@@ -58,7 +59,7 @@
     // margin-left: 0;
     @include flex(row, wrap, space-between, center);
     li {
-      padding: .2em;
+      padding: .16em;
       border-radius: 50%;
       a {
         padding: 0.5em;
@@ -117,12 +118,12 @@
         a {
           display: flex;
           align-items: center;
-          padding: 3px;
+          padding: 2px;
           img {
             object-fit: cover;
             object-position: center;
-            width: 26px;
-            height: 26px;
+            width: 17px;
+            height: 17px;
             border-radius: 50%;
             box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.25);
           }
@@ -132,5 +133,3 @@
   }
 }
 
-.logo {
-}
