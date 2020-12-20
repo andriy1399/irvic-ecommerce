@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import './base';
+@import './variables';
+@import './mixins';
+
+.container {
+  width: 1170px;
+  margin: 0 auto;
+}
+
+p, span, li, a, small {
+  font-family: 'Questrial', sans-serif;
+}
+// 59px padding for main container
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

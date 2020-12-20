@@ -10,7 +10,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { BagComponent } from './pages/bag/bag.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,9 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

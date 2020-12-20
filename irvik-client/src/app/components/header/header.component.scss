@@ -1,0 +1,108 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+.header {
+  padding: .6875em 0;
+  background-image: $header-bg;
+
+  .container {
+    @include flex(row, wrap, space-between, center);
+  }
+  // &__icon {
+  //   margin-left: 85px;
+  // }
+  nav {
+    @include flex(row, wrap, space-between, center);
+  }
+
+  &__menu-list {
+    margin-left: 1.56em;
+    margin-right: 2.06em;
+    @include flex(row, wrap, space-between, center);
+    li + li {
+      margin-left: 30px;
+    }
+    li {
+      a {
+        font-size: 1.875rem;
+        padding: 0.4em 0;
+        width: 170px;
+        display: block;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        color: $header-item-txt-clr;
+      }
+      a.active {
+        box-shadow: 0 0 0 3px #BC5A00;
+        color: $active-color;
+      }
+    }
+
+  }
+
+  &__menu-with-icon-list {
+    margin-right: 2em;
+    margin-left: 3em;
+    @include flex(row, wrap, space-between, center);
+    li {
+      a {
+        padding: 0.5em;
+        display: flex;
+        align-items: center;
+        box-shadow: $menu-shadow;
+        background-color: #ffffff;
+        border-radius: 50%;
+        .header__icon {
+          color: $header-item-txt-clr;
+        }
+      }
+
+
+      span {
+        font-size: 1rem;
+        border-radius: 30px;
+        padding: 4px;
+        box-shadow: $menu-shadow;
+        width: 81px;
+        text-align: center;
+        display: block;
+        background-color: #ffffff;
+        line-height: 1.12;
+        color: $header-item-txt-clr;
+      }
+    }
+
+    li + li {
+      margin-left: 11px;
+    }
+  }
+
+  &__languages {
+    ul {
+      padding: 3px;
+      box-shadow: $menu-shadow;
+      border-radius: 30px;
+      background-color: #ffffff;
+      li {
+        a {
+          display: flex;
+          align-items: center;
+          padding: 3px;
+          img {
+            object-fit: cover;
+            object-position: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.25);
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.logo {
+}
