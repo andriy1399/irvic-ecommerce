@@ -11,7 +11,10 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { BagComponent } from './pages/bag/bag.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { StoreComponent } from './pages/store/store.component';
+import { MatRippleModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +24,15 @@ import {MatIconModule} from '@angular/material/icon';
     SignInComponent,
     AboutUsComponent,
     BagComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    StoreComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

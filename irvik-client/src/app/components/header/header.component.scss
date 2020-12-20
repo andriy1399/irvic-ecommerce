@@ -1,11 +1,11 @@
 @import "../../../scss/variables";
 @import "../../../scss/mixins";
 .header {
-  padding: .6875em 0;
+  padding: 0.6875em 0;
   background-image: $header-bg;
 
   .container {
-    @include flex(row, wrap, space-between, center);
+    @include flex(row, wrap, space-around, center);
   }
   // &__icon {
   //   margin-left: 85px;
@@ -15,16 +15,19 @@
   }
 
   &__menu-list {
-    margin-left: 1.56em;
-    margin-right: 2.06em;
+    // margin-left: 1.56em;
+    // margin-right: 2.45em;
+    margin-right: 30px;
     @include flex(row, wrap, space-between, center);
     li + li {
       margin-left: 30px;
     }
     li {
+      padding: .22em;
+      transition: background-image .3s ease-in-out;
       a {
-        font-size: 1.875rem;
-        padding: 0.4em 0;
+        font-size: 1.775rem;
+        padding: 0.3em 0;
         width: 170px;
         display: block;
         text-align: center;
@@ -32,20 +35,31 @@
         background-color: #ffffff;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
         color: $header-item-txt-clr;
+        transition: background-color .3s ease-in-out;
+        &:hover {
+          background-color: rgb(247, 247, 240);
+        }
       }
       a.active {
-        box-shadow: 0 0 0 3px #BC5A00;
         color: $active-color;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.418),;
       }
     }
 
+    li.active {
+      background-image: linear-gradient(45deg,#FF7B01, #FFC701);
+      border-radius: 7px;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
   }
 
   &__menu-with-icon-list {
-    margin-right: 2em;
-    margin-left: 3em;
+    // margin-right: 4.6em;
+    // margin-left: 0;
     @include flex(row, wrap, space-between, center);
     li {
+      padding: .2em;
+      border-radius: 50%;
       a {
         padding: 0.5em;
         display: flex;
@@ -56,8 +70,19 @@
         .header__icon {
           color: $header-item-txt-clr;
         }
-      }
+        transition: background-color .3s ease-in-out;
+        &:hover {
+          background-color: rgb(247, 247, 240);
+        }
 
+      }
+      a.active {
+        box-shadow: inset 0 0 0 1px #0000005e;
+        // color: $active-color;
+        .header__icon {
+          color: $active-color;
+        }
+      }
 
       span {
         font-size: 1rem;
@@ -72,13 +97,17 @@
         color: $header-item-txt-clr;
       }
     }
-
+    li.active {
+      background-image: linear-gradient(45deg, #FF7B01, #FFC701);
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
     li + li {
       margin-left: 11px;
     }
   }
 
   &__languages {
+    // margin-right: 5em;
     ul {
       padding: 3px;
       box-shadow: $menu-shadow;
@@ -98,7 +127,6 @@
             box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.25);
           }
         }
-
       }
     }
   }

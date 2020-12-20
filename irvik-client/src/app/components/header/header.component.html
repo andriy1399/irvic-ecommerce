@@ -1,30 +1,30 @@
 <header class="header">
   <div class="container">
     <div class="header__icon" >
-      <a href="#" class="logo">
+      <a href="#" class="logo" routerLink='/'>
         <img src="../../../assets/img/New_LOGO.png" alt="" width="169px">
       </a>
     </div>
     <nav>
       <ul class="header__menu-list">
-        <li>
-          <a href="#" class="active">Home</a>
+        <li  routerLinkActive="active">
+          <a matRipple [routerLink]="['/home']" routerLinkActive='active'>Home</a>
         </li>
-        <li>
-          <a href="#">Store</a>
+        <li  routerLinkActive="active">
+          <a matRipple [routerLink]="['/store']" routerLinkActive='active'>Store</a>
         </li>
-        <li>
-          <a href="#">About us</a>
+        <li  routerLinkActive="active">
+          <a matRipple [routerLink]="['/about-us']" routerLinkActive='active'>About us</a>
         </li>
       </ul>
       <ul class="header__menu-with-icon-list">
-        <li>
-          <a href="#">
+        <li  routerLinkActive="active">
+          <a matRipple [routerLink]="['/favorites']" routerLinkActive='active' >
             <mat-icon class="header__icon">favorite_border</mat-icon>
           </a>
         </li>
-        <li>
-          <a href="#">
+        <li routerLinkActive="active">
+          <a matRipple [routerLink]="['/bag']" routerLinkActive='active'>
             <mat-icon class="header__icon">shopping_cart</mat-icon>
           </a>
         </li>
