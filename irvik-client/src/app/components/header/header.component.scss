@@ -3,20 +3,20 @@
 .header {
   padding: 0.6875em 0;
   background-image: $header-bg;
-
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   .container {
     @include flex(row, wrap, space-around, center);
   }
-  // &__icon {
-  //   margin-left: 85px;
-  // }
+
   nav {
     @include flex(row, wrap, space-between, center);
   }
 
   &__menu-list {
-    // margin-left: 1.56em;
-    // margin-right: 2.45em;
+
     margin-right: 30px;
     @include flex(row, wrap, space-between, center);
     li + li {
@@ -48,15 +48,14 @@
     }
 
     li.active {
-      background-image: linear-gradient(45deg,#FF7B01, #FFC701);
+      background-image: $border-gradient-for-btn;
       border-radius: 7px;
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     }
   }
 
   &__menu-with-icon-list {
-    // margin-right: 4.6em;
-    // margin-left: 0;
+
     @include flex(row, wrap, space-between, center);
     li {
       padding: .16em;
@@ -79,7 +78,6 @@
       }
       a.active {
         box-shadow: inset 0 0 0 1px #0000005e;
-        // color: $active-color;
         .header__icon {
           color: $active-color;
         }
@@ -99,7 +97,7 @@
       }
     }
     li.active {
-      background-image: linear-gradient(45deg, #FF7B01, #FFC701);
+      background-image: $border-gradient-for-btn;
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     }
     li + li {
@@ -108,7 +106,6 @@
   }
 
   &__languages {
-    // margin-right: 5em;
     ul {
       padding: 3px;
       box-shadow: $menu-shadow;

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { StoreComponent } from './pages/store/store.component';
 import { MatRippleModule } from '@angular/material/core';
+import { ScrollBtnComponent } from './components/scroll-btn/scroll-btn.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatRippleModule } from '@angular/material/core';
     AboutUsComponent,
     BagComponent,
     FavoritesComponent,
-    StoreComponent
+    StoreComponent,
+    ScrollBtnComponent
   ],
   imports: [
     BrowserModule,
