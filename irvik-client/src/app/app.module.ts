@@ -10,6 +10,11 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { BagComponent } from './pages/bag/bag.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { StoreComponent } from './pages/store/store.component';
+import { MatRippleModule } from '@angular/material/core';
+import { ScrollBtnComponent } from './components/scroll-btn/scroll-btn.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +25,16 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     SignInComponent,
     AboutUsComponent,
     BagComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    StoreComponent,
+    ScrollBtnComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
