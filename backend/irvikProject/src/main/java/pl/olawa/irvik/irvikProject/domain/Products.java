@@ -8,9 +8,9 @@ import java.util.Set;
 @Table
 public class Products {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @Column
     private String title;
     @Column
