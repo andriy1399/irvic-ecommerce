@@ -8,13 +8,13 @@
     <nav>
       <ul class="header__menu-list">
         <li routerLinkActive="active">
-          <a matRipple [routerLink]="['/home']" routerLinkActive='active'>{{ 'navbar.home' | translate }}</a>
+          <a matRipple [routerLink]="['/home']" routerLinkActive='active'>{{ 'navbar.home' | translate | titlecase }}</a>
         </li>
         <li routerLinkActive="active">
-          <a matRipple [routerLink]="['/store']" routerLinkActive='active'>{{ 'navbar.store' | translate }}</a>
+          <a matRipple [routerLink]="['/store']" routerLinkActive='active'>{{ 'navbar.store' | translate | titlecase }}</a>
         </li>
         <li routerLinkActive="active">
-          <a matRipple [routerLink]="['/about-us']" routerLinkActive='active'>{{ 'navbar.aboutUs' | translate }}</a>
+          <a matRipple [routerLink]="['/about-us']" routerLinkActive='active'>{{ 'navbar.aboutUs' | translate | titlecase }}</a>
         </li>
       </ul>
       <ul class="header__menu-with-icon-list">
