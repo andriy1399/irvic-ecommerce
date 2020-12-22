@@ -16,9 +16,7 @@ public interface ProductServiceImpl {
 
     ResponseEntity<Products> update(Long id, ProductsDto products);
 
-
-
-    Object findById(Long productId);
+    Products findById(long productId);
 
     List<Products> getAllProducts();
 

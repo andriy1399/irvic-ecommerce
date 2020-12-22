@@ -70,12 +70,7 @@ public class ProductService implements ProductServiceImpl {
     }
 
     @Override
-    public Object findById(Long productId) {
-        if((productId>= products.size()) || (productId<0))
-        {
-            throw  new ProductnotFoundException("Product id not found -" +productId);
-        }
-
+    public Products findById(long productId) {
        return productRepository.findById(productId);
     }
 

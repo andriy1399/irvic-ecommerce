@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Products,Long>{
 
+        Products findById(long id);
     List<Products> findByMaterial(String material);
 
     List<Products> findByCategory(String category);
@@ -18,6 +19,7 @@ public interface ProductRepository extends JpaRepository<Products,Long>{
     List<Products> findByTotalPrice(int totalPrice);
 
     List<Products> findByIsAvailable(boolean isAvailable);
+
 
     List<Products> findByWidth(int width);
 
