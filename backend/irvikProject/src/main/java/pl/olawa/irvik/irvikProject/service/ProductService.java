@@ -11,7 +11,6 @@ import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
 import pl.olawa.irvik.irvikProject.service.imp.ProductServiceImpl;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService implements ProductServiceImpl {
@@ -25,7 +24,10 @@ public class ProductService implements ProductServiceImpl {
     private ProductsCrudRepo productsCrudRepo;
 
 
-    private List<Products> products;
+
+
+
+
 
 
     @Override

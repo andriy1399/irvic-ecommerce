@@ -27,7 +27,7 @@ public class ProductRestExceptionHandler {
         errorResponce.setMessage(errorResponce.getMessage());
         errorResponce.setTimeStamp(System.currentTimeMillis());
 
-        return  new ResponseEntity<>(errorResponce, HttpStatus.NOT_FOUND);
+        return  new ResponseEntity<>(errorResponce, HttpStatus.BAD_REQUEST);
     }
 
 

@@ -1,10 +1,16 @@
 package pl.olawa.irvik.irvikProject.contoller;
 
 
+import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.olawa.irvik.irvikProject.dao.ProductRepository;
 import pl.olawa.irvik.irvikProject.domain.Products;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
+import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
 import pl.olawa.irvik.irvikProject.service.ProductService;
 
 import java.util.List;
@@ -15,13 +21,23 @@ public class ProductsController {
     @Autowired
     private ProductService productService;
 
+    private final ProductRepository productRepository;
 
-
-    @GetMapping("/products")
-    public List<Products> getAllProducts(){
-        return productService.getAllProducts();
+    public ProductsController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
-    //crud Operation
+
+
+    @GetMapping("/productsfind")
+    public ResponseEntity<List<Products>>searchForProducts(@SearchSpec Specification<Products> specification){
+        return new ResponseEntity<>(productRepository.findAll(Specification.where(specification)), HttpStatus.OK);
+    }
+
+//    @GetMapping("/allproducts")
+//    public List<Products> getAllProducts(){
+//        return productService.getAllProducts();
+//    }
+//    //crud Operation
 
     @PostMapping("/products")
     public Products addProducts(@RequestBody Products products){
@@ -36,19 +52,17 @@ public class ProductsController {
 
     @DeleteMapping("/products/{id}")
     void deleteById(@PathVariable long id){
+
        productService.delete(id);
     }
 
 
     @GetMapping("/productById/{id}")
-    public Object findById(@PathVariable long id){
+    public Products findById(@PathVariable long id) throws ProductnotFoundException {
+
         return  productService.findById(id);
     }
 
-    @GetMapping("/productsMaterial/{material}")
-    public List<Products> findByMaterial(@PathVariable String material){
-      return  productService.findByMaterial(material);
-    }
     @GetMapping("/productsCategory/{category}")
     public List<Products> findByCategory(@PathVariable String category){
         return  productService.findByCategory(category);
@@ -58,23 +72,5 @@ public class ProductsController {
     public List<Products> findByAvailable(@PathVariable Boolean available){
         return  productService.findByIsAvailable(available);
     }
-    @GetMapping("/productsWidth/{Width}")
-    public List<Products> findByWidth(@PathVariable int width){
-        return  productService.findByWidth(width);
-    }
-    @GetMapping("/productsLength/{length}")
-    public List<Products> findBylength(@PathVariable int length){
-        return  productService.findByLength(length);
-    }
-
-    @GetMapping("/productsHeight={height}")
-    public List<Products> findByHeight(@PathVariable int height){
-        return  productService.findByHeight(height);
-    }
-
-    @GetMapping("/findByWidthAndByLengthAndheight={width}&{length}&{height}")
-    public List<Products> findByWidthAndByLengthAndheight(@PathVariable int width,@PathVariable int length,@PathVariable int height){
-        return  productService.findByWidthAndByLengthAndheight(width,length,height);
-    }
-
+//
 }
