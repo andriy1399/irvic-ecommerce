@@ -3,7 +3,11 @@ package pl.olawa.irvik.irvikProject.contoller;
 
 import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,11 +37,12 @@ public class ProductsController {
         return new ResponseEntity<>(productRepository.findAll(Specification.where(specification)), HttpStatus.OK);
     }
 
-//    @GetMapping("/allproducts")
-//    public List<Products> getAllProducts(){
-//        return productService.getAllProducts();
-//    }
-//    //crud Operation
+
+    @GetMapping("/allproducts")
+    public Page<Products> getAllProducts(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable){
+        return productRepository.findAll(pageable);
+    }
+    //crud Operation
 
     @PostMapping("/products")
     public Products addProducts(@RequestBody Products products){
