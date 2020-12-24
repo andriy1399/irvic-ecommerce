@@ -1,16 +1,16 @@
 package pl.olawa.irvik.irvikProject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
+import pl.olawa.irvik.irvikProject.dao.ProductsCrudRepo;
 import pl.olawa.irvik.irvikProject.domain.Products;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
-import pl.olawa.irvik.irvikProject.exception.ResourcenotFoundException;
+import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
 import pl.olawa.irvik.irvikProject.service.imp.ProductServiceImpl;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService implements ProductServiceImpl {
@@ -20,21 +20,29 @@ public class ProductService implements ProductServiceImpl {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ProductsCrudRepo productsCrudRepo;
+
+
+
+
+
+
 
 
     @Override
-    public void save(Products products) {
-        productRepository.save(products);
+    public Products save(Products products) {
+       return productsCrudRepo.save(products);
     }
 
     @Override
-    public void deleteById(Long id) {
-        productRepository.deleteById(id);
+    public void delete(long id) {
+        Products  products = productsCrudRepo.findById(id).orElseThrow(()-> new ProductnotFoundException("products not exist with id :" + id));
+        productsCrudRepo.delete(products);
     }
-
     @Override
-    public void update( Long id, ProductsDto productsDto) {
-        Products products = productRepository.findById(id).orElseThrow(()-> new ResourcenotFoundException("products not exist with id :" + id));
+    public ResponseEntity<Products> update(Long id, ProductsDto productsDto) {
+        Products products = productRepository.findById(id).orElseThrow(()-> new ProductnotFoundException("products not exist with id :" + id));
         products.setTitle(productsDto.getTitle());
         products.setDescription(productsDto.getDescription());
         products.setMaterial(productsDto.getMaterial());
@@ -44,10 +52,18 @@ public class ProductService implements ProductServiceImpl {
         products.setAvailable(productsDto.isAvailable());
         products.setWidth(productsDto.getWidth());
         products.setLength(productsDto.getLength());
-        products.setLength(productsDto.getHeight());
-        productRepository.save(products);
+        products.setHeight(productsDto.getHeight());
+        Products productsEmp = productRepository.save(products);
+        return  ResponseEntity.ok(productsEmp);
 
     }
+
+
+//    @Override
+//    public Products findById(long id) {
+//
+//        return productRepository.getOne(id);
+//    }
 
 
     @Override
@@ -56,9 +72,13 @@ public class ProductService implements ProductServiceImpl {
     }
 
     @Override
-    public void findById(Long id) {
+    public Products findById(long productId) {
+       return productRepository.findById(productId);
+    }
 
-        productRepository.findById(id);
+    @Override
+    public List<Products> getAllProducts() {
+        return productRepository.findAll();
     }
 
 
@@ -81,7 +101,9 @@ public class ProductService implements ProductServiceImpl {
     @Override
     public List<Products> findByIsAvailable(boolean isAvailable) {
         if(isAvailable== false){
-    //add extheption
+            throw new ProductnotFoundException("\n" +
+                    "not available ");
+
         }
         return productRepository.findByIsAvailable(isAvailable);
 
@@ -107,5 +129,7 @@ public class ProductService implements ProductServiceImpl {
         return productRepository.findByWidthAndLengthAndHeight(width,length,height);
     }
 
+
+    //exception
 
 }

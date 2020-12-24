@@ -1,23 +1,26 @@
 package pl.olawa.irvik.irvikProject.service.imp;
 
+import org.springframework.http.ResponseEntity;
 import pl.olawa.irvik.irvikProject.domain.Products;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductServiceImpl {
 
 
-    void save(Products products);
+    public Products save(Products products);
 
-    void deleteById(Long id);
+    void delete(long id);
 
-    void update(Long id,ProductsDto products);
+    ResponseEntity<Products> update(Long id, ProductsDto products);
 
+    Products findById(long productId);
+
+    List<Products> getAllProducts();
 
     List<Products> findByTitle(String title);
-
-    void findById(Long id);
 
     List<Products> findByMaterial(String material);
 
