@@ -14,3 +14,14 @@ p, span, li, a, small {
   font-family: 'Questrial', sans-serif;
 }
 // 59px padding for main container
+@media screen and (max-width: 1270px) {
+  .container {
+    width: 92%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+}

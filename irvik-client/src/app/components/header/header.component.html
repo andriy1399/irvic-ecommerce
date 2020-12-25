@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header__icon">
       <a href="#" class="logo" routerLink='/'>
-        <img src="../../../assets/img/New_LOGO.png" alt="" width="130px">
+        <img src="../../../assets/img/New_LOGO.png" alt="">
       </a>
     </div>
     <nav>
@@ -18,6 +18,11 @@
         </li>
       </ul>
       <ul class="header__menu-with-icon-list">
+        <li routerLinkActive="active">
+          <a matRipple [routerLink]="['/admin']" routerLinkActive='active'>
+            <mat-icon class="header__icon">person</mat-icon>
+          </a>
+        </li>
         <li routerLinkActive="active">
           <a matRipple [routerLink]="['/favorites']" routerLinkActive='active'>
             <mat-icon class="header__icon">favorite_border</mat-icon>
@@ -61,3 +66,8 @@
     </div>
   </div>
 </header>
+<a class="burger-menu">
+  <span class="burger-menu__line" style="height: 1.5px;"></span>
+  <span class="burger-menu__line" style="height: 1.5px;"></span>
+  <span class="burger-menu__line" style="height: 1.5px;"></span>
+</a>

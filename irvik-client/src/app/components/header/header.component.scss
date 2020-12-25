@@ -10,7 +10,13 @@
   .container {
     @include flex(row, wrap, space-around, center);
   }
-
+  &__icon {
+    a{
+      img {
+        width: 130px;
+      }
+    }
+  }
   nav {
     @include flex(row, wrap, space-between, center);
   }
@@ -111,21 +117,6 @@
     }
   }
   &__form-control {
-    // a {
-    //   display: flex;
-    //   align-items: center;
-    //   padding: 2px;
-    //   img {
-    //     object-fit: cover;
-    //     object-position: center;
-    //     width: 17px;
-    //     height: 17px;
-    //     border-radius: 50%;
-    //     box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.25);
-    //   }
-    // }
-
-
     input[type="radio"] {
       display: none;
     }
@@ -150,5 +141,99 @@
       border-radius: 50%;
     }
 
+  }
+}
+.burger-menu {
+  position: fixed;
+  top: 85px;
+  right: -30px;
+  background-color: #ffffff;
+  border: 2px solid #000;
+  padding: .9em;
+  border-radius: 50%;
+  box-shadow: $basic-shadow;
+  &__line {
+    display: block;
+    height: 1px;
+    width: 25px;
+    background-color: #000;
+    border-radius: 50%;
+  }
+  &__line + &__line {
+    margin-top: .6em;
+  }
+
+}
+
+@media screen and (max-width: 1270px) {
+  .header {
+    padding: 0.625em 0;
+
+    &__icon {
+      a{
+        img {
+          width: 120px;
+        }
+      }
+    }
+
+    &__menu-list {
+      margin-right: 18px;
+      li + li {
+        margin-left: 18px;
+      }
+      li {
+        padding: 0.2em;
+        a {
+          font-size: 1.1rem;
+          padding: 0.2em 0;
+          width: 110px;
+        }
+      }
+    }
+
+    &__menu-with-icon-list {
+      li {
+        padding: 0.1em;
+        a {
+          padding: 0.3em;
+          border-radius: 50%;
+          .header__icon {
+            font-size: 1.2em;
+            text-align: center;
+            line-height: 25px;
+          }
+        }
+
+        span {
+          display: none;
+        }
+      }
+      li + li {
+        margin-left: 8px;
+      }
+    }
+
+
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0.625em 0 0.5em;
+
+    &__icon {
+      a{
+        img {
+          width: 120px;
+        }
+      }
+    }
+    nav {
+      display: none;
+    }
+    &__languages {
+      display: none;
+    }
   }
 }
