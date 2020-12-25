@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 
 // Components and pages
 import { AppComponent } from './app.component';
@@ -18,13 +19,13 @@ import { StoreComponent } from './pages/store/store.component';
 import { ScrollBtnComponent } from './components/scroll-btn/scroll-btn.component';
 
 // Angular materials modules
-import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 
 // Other libraries
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LangDirective } from './shared/directives/lang.directive';
+
 
 // root functions
 export function HttpLoaderFactory(http: HttpClient): any {
@@ -44,12 +45,13 @@ export function HttpLoaderFactory(http: HttpClient): any {
     StoreComponent,
     ScrollBtnComponent,
     LangDirective,
+
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule,
     MatRippleModule,
     HttpClientModule,
     TranslateModule.forRoot({
