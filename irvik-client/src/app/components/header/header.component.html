@@ -1,25 +1,25 @@
 <header class="header">
   <div class="container">
-    <div class="header__icon" >
+    <div class="header__icon">
       <a href="#" class="logo" routerLink='/'>
         <img src="../../../assets/img/New_LOGO.png" alt="" width="130px">
       </a>
     </div>
     <nav>
       <ul class="header__menu-list">
-        <li  routerLinkActive="active">
-          <a matRipple [routerLink]="['/home']" routerLinkActive='active'>Home</a>
+        <li routerLinkActive="active">
+          <a matRipple [routerLink]="['/home']" routerLinkActive='active'>{{ 'navbar.home' | translate | titlecase }}</a>
         </li>
-        <li  routerLinkActive="active">
-          <a matRipple [routerLink]="['/store']" routerLinkActive='active'>Store</a>
+        <li routerLinkActive="active">
+          <a matRipple [routerLink]="['/store']" routerLinkActive='active'>{{ 'navbar.store' | translate | titlecase }}</a>
         </li>
-        <li  routerLinkActive="active">
-          <a matRipple [routerLink]="['/about-us']" routerLinkActive='active'>About us</a>
+        <li routerLinkActive="active">
+          <a matRipple [routerLink]="['/about-us']" routerLinkActive='active'>{{ 'navbar.aboutUs' | translate | titlecase }}</a>
         </li>
       </ul>
       <ul class="header__menu-with-icon-list">
-        <li  routerLinkActive="active">
-          <a matRipple [routerLink]="['/favorites']" routerLinkActive='active' >
+        <li routerLinkActive="active">
+          <a matRipple [routerLink]="['/favorites']" routerLinkActive='active'>
             <mat-icon class="header__icon">favorite_border</mat-icon>
           </a>
         </li>
@@ -33,20 +33,29 @@
     </nav>
     <div class="header__languages">
       <ul>
-        <li>
-          <a href="#">
-            <img src="../../../assets/img/poland.svg" alt="pl">
-          </a>
+        <li class="header__form-control">
+          <label for="pl-lang">
+            <input type="radio" appLang (click)="changeLang($event)" name="lang-radio" value="pl" id="pl-lang">
+            <span >
+              <img src="../../../assets/img/poland.svg" alt="pl">
+            </span>
+          </label>
         </li>
-        <li>
-          <a href="#">
-            <img src="../../../assets/img/ukraine.svg" alt="ua">
-          </a>
+        <li class="header__form-control">
+          <label for="en-lang">
+            <input type="radio" appLang (click)="changeLang($event)" name="lang-radio"  value="en" id="en-lang">
+            <span >
+              <img src="../../../assets/img/united-kingdom.svg" alt="en">
+            </span>
+          </label>
         </li>
-        <li>
-          <a href="#">
-            <img src="../../../assets/img/united-kingdom.svg" alt="en">
-          </a>
+        <li class="header__form-control">
+          <label for="uk-lang">
+            <input type="radio" appLang (click)="changeLang($event)" name="lang-radio" value="uk" id="uk-lang">
+            <span >
+              <img src="../../../assets/img/ukraine.svg" alt="uk">
+            </span>
+          </label>
         </li>
       </ul>
     </div>

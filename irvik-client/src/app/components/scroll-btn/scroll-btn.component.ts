@@ -16,7 +16,6 @@ export class ScrollBtnComponent implements OnInit {
   onWindowScroll(): void {
     if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
       this.windowScrolled = true;
-      console.log(this.windowScrolled);
     }
     else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
       this.windowScrolled = false;
@@ -25,9 +24,7 @@ export class ScrollBtnComponent implements OnInit {
 
   scrollToTop(): void {
     (function smoothscroll(): void {
-
       const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-
       if (currentScroll > 0) {
         window.requestAnimationFrame(smoothscroll);
         window.scrollTo(0, currentScroll - (currentScroll / 8));
