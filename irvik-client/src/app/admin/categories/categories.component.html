@@ -1,1 +1,23 @@
-<p>categories works!</p>
+<div class="categories">
+  <form class="example-form">
+    <mat-form-field class="categories__input">
+      <mat-label>Category name uk</mat-label>
+      <input  type="text" matInput [(ngModel)]="nameUk" name="nameUk" />
+    </mat-form-field>
+    <mat-form-field class="categories__input">
+      <mat-label>Category name pl</mat-label>
+      <input  type="text" matInput [(ngModel)]="namePl" name="namePl"  />
+    </mat-form-field>
+    <mat-form-field class="categories__input">
+      <mat-label>Category name en</mat-label>
+      <input  type="text" matInput  [(ngModel)]="nameEn" name="nameEn" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addCategory()">Add</button>
+  </form>
+
+</div>
+
+ <hr style="margin: 1em 0;">
+<div *ngFor="let cat of categories; index as i">
+  <p style="font-size: 20px;"><span>{{ i + 1 + ') '}}</span>{{ 'categories.' + convertToSnakeCase(cat.categoryEn) | translate }}</p>
+</div>

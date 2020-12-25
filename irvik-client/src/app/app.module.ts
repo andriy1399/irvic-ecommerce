@@ -21,16 +21,17 @@ import { ScrollBtnComponent } from './components/scroll-btn/scroll-btn.component
 // Angular materials modules
 import { MatRippleModule } from '@angular/material/core';
 
-// Other libraries
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// // Other libraries
+// import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// import { LangDirective } from './shared/directives/lang.directive';
+
 import { LangDirective } from './shared/directives/lang.directive';
 
-
-// root functions
-export function HttpLoaderFactory(http: HttpClient): any {
-  return new TranslateHttpLoader(http);
-}
+// // root functions
+// export function HttpLoaderFactory(http: HttpClient): any {
+//   return new TranslateHttpLoader(http);
+// }
 
 @NgModule({
   declarations: [
@@ -53,15 +54,15 @@ export function HttpLoaderFactory(http: HttpClient): any {
     AppRoutingModule,
     BrowserAnimationsModule,
     MatRippleModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'pl'
-    }),
+    // HttpClientModule,
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: HttpLoaderFactory,
+    //     deps: [HttpClient]
+    //   },
+    //   defaultLanguage: 'pl'
+    // }),
   ],
   providers: [],
   bootstrap: [AppComponent]
