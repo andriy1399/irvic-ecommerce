@@ -144,6 +144,7 @@
   }
 }
 .burger-menu {
+  display: none;
   position: fixed;
   top: 85px;
   right: -30px;
@@ -235,5 +236,8 @@
     &__languages {
       display: none;
     }
+  }
+  .burger-menu {
+    display: block;
   }
 }

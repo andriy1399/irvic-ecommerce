@@ -12,11 +12,17 @@ const routes: Routes = [
   {path: 'about-us', component: AboutUsComponent},
   {path: 'bag', component: BagComponent},
   {path: 'favorites', component: FavoritesComponent},
-  {path: 'store', component: StoreComponent}
+  {path: 'store', component: StoreComponent},
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'top',
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
