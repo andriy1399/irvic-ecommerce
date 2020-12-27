@@ -1,5 +1,7 @@
 package pl.olawa.irvik.irvikProject.dto;
 
+import java.util.List;
+
 public class ProductsDto {
 
     private String title;
@@ -9,12 +11,21 @@ public class ProductsDto {
     private int discount;
     private int totalPrice;
     private boolean isAvailable;
+    private List<String> url_images;
     private int width;
     private int length;
     private  int height;
 
     public String getTitle() {
         return title;
+    }
+
+    public List<String> getUrlImages() {
+        return url_images;
+    }
+
+    public void setUrlImages(List<String> urlImages) {
+        this.url_images = urlImages;
     }
 
     public void setTitle(String title) {

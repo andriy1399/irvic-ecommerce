@@ -27,6 +27,12 @@ public class Products {
     private int totalPrice;
     @Column
     private boolean isAvailable;
+
+    @ElementCollection
+//    @CollectionTable(name = "products_url_images",joinColumns = @JoinColumn(name = "products_id"))
+//    @Column(name = "url_images")
+    private List<String>url_images;
+
     @Column
     private int width;
     @Column
@@ -34,10 +40,8 @@ public class Products {
     @Column
     private  int height;
 
-    public Products() {
-    }
 
-    public Products(String title, String description, int price, String material, String category, int discount, int totalPrice, boolean isAvailable, int width, int length, int height) {
+    public Products(String title, String description, int price, String material, String category, int discount, int totalPrice, boolean isAvailable, List<String> url_images, int width, int length, int height) {
         this.title = title;
         this.description = description;
         this.price = price;
@@ -46,9 +50,18 @@ public class Products {
         this.discount = discount;
         this.totalPrice = totalPrice;
         this.isAvailable = isAvailable;
+        this.url_images = url_images;
         this.width = width;
         this.length = length;
         this.height = height;
+    }
+
+    public List<String> getUrl_images() {
+        return url_images;
+    }
+
+    public void setUrl_images(List<String> url_images) {
+        this.url_images = url_images;
     }
 
     public long getId() {

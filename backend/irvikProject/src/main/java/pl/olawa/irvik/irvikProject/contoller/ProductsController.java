@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
 import pl.olawa.irvik.irvikProject.domain.Products;
@@ -31,37 +32,37 @@ public class ProductsController {
         this.productRepository = productRepository;
     }
 
-
+    //search Products
     @GetMapping("/productsfind")
     public ResponseEntity<List<Products>>searchForProducts(@SearchSpec Specification<Products> specification){
         return new ResponseEntity<>(productRepository.findAll(Specification.where(specification)), HttpStatus.OK);
     }
 
-
+    //pagination
     @GetMapping("/allproducts")
     public Page<Products> getAllProducts(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable){
         return productRepository.findAll(pageable);
     }
     //crud Operation
 
-    @PostMapping("/products")
+    @PostMapping("/admin/products")
     public Products addProducts(@RequestBody Products products){
     return  productService.save(products);
     }
 
-    @PutMapping("/products/{id}")
+    @PutMapping("/admin/products/{id}")
     public void updateProducts(@PathVariable Long id, @RequestBody ProductsDto products){
          productService.update(id,products);
     }
 
 
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/admin/products/{id}")
     void deleteById(@PathVariable long id){
 
        productService.delete(id);
     }
 
-
+    //get method
     @GetMapping("/productById/{id}")
     public Products findById(@PathVariable long id) throws ProductnotFoundException {
 
