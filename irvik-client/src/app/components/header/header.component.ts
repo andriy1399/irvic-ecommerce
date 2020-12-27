@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CategoriesService } from '../../shared/services/categories.service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,14 @@ import { TranslateService } from '@ngx-translate/core';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    public translate: TranslateService
+    public translate: TranslateService,
+    private categoriesServ: CategoriesService
   ) { }
 
   ngOnInit(): void {
     const lang = localStorage.getItem('lang') || 'pl';
     this.translate.use(lang);
+    this.translate.setDefaultLang(lang);
     this.changeLang(null, lang);
   }
   changeLang(e: Event | null, language?: string): void {
@@ -28,5 +31,6 @@ export class HeaderComponent implements OnInit {
       this.translate.use(lang);
       localStorage.setItem('lang', lang);
     }
+    this.categoriesServ.lang.next(lang);
   }
 }

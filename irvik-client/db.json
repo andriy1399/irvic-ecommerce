@@ -1,0 +1,22 @@
+{
+  "categories": [
+    {
+      "categoryEn": "Christmas gifts",
+      "categoryPl": "prezenty świąteczne",
+      "categoryUk": "новорічні подарки",
+      "id": 1
+    },
+    {
+      "categoryEn": "women's day",
+      "categoryPl": " Dzień Kobiet",
+      "categoryUk": "день жінки",
+      "id": 2
+    },
+    {
+      "categoryEn": "birthday",
+      "categoryPl": "urodziny",
+      "categoryUk": "день народження",
+      "id": 3
+    }
+  ]
+}
