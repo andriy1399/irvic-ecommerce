@@ -7,8 +7,8 @@ import { ICategory } from '../interfaces/category.interface';
   providedIn: 'root'
 })
 export class CategoriesService {
-  url = 'http://localhost:3000/categories';
-  lang = new Subject<string>();
+  private url = 'http://localhost:3000/categories';
+  public lang = new Subject<string>();
   constructor(
     private http: HttpClient
   ) { }
@@ -18,5 +18,11 @@ export class CategoriesService {
   }
   postCategory(body: ICategory): Observable<ICategory> {
     return this.http.post<ICategory>(this.url, body);
+  }
+  updateCategory(body: ICategory): Observable<ICategory> {
+    return this.http.put<ICategory>(`${this.url}/${body.id}`, body);
+  }
+  deleteCategory(id: number | string): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 }
