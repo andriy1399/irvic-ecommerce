@@ -6,25 +6,31 @@ import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface ProductServiceImpl {
 
 
     public Products save(Products products);
 
-    void delete(long id);
+    void delete(UUID id);
 
-    ResponseEntity<Products> update(Long id, ProductsDto products);
+    ResponseEntity<Products> update(UUID id, ProductsDto products);
 
-    Products findById(long productId);
+    Optional<Products> findById(UUID productId);
+
+    List<Products> getMaterialEu(String materialEu);
+
+    List<Products> getMaterialPl(String materialPl);
+
+    List<Products> getMaterialUk(String materialUk);
+
+
+    List<Products> findByTitleUk(String titleUk);
+    List<Products> findByTitleEn(String titleEn);
+    List<Products> findByTitlePl(String titlePl);
 
     List<Products> getAllProducts();
-
-    List<Products> findByTitle(String title);
-
-    List<Products> findByMaterial(String material);
-
-    List<Products> findByCategory(String category);
 
     List<Products> findByTotalPrice(int totalPrice);
 

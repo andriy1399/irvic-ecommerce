@@ -11,6 +11,9 @@ import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
 import pl.olawa.irvik.irvikProject.service.imp.CategoriesServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class CategoriesService implements CategoriesServiceImpl {
 
@@ -28,15 +31,17 @@ public class CategoriesService implements CategoriesServiceImpl {
     }
 
     @Override
-    public ResponseEntity<Categories> update(long id, CategoriesDto categoriesDto) {
+    public ResponseEntity<Categories> update(UUID id, CategoriesDto categoriesDto) {
         Categories categories1 = categoriesJpaRepo.findById(id).orElseThrow(()-> new ProductnotFoundException("Categories not exist with id L" +id));
-//        categories1.setName(categoriesDto.getName());
+        categories1.setCategoryUk(categoriesDto.getNameUA());
+        categories1.setCategoryEn(categoriesDto.getNameEU());
+        categories1.setCategoryPl(categoriesDto.getNamePL());
         Categories categoriesEmp = categoriesRepository.save(categories1);
         return ResponseEntity.ok(categoriesEmp);
     }
 
     @Override
-    public Categories findById(long categoriesId) {
+    public Optional<Categories> findById(UUID categoriesId) {
         return categoriesRepository.findById(categoriesId);
     }
 
@@ -46,7 +51,7 @@ public class CategoriesService implements CategoriesServiceImpl {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(UUID id) {
         categoriesRepository.deleteById(id);
     }
 }

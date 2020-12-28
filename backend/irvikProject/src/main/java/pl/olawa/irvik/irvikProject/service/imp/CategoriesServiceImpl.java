@@ -5,18 +5,20 @@ import pl.olawa.irvik.irvikProject.domain.Categories;
 import pl.olawa.irvik.irvikProject.dto.CategoriesDto;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public interface CategoriesServiceImpl {
 
     public Categories save(Categories categories);
 
-    public ResponseEntity<Categories> update(long id, CategoriesDto categoriesDto);
+    public ResponseEntity<Categories> update(UUID id, CategoriesDto categoriesDto);
 
-    public  Categories findById(long categoriesId);
+    public Optional<Categories> findById(UUID categoriesId);
 
     List<Categories> getAllCategories();
 
-    void delete(long id);
+    void delete(UUID id);
 
 
 }

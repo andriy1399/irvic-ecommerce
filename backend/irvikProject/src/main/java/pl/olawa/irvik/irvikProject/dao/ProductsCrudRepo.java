@@ -5,7 +5,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import pl.olawa.irvik.irvikProject.domain.Products;
 
-public interface ProductsCrudRepo extends CrudRepository<Products,Long> {
+import java.util.UUID;
+
+public interface ProductsCrudRepo extends CrudRepository<Products, UUID> {
 
         Page<Products>findAll(Pageable pageable);
 

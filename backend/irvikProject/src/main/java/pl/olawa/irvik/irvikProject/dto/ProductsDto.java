@@ -1,51 +1,101 @@
 package pl.olawa.irvik.irvikProject.dto;
 
+import javax.persistence.Column;
 import java.util.List;
 
 public class ProductsDto {
 
-    private String title;
-    private String description;
-    private String material;
+    private String titleEn;
+    private String titlePl;
+    private String titleUk;
+    private String descriptionEn;
+    private String descriptionPl;
+    private String descriptionUk;
+    private String materialUk;
+    private String materialPl;
+    private String materialEn;
     private  String category;
     private int discount;
     private int totalPrice;
     private boolean isAvailable;
-    private List<String> url_images;
+    private List<String>images;
     private int width;
     private int length;
     private  int height;
 
-    public String getTitle() {
-        return title;
+    public ProductsDto() {
     }
 
-    public List<String> getUrlImages() {
-        return url_images;
+    public String getTitleEn() {
+        return titleEn;
     }
 
-    public void setUrlImages(List<String> urlImages) {
-        this.url_images = urlImages;
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getTitlePl() {
+        return titlePl;
     }
 
-    public String getDescription() {
-        return description;
+    public void setTitlePl(String titlePl) {
+        this.titlePl = titlePl;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getTitleUk() {
+        return titleUk;
     }
 
-    public String getMaterial() {
-        return material;
+    public void setTitleUk(String titleUk) {
+        this.titleUk = titleUk;
     }
 
-    public void setMaterial(String material) {
-        this.material = material;
+    public String getDescriptionEn() {
+        return descriptionEn;
+    }
+
+    public void setDescriptionEn(String descriptionEn) {
+        this.descriptionEn = descriptionEn;
+    }
+
+    public String getDescriptionPl() {
+        return descriptionPl;
+    }
+
+    public void setDescriptionPl(String descriptionPl) {
+        this.descriptionPl = descriptionPl;
+    }
+
+    public String getDescriptionUk() {
+        return descriptionUk;
+    }
+
+    public void setDescriptionUk(String descriptionUk) {
+        this.descriptionUk = descriptionUk;
+    }
+
+    public String getMaterialUk() {
+        return materialUk;
+    }
+
+    public void setMaterialUk(String materialUk) {
+        this.materialUk = materialUk;
+    }
+
+    public String getMaterialPl() {
+        return materialPl;
+    }
+
+    public void setMaterialPl(String materialPl) {
+        this.materialPl = materialPl;
+    }
+
+    public String getMaterialEn() {
+        return materialEn;
+    }
+
+    public void setMaterialEn(String materialEn) {
+        this.materialEn = materialEn;
     }
 
     public String getCategory() {
@@ -80,6 +130,14 @@ public class ProductsDto {
         isAvailable = available;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
     public int getWidth() {
         return width;
     }
@@ -103,4 +161,6 @@ public class ProductsDto {
     public void setHeight(int height) {
         this.height = height;
     }
+
+
 }
