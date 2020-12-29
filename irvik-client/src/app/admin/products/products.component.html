@@ -1,50 +1,51 @@
 <mat-tab-group mat-stretch-tabs="center" [selectedIndex]="tabsIndex" (selectedIndexChange)="setTabs($event)">
   <mat-tab label="Form">
-    <div class="form">
+    <form class="form" [formGroup]="productGroup" (ngSubmit)="isEditing ? updateProduct() : addProduct()">
       <div class="form__left">
         <div class="form__control-container">
           <mat-form-field class="form__control form__control--50" appearance="standard">
             <mat-label>Choose category</mat-label>
-            <mat-select>
-
-              <mat-option>sdfasfd</mat-option>
-              <mat-option>sdfasfd</mat-option>
-              <mat-option>sdfasfd</mat-option>
+            <mat-select formControlName='category'>
+              <mat-option *ngFor="let category of categories" [value]='category.categoryEn'>
+                {{ category.categoryEn }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field class="form__control form__control--50" appearance="standard">
             <mat-label>Unit id</mat-label>
-            <input matInput placeholder="example: 12923109">
+            <input formControlName='unitId' matInput placeholder="example: 12923109">
           </mat-form-field>
         </div>
         <div class="form__control-container">
           <mat-form-field class="form__control form__control--30" appearance="standard">
             <mat-label>Width (cm)</mat-label>
-            <input matInput placeholder="example: 30">
+            <input formControlName='width' matInput placeholder="example: 30">
           </mat-form-field>
           <mat-form-field class="form__control form__control--30" appearance="standard">
             <mat-label>Length (cm)</mat-label>
-            <input matInput placeholder="example: 40">
+            <input formControlName='length' matInput placeholder="example: 40">
           </mat-form-field>
           <mat-form-field class="form__control form__control--30" appearance="standard">
             <mat-label>Hight (cm)</mat-label>
-            <input matInput placeholder="example: 40">
+            <input formControlName='hight' matInput placeholder="example: 40">
           </mat-form-field>
         </div>
 
         <div class="form__control-container">
           <mat-form-field class="form__control form__control--30" appearance="standard">
             <mat-label>Price</mat-label>
-            <input matInput type="number" placeholder="example: 30">
+            <input formControlName='price' matInput type="number" placeholder="example: 30">
           </mat-form-field>
           <div style="display: flex; flex-direction: column;">
-            <mat-checkbox color='primary' >Add discount?</mat-checkbox>
-            <mat-checkbox color='primary' >Is available?</mat-checkbox>
+            <mat-checkbox color='primary' formControlName='isDiscount' (change)="changeIsDiscount()">Add discount?
+            </mat-checkbox>
+            <mat-checkbox color='primary' formControlName='isAvailable'>Is available?
+            </mat-checkbox>
           </div>
           <mat-form-field class="form__control form__control--30" appearance="standard">
             <mat-label>Discount</mat-label>
-            <input matInput placeholder="example: 10%">
+            <input formControlName='discount' matInput placeholder="example: 10%">
           </mat-form-field>
         </div>
         <h5 class="text">Upload images here</h5>
@@ -68,58 +69,69 @@
         <div class="form__control-container">
           <mat-form-field class="form__control form__control--50" appearance="standard">
             <mat-label>Title en</mat-label>
-            <input matInput>
+            <input formControlName='titleEn' matInput>
           </mat-form-field>
 
           <mat-form-field class="form__control form__control--50" appearance="standard">
             <mat-label>Title pl</mat-label>
-            <input matInput>
+            <input formControlName='titlePl' matInput>
           </mat-form-field>
         </div>
         <div class="form__control-container">
           <mat-form-field class="form__control form__control--50" appearance="standard">
             <mat-label>Title uk</mat-label>
-            <input matInput>
+            <input formControlName='titleUk' matInput>
           </mat-form-field>
 
           <mat-form-field class="form__control form__control--50" appearance="standard">
             <mat-label>Material uk</mat-label>
-            <input matInput>
+            <input formControlName='materialUk' matInput>
           </mat-form-field>
         </div>
 
         <div class="form__control-container">
           <mat-form-field class="form__control form__control--50" appearance="standard">
             <mat-label>Material en</mat-label>
-            <input matInput>
+            <input formControlName='materialEn' matInput>
           </mat-form-field>
 
           <mat-form-field class="form__control form__control--50" appearance="standard">
             <mat-label>Material pl</mat-label>
-            <input matInput>
+            <input formControlName='materialPl' matInput>
           </mat-form-field>
         </div>
         <div class="form__control-container">
           <mat-form-field class="form__control" appearance="standard">
             <mat-label>Description Pl</mat-label>
-            <textarea matInput></textarea>
+            <textarea formControlName='descriptionPl' matInput></textarea>
           </mat-form-field>
         </div>
         <div class="form__control-container">
           <mat-form-field class="form__control" appearance="standard">
             <mat-label>Description En</mat-label>
-            <textarea matInput></textarea>
+            <textarea formControlName='descriptionEn' matInput></textarea>
           </mat-form-field>
         </div>
         <div class="form__control-container">
           <mat-form-field class="form__control" appearance="standard">
             <mat-label>Description Uk</mat-label>
-            <textarea matInput></textarea>
+            <textarea formControlName='descriptionUk' matInput></textarea>
           </mat-form-field>
         </div>
 
       </div>
-    </div>
+
+      <div class="form__buttons">
+        <ng-container *ngIf="!isEditing; else updateBtn">
+          <button mat-raised-button type="submit" color="primary" [disabled]="productGroup.invalid || !arrFiles.length">Add Product</button>
+        </ng-container>
+        <ng-template #updateBtn>
+          <button mat-raised-button type="submit" color="accent">Update Product</button>
+        </ng-template>
+
+        <button mat-raised-button type="button" color="warn" (click)="productGroup.reset()">Clear form</button>
+      </div>
+    </form>
   </mat-tab>
 
   <mat-tab class="table" label="Table">

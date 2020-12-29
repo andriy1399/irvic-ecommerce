@@ -19,5 +19,6 @@ export interface IProduct {
   descriptionUk: string;
   images: string[];
   dateOfEdition: Date;
+  count: number;
   id?: string | number;
 }
