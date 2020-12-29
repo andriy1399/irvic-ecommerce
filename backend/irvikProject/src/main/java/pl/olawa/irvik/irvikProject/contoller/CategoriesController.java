@@ -6,18 +6,15 @@ import org.springframework.web.bind.annotation.*;
 import pl.olawa.irvik.irvikProject.domain.Categories;
 import pl.olawa.irvik.irvikProject.dto.CategoriesDto;
 import pl.olawa.irvik.irvikProject.service.CategoriesService;
-import pl.olawa.irvik.irvikProject.service.imp.CategoriesServiceImpl;
 
 import java.util.UUID;
-
-import static com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat.UUID;
 
 @RestController
 @RequestMapping("/api/")
 public class CategoriesController {
 
     @Autowired
-    private CategoriesServiceImpl categoriesService;
+    private CategoriesService categoriesService;
 
 
 

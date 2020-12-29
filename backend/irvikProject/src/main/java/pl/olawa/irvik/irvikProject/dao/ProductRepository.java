@@ -2,6 +2,7 @@ package pl.olawa.irvik.irvikProject.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.olawa.irvik.irvikProject.domain.Products;
 
@@ -25,19 +26,6 @@ public interface ProductRepository extends JpaRepository<Products, UUID>, JpaSpe
 
     List<Products> findByHeight(int height);
 
-    List<Products> findByWidthAndLengthAndHeight(int width,int length,int height);
-
-
-
-    List<Products> findByMaterialEn(String materialEn);
-
-    List<Products> findByMaterialPl(String materialPl);
-
-    List<Products> findByMaterialUk(String materialUk);
-
-
-    List<Products> findByTitleUk(String titleUk);
-    List<Products> findByTitleEn(String titleEn);
-    List<Products> findByTitlePl(String titlePl);
-
+    @Query("SELECT p FROM Products  p WHERE p.fullTextName LIKE %?1%")
+    List<Products> findByFullTextNameLike(String fullTextName);
 }

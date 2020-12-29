@@ -10,13 +10,12 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
 import pl.olawa.irvik.irvikProject.domain.Products;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
-import pl.olawa.irvik.irvikProject.service.ProductService;
+import pl.olawa.irvik.irvikProject.service.imp.ProductServiceIml;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +25,7 @@ import java.util.UUID;
 @RequestMapping("/api/")
 public class ProductsController {
     @Autowired
-    private ProductService productService;
+    private ProductServiceIml productService;
 
     private final ProductRepository productRepository;
 
@@ -70,37 +69,16 @@ public class ProductsController {
         return  productService.findById(id);
     }
 
-//    @GetMapping("/productsCategory/{category}")
-//    public List<Products> findByCategory(@PathVariable String category){
-//        return  productService.findByCategory(category);
+    @GetMapping("/products")
+    public  List<Products> findall(){
+        return  productRepository.findAll();
+    }
 
-    @GetMapping("/productsAvailable/{available}")
-    public List<Products> findByAvailable(@PathVariable Boolean available){
-        return  productService.findByIsAvailable(available);
+
+    @GetMapping("/searchByfullText/{text}")
+    public  List<Products> searchByFullTextName(@PathVariable("text") String text){
+        return productService.searchByFullTextName(text);
     }
-    @GetMapping("/productmaterialEn/{materialEu}")
-    public List<Products> findbyMaterialEu(@PathVariable("materialEu") String  materialEu){
-        return productService.getMaterialEu(materialEu);
-    }
-    @GetMapping("/productmaterialPl/{materialPl}")
-    public List<Products> findbyMaterialPl(@PathVariable("materialPl") String  materialPl){
-        return productService.getMaterialPl(materialPl);
-    }
-    @GetMapping("/productmaterialUk/{materialUk}")
-    public List<Products> findbyMaterialUk(@PathVariable("materialUk") String  materialUk){
-        return productService.getMaterialUk(materialUk);
-    }
-    @GetMapping("/producttitlelUk/{titlelUk}")
-    public List<Products> findbyTitlelUk(@PathVariable("titlelUk") String  titleUk){
-        return productService.findByTitleUk(titleUk);
-    }
-    @GetMapping("/producttitleEn{titleEn}")
-    public List<Products> findbyTitlelEn(@PathVariable("titleEn") String  titleEn){
-        return productService.findByTitleEn(titleEn);
-    }
-    @GetMapping("/producttitlelUk/{titlelPl}")
-    public List<Products> findbyTitlelPl(@PathVariable("titlelPl") String  titlePl){
-        return productService.findByTitlePl(titlePl);
-    }
+
 //
 }

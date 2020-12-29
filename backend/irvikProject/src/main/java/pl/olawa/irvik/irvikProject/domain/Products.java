@@ -55,11 +55,13 @@ public class Products {
     private int length;
     @Column
     private  int height;
+    @Column
+    private String fullTextName;
 
     public Products() {
     }
 
-    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, int price, String materialUk, String materialPl, String materialEn, String category, int discount, int totalPrice, boolean isAvailable, List<String> images, Date dateOfEdition, int width, int length, int height) {
+    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, int price, String materialUk, String materialPl, String materialEn, String category, int discount, int totalPrice, boolean isAvailable, List<String> images, Date dateOfEdition, int width, int length, int height, String fullTextName) {
         this.titleEn = titleEn;
         this.titlePl = titlePl;
         this.titleUk = titleUk;
@@ -79,8 +81,16 @@ public class Products {
         this.width = width;
         this.length = length;
         this.height = height;
+        this.fullTextName = fullTextName;
     }
 
+    public String getFullTextName() {
+        return fullTextName;
+    }
+
+    public void setFullTextName(String fullTextName) {
+        this.fullTextName = fullTextName;
+    }
 
     public UUID getUu_id() {
         return uu_id;
