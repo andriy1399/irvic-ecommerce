@@ -1,0 +1,77 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+
+.form {
+  @include flex(row, wrap, space-between, flex-start);
+  &__left {
+    width: 50%;
+    border-right: 1px solid rgb(231, 231, 231);
+  }
+
+  &__control-container {
+    @include flex(row, wrap, space-around, center);
+  }
+
+  &__control {
+    width: 99%;
+    &--50 {
+      width: 49%;
+    }
+    &--30 {
+      width: 32%;
+    }
+  }
+  &__upload--wrapper {
+    margin-top: .5em;
+    width: 100%;
+    @include flex(row, wrap, center, center)
+  }
+
+  &__upload {
+    display: none;
+  }
+
+  &__upload-btn {
+    display: block;
+    width: 50%;
+    padding: .6em;
+    @include flex(row, wrap, center, center);
+    background-image: $header-bg;
+    border-radius: .4em;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    box-shadow: $basic-shadow;
+    &:hover {
+      opacity: .9;
+    }
+    &:active {
+      margin-top: .2em;
+      transform: scale(.95);
+    }
+  }
+  &__images {
+    @include flex (row, wrap, space-around, stretch);
+    margin-top: 1em;
+    mat-card {
+      width: 31%;
+      height: auto;
+      padding: .3em;
+    }
+    img {
+      object-fit: cover;
+      object-position: center;
+      width: 99%;
+    }
+  }
+  &__right {
+    width: 50%;
+    border-left: 1px solid rgb(231, 231, 231);
+  }
+}
+
+.text {
+  font-size: 1rem;
+  letter-spacing: .04em;
+  text-align: center;
+
+}

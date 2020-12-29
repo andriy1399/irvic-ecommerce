@@ -9,6 +9,7 @@
   background-image: $border-gradient-for-btn;
   box-shadow: $basic-shadow;
   animation: scroll-btn-animation 1.3s ease-in-out infinite;
+  z-index: 1111;
   &__btn {
     display: block;
     padding: 0.5em;
