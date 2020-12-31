@@ -3,6 +3,12 @@ package pl.olawa.irvik.irvikProject.dao;
 import org.springframework.data.repository.CrudRepository;
 import pl.olawa.irvik.irvikProject.domain.Categories;
 
-public interface CategoriesRepository extends CrudRepository<Categories,Long> {
-        Categories findById(long id);
+import java.util.Optional;
+import java.util.UUID;
+
+public interface CategoriesRepository extends CrudRepository<Categories,UUID> {
+
+
+        Optional<Categories> findById(UUID id);
+        void deleteById(UUID id);
 }

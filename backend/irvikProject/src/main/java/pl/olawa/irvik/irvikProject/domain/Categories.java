@@ -1,15 +1,18 @@
 package pl.olawa.irvik.irvikProject.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table
 public class Categories {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
-    private long id;
+    @GeneratedValue( strategy = GenerationType.AUTO,generator = "pg-uuid")
+    @GenericGenerator(name = "pg-uuid",strategy = "uuid2")
+    private UUID id;
     @Column
     private String categoryEn;
     @Column
@@ -26,11 +29,10 @@ public class Categories {
         this.categoryPl = categoryPl;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
-
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

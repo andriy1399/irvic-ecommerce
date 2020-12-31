@@ -1,24 +1,41 @@
 package pl.olawa.irvik.irvikProject.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table
 public class Products {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private long id;
+    @GeneratedValue( strategy = GenerationType.AUTO,generator = "pg-uuid")
+    @GenericGenerator(name = "pg-uuid",strategy = "uuid2")
+    private UUID uu_id;
     @Column
-    private String title;
+    private String titleEn;
     @Column
-    private String description;
+    private String titlePl;
+    @Column
+    private String titleUk;
+    @Column
+    private String descriptionEn;
+    @Column
+    private String descriptionPl;
+    @Column
+    private String descriptionUk;
+
     @Column
     private int price;
     @Column
-    private String material;
+    private String materialUk;
+    @Column
+    private String materialPl;
+    @Column
+    private String materialEn;
     @Column
     private  String category;
     @Column
@@ -29,63 +46,106 @@ public class Products {
     private boolean isAvailable;
 
     @ElementCollection
-//    @CollectionTable(name = "products_url_images",joinColumns = @JoinColumn(name = "products_id"))
-//    @Column(name = "url_images")
-    private List<String>url_images;
-
+    private List<String>images;
+    @Column
+    private Date dateOfEdition;
     @Column
     private int width;
     @Column
     private int length;
     @Column
     private  int height;
+    @Column
+    private String fullTextName;
 
+    public Products() {
+    }
 
-    public Products(String title, String description, int price, String material, String category, int discount, int totalPrice, boolean isAvailable, List<String> url_images, int width, int length, int height) {
-        this.title = title;
-        this.description = description;
+    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, int price, String materialUk, String materialPl, String materialEn, String category, int discount, int totalPrice, boolean isAvailable, List<String> images, Date dateOfEdition, int width, int length, int height, String fullTextName) {
+        this.titleEn = titleEn;
+        this.titlePl = titlePl;
+        this.titleUk = titleUk;
+        this.descriptionEn = descriptionEn;
+        this.descriptionPl = descriptionPl;
+        this.descriptionUk = descriptionUk;
         this.price = price;
-        this.material = material;
+        this.materialUk = materialUk;
+        this.materialPl = materialPl;
+        this.materialEn = materialEn;
         this.category = category;
         this.discount = discount;
         this.totalPrice = totalPrice;
         this.isAvailable = isAvailable;
-        this.url_images = url_images;
+        this.images = images;
+        this.dateOfEdition = dateOfEdition;
         this.width = width;
         this.length = length;
         this.height = height;
+        this.fullTextName = fullTextName;
     }
 
-    public List<String> getUrl_images() {
-        return url_images;
+    public String getFullTextName() {
+        return fullTextName;
     }
 
-    public void setUrl_images(List<String> url_images) {
-        this.url_images = url_images;
+    public void setFullTextName(String fullTextName) {
+        this.fullTextName = fullTextName;
     }
 
-    public long getId() {
-        return id;
+    public UUID getUu_id() {
+        return uu_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUu_id(UUID uu_id) {
+        this.uu_id = uu_id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitleEn() {
+        return titleEn;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
-    public String getDescription() {
-        return description;
+    public String getTitlePl() {
+        return titlePl;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTitlePl(String titlePl) {
+        this.titlePl = titlePl;
+    }
+
+    public String getTitleUk() {
+        return titleUk;
+    }
+
+    public void setTitleUk(String titleUk) {
+        this.titleUk = titleUk;
+    }
+
+    public String getDescriptionEn() {
+        return descriptionEn;
+    }
+
+    public void setDescriptionEn(String descriptionEn) {
+        this.descriptionEn = descriptionEn;
+    }
+
+    public String getDescriptionPl() {
+        return descriptionPl;
+    }
+
+    public void setDescriptionPl(String descriptionPl) {
+        this.descriptionPl = descriptionPl;
+    }
+
+    public String getDescriptionUk() {
+        return descriptionUk;
+    }
+
+    public void setDescriptionUk(String descriptionUk) {
+        this.descriptionUk = descriptionUk;
     }
 
     public int getPrice() {
@@ -96,12 +156,28 @@ public class Products {
         this.price = price;
     }
 
-    public String getMaterial() {
-        return material;
+    public String getMaterialUk() {
+        return materialUk;
     }
 
-    public void setMaterial(String material) {
-        this.material = material;
+    public void setMaterialUk(String materialUk) {
+        this.materialUk = materialUk;
+    }
+
+    public String getMaterialPl() {
+        return materialPl;
+    }
+
+    public void setMaterialPl(String materialPl) {
+        this.materialPl = materialPl;
+    }
+
+    public String getMaterialEn() {
+        return materialEn;
+    }
+
+    public void setMaterialEn(String materialEn) {
+        this.materialEn = materialEn;
     }
 
     public String getCategory() {
@@ -134,6 +210,22 @@ public class Products {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public Date getDateOfEdition() {
+        return dateOfEdition;
+    }
+
+    public void setDateOfEdition(Date dateOfEdition) {
+        this.dateOfEdition = dateOfEdition;
     }
 
     public int getWidth() {
