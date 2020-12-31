@@ -1,22 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { ICategory } from '../../shared/interfaces/category.interface';
 import { Product } from '../../shared/models/product.model';
 import { IProduct } from '../../shared/interfaces/product.interface';
 import { ProductService } from '../../shared/services/product.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, AfterViewInit {
   tabsIndex: number | undefined;
   arrFiles: any[] = [];
   productGroup!: FormGroup;
   isEditing = false;
   categories: ICategory[] = [];
+  isGotProduct = false;
+  products!: MatTableDataSource<IProduct>;
+  columnsToDisplay = ['image', 'titleUk', 'price', 'unitId', 'edit', 'delete'];
+  expandedElement!: IProduct | null;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private categoryServ: CategoriesService,
     private productServ: ProductService
@@ -24,6 +39,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
+    this.getProducts();
     this.productGroup = new FormGroup({
       category: new FormControl(null, Validators.required),
       unitId: new FormControl(null, Validators.required),
@@ -45,13 +61,25 @@ export class ProductsComponent implements OnInit {
       descriptionPl: new FormControl(null, Validators.required),
     });
   }
-
+  ngAfterViewInit(): void {
+    if (this.isGotProduct) {
+      this.products.paginator = this.paginator || null;
+    }
+  }
   private getCategories(): void {
     this.categoryServ.getCategories().subscribe(categories => {
       this.categories = categories;
     });
   }
 
+  private getProducts(): void {
+    this.productServ.getProducts().subscribe(products => {
+      this.products = new MatTableDataSource<IProduct>(products);
+      this.isGotProduct = true;
+    }, err => console.log(err), () => {
+      this.products.paginator = this.paginator || null;
+    });
+  }
 
   public addProduct(): void {
     const { category, unitId, width, hight, length, price,
@@ -88,6 +116,14 @@ export class ProductsComponent implements OnInit {
   }
 
   public updateProduct(): void {
+
+  }
+
+  public deleteProduct(id: number): void {
+
+  }
+
+  public editProduct(product: IProduct): void {
 
   }
 
