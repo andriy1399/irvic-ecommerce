@@ -32,6 +32,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   columnsToDisplay = ['image', 'titleUk', 'price', 'unitId', 'edit', 'delete'];
   expandedElement!: IProduct | null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  editingProductId: string | number | undefined;
   constructor(
     private categoryServ: CategoriesService,
     private productServ: ProductService
@@ -116,15 +117,76 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   public updateProduct(): void {
+    const { category, unitId, width, hight, length, price,
+      isAvailable, discount, titleEn, titlePl, titleUk, isDiscount,
+      materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
+    const product: IProduct = new Product(
+      category,
+      unitId,
+      width,
+      hight,
+      length,
+      price,
+      isAvailable,
+      isDiscount,
+      discount || null,
+      titleEn,
+      titlePl,
+      titleUk,
+      materialUk,
+      materialEn,
+      materialPl,
+      descriptionUk,
+      descriptionEn,
+      descriptionPl,
+      this.arrFiles
+    );
+    this.productServ.updateProduct({ ...product, id: this.editingProductId }).subscribe(() => {
+      this.productGroup.reset();
+      this.arrFiles = [];
+      this.isEditing = false;
+      Object.keys(this.productGroup.controls).forEach(key => {
+        this.productGroup.get(key)?.setErrors(null);
+      });
+      this.getProducts();
+    });
 
   }
 
   public deleteProduct(id: number): void {
-
+    this.productServ.deleteProduct(id).subscribe(() => {
+      this.getProducts();
+    });
   }
 
   public editProduct(product: IProduct): void {
+    console.log('sdd');
+    this.productGroup.setValue({
+      unitId: product.unitId,
+      category: product.category,
+      titleEn: product.titleEn,
+      titleUk: product.titleUk,
+      titlePl: product.titlePl,
+      descriptionPl: product.descriptionPl,
+      descriptionUk: product.descriptionUk,
+      descriptionEn: product.descriptionEn,
+      materialEn: product.materialEn,
+      materialPl: product.materialPl,
+      materialUk: product.materialUk,
+      price: product.price,
+      discount: product.isDiscount ? product.discount : '',
+      isDiscount: product.isDiscount,
+      isAvailable: product.isAvailable,
+      width: product.width,
+      length: product.length,
+      hight: product.hight
+    });
 
+    this.isEditing = true;
+    this.editingProductId = product.id;
+    this.arrFiles = product.images;
+
+    this.tabsIndex = 0;
   }
 
   public changeIsDiscount(): void {

@@ -6,6 +6,7 @@ export interface IProduct {
   length: string;
   price: number;
   isAvailable: boolean;
+  isDiscount: boolean;
   discount: string | null;
   totalPrice: number;
   titleEn: string;
