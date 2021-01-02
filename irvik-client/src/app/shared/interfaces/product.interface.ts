@@ -2,7 +2,7 @@ export interface IProduct {
   category: string;
   unitId: string;
   width: string;
-  hight: string;
+  height: string;
   length: string;
   price: number;
   isAvailable: boolean;

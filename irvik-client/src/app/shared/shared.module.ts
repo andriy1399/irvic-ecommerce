@@ -7,8 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 // root functions
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http);
@@ -30,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient): any {
       },
       defaultLanguage: 'pl'
     }),
+    CarouselModule
   ],
   exports: [
     CommonModule,
@@ -39,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient): any {
     ReactiveFormsModule,
     HttpClientModule,
     TranslateModule,
+    CarouselModule
   ],
   providers: [],
 })

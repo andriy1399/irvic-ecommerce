@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       category: new FormControl(null, Validators.required),
       unitId: new FormControl(null, Validators.required),
       width: new FormControl(null, Validators.required),
-      hight: new FormControl(null, Validators.required),
+      height: new FormControl(null, Validators.required),
       length: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
       isDiscount: new FormControl(false),
@@ -83,14 +83,14 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   public addProduct(): void {
-    const { category, unitId, width, hight, length, price,
+    const { category, unitId, width, height, length, price,
       isAvailable, discount, titleEn, titlePl, titleUk, isDiscount,
       materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
     const product: IProduct = new Product(
       category,
       unitId,
       width,
-      hight,
+      height,
       length,
       price,
       isAvailable,
@@ -117,14 +117,14 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   public updateProduct(): void {
-    const { category, unitId, width, hight, length, price,
+    const { category, unitId, width, height, length, price,
       isAvailable, discount, titleEn, titlePl, titleUk, isDiscount,
       materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
     const product: IProduct = new Product(
       category,
       unitId,
       width,
-      hight,
+      height,
       length,
       price,
       isAvailable,
@@ -179,7 +179,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       isAvailable: product.isAvailable,
       width: product.width,
       length: product.length,
-      hight: product.hight
+      height: product.height
     });
 
     this.isEditing = true;

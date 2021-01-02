@@ -27,6 +27,7 @@ import { MatRippleModule } from '@angular/material/core';
 // import { LangDirective } from './shared/directives/lang.directive';
 
 import { LangDirective } from './shared/directives/lang.directive';
+import { SwiperComponent } from './components/swiper/swiper.component';
 
 // // root functions
 // export function HttpLoaderFactory(http: HttpClient): any {
@@ -46,6 +47,7 @@ import { LangDirective } from './shared/directives/lang.directive';
     StoreComponent,
     ScrollBtnComponent,
     LangDirective,
+    SwiperComponent,
 
   ],
   imports: [
