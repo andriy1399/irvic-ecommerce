@@ -13,23 +13,14 @@ export class SwiperComponent implements OnInit {
     pullDrag: true,
     dots: false,
     navSpeed: 600,
-    navText: ['&#8249', '&#8250;'],
+    // navText: ['&#8249', '&#8250;'],
     autoplay: true,
     responsive: {
       0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      760: {
-        items: 3
-      },
-      1000: {
-        items: 4
+        items: 1,
       }
     },
-    nav: false
+    nav: false,
   };
   constructor(
   ) {

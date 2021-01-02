@@ -10,7 +10,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .container {
   width: 1170px;
@@ -21,7 +21,8 @@ p,
 span,
 li,
 a,
-small {
+small,
+button {
   font-family: "Questrial", sans-serif;
 }
 body {
