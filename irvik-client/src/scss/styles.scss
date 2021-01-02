@@ -1,17 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
-@import './base';
-@import './variables';
-@import './mixins';
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+@import "./base";
+@import "./variables";
+@import "./mixins";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 .container {
   width: 1170px;
   margin: 0 auto;
 }
 
-p, span, li, a, small {
-  font-family: 'Questrial', sans-serif;
+p,
+span,
+li,
+a,
+small {
+  font-family: "Questrial", sans-serif;
+}
+body {
+  position: relative;
+  &::before {
+    z-index: -199;
+
+    content: "";
+    width: 506.1px;
+    height: 1258.98px;
+    left: -360px;
+    top: 102.23px;
+    background: linear-gradient(184.31deg, #ffd8b4 52.67%, #ffc58e 89.79%);
+    box-shadow: 0px 7px 4px rgba(0, 0, 0, 0.199);
+    transform: rotate(-70.22deg);
+    position: fixed;
+    border-radius: 50%;
+  }
+  &::after {
+    content: "";
+    z-index: -199;
+    width: 1024.58px;
+    height: 2096.42px;
+    left: 802px;
+    top: -1435.35px;
+    position: fixed;
+    background: linear-gradient(179.81deg, #c8daeb 47.51%, #8fc3f4 99.84%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(-19.24deg);
+    border-radius: 50%;
+  }
 }
 // 59px padding for main container
 @media screen and (max-width: 1270px) {

@@ -7,7 +7,7 @@ export class Product implements IProduct {
     public category: string,
     public unitId: string,
     public width: string,
-    public hight: string,
+    public height: string,
     public length: string,
     public price: number,
     public isAvailable: boolean,
@@ -40,7 +40,7 @@ export class Product implements IProduct {
 
   private convertFullTextName(): void {
     this.fullTextName = this.category + this.unitId
-      + this.width + this.hight + this.length
+      + this.width + this.height + this.length
       + this.descriptionEn + this.descriptionPl
       + this.descriptionUk + this.titleEn + this.titlePl + this.titleUk
       + this.materialEn + this.materialPl + this.materialUk + this.discount || '';
