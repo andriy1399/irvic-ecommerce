@@ -47,13 +47,8 @@ public class ProductServiceIml implements ProductService {
         products.setDescriptionPl(productsDto.getDescriptionPl());
         products.setDescriptionUk(productsDto.getDescriptionUk());
         products.setCategory(productsDto.getCategory());
-        products.setDiscount(productsDto.getDiscount());
         products.setTotalPrice(productsDto.getTotalPrice());
         products.setAvailable(productsDto.isAvailable());
-        products.setWidth(productsDto.getWidth());
-        products.setLength(productsDto.getLength());
-        products.setHeight(productsDto.getHeight());
-        products.setImages(productsDto.getImages());
         Products productsEmp = productRepository.save(products);
         return  ResponseEntity.ok(productsEmp);
 

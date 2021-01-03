@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -14,7 +13,7 @@ public class Products {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO,generator = "pg-uuid")
     @GenericGenerator(name = "pg-uuid",strategy = "uuid2")
-    private UUID uu_id;
+    private UUID id;
     @Column
     private String titleEn;
     @Column
@@ -27,7 +26,12 @@ public class Products {
     private String descriptionPl;
     @Column
     private String descriptionUk;
-
+    @Column
+    private boolean isDiscount;
+    @Column
+    private String unitId;
+    @Column
+    private int count;
     @Column
     private int price;
     @Column
@@ -39,35 +43,37 @@ public class Products {
     @Column
     private  String category;
     @Column
-    private int discount;
+    private String discount;
     @Column
     private int totalPrice;
     @Column
     private boolean isAvailable;
 
+//    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "products")
+//    @Column(nullable = false)
     @ElementCollection
     private List<String>images;
     @Column
     private Date dateOfEdition;
     @Column
-    private int width;
+    private String width;
     @Column
-    private int length;
+    private String length;
     @Column
-    private  int height;
+    private String height;
     @Column
     private String fullTextName;
 
-    public Products() {
-    }
-
-    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, int price, String materialUk, String materialPl, String materialEn, String category, int discount, int totalPrice, boolean isAvailable, List<String> images, Date dateOfEdition, int width, int length, int height, String fullTextName) {
+    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, boolean isDiscount, String unitId, int count, int price, String materialUk, String materialPl, String materialEn, String category, String discount, int totalPrice, boolean isAvailable, List<String> images, Date dateOfEdition, String width, String length, String height, String fullTextName) {
         this.titleEn = titleEn;
         this.titlePl = titlePl;
         this.titleUk = titleUk;
         this.descriptionEn = descriptionEn;
         this.descriptionPl = descriptionPl;
         this.descriptionUk = descriptionUk;
+        this.isDiscount = isDiscount;
+        this.unitId = unitId;
+        this.count = count;
         this.price = price;
         this.materialUk = materialUk;
         this.materialPl = materialPl;
@@ -84,20 +90,12 @@ public class Products {
         this.fullTextName = fullTextName;
     }
 
-    public String getFullTextName() {
-        return fullTextName;
+    public UUID getId() {
+        return id;
     }
 
-    public void setFullTextName(String fullTextName) {
-        this.fullTextName = fullTextName;
-    }
-
-    public UUID getUu_id() {
-        return uu_id;
-    }
-
-    public void setUu_id(UUID uu_id) {
-        this.uu_id = uu_id;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getTitleEn() {
@@ -148,6 +146,30 @@ public class Products {
         this.descriptionUk = descriptionUk;
     }
 
+    public boolean isDiscount() {
+        return isDiscount;
+    }
+
+    public void setDiscount(boolean discount) {
+        isDiscount = discount;
+    }
+
+    public String getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(String unitId) {
+        this.unitId = unitId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -188,11 +210,11 @@ public class Products {
         this.category = category;
     }
 
-    public int getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(String discount) {
         this.discount = discount;
     }
 
@@ -228,27 +250,35 @@ public class Products {
         this.dateOfEdition = dateOfEdition;
     }
 
-    public int getWidth() {
+    public String getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(String width) {
         this.width = width;
     }
 
-    public int getLength() {
+    public String getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(String length) {
         this.length = length;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
+    }
+
+    public String getFullTextName() {
+        return fullTextName;
+    }
+
+    public void setFullTextName(String fullTextName) {
+        this.fullTextName = fullTextName;
     }
 }
