@@ -1,5 +1,7 @@
 package pl.olawa.irvik.irvikProject.dto;
 
+import pl.olawa.irvik.irvikProject.domain.Images;
+
 import javax.persistence.Column;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class ProductsDto {
     private int discount;
     private int totalPrice;
     private boolean isAvailable;
-    private List<String>images;
+    private List<Images>images;
     private int width;
     private int length;
     private  int height;
@@ -130,11 +132,11 @@ public class ProductsDto {
         isAvailable = available;
     }
 
-    public List<String> getImages() {
+    public List<Images> getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(List<Images> images) {
         this.images = images;
     }
 
@@ -161,6 +163,4 @@ public class ProductsDto {
     public void setHeight(int height) {
         this.height = height;
     }
-
-
 }
