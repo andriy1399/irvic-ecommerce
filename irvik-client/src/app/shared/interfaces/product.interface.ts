@@ -7,7 +7,7 @@ export interface IProduct {
   price: number;
   isAvailable: boolean;
   isDiscount: boolean;
-  discount: string | null;
+  discountPercent: string | null;
   totalPrice: number;
   titleEn: string;
   titlePl: string;

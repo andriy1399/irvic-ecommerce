@@ -30,7 +30,12 @@ export class HeaderComponent implements OnInit {
     if (lang) {
       this.translate.use(lang);
       localStorage.setItem('lang', lang);
+      console.log('header', lang);
     }
     this.categoriesServ.lang.next(lang);
+    if (e) {
+      window.location.reload();
+    }
+
   }
 }

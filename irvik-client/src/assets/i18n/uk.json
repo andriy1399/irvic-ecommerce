@@ -3,5 +3,12 @@
     "home": "головна",
     "store": "магазин",
     "aboutUs": "про нас"
+  },
+  "store": {
+    "categories": "категорії"
+  },
+  "categories": {
+    "all": "Показати всі"
   }
+
 }

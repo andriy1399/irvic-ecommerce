@@ -44,6 +44,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
     this.translate.setDefaultLang(localStorage.getItem('lang') || 'pl');
     this.categoriesServ.lang.subscribe(lan => {
       this.translate.setDefaultLang(lan);
+      console.log('categories', lan);
     });
   }
 
@@ -103,9 +104,6 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
     this.namePl = category.categoryPl;
     this.nameUk = category.categoryUk;
   }
-  public convertToSnakeCase(str: string): string {
-    return str.split(' ').join('_');
-  }
 
   private clearForm(): void {
     this.nameEn = '';
@@ -114,6 +112,10 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
   }
   private checkForm(): boolean {
     return this.nameEn.trim() && this.namePl.trim() && this.nameUk.trim() ? true : false;
+  }
+
+  public convertToSnakeCase(str: string): string {
+    return str.split(' ').join('_');
   }
 
   private categoryForTranslate(data: ICategory[]): void {

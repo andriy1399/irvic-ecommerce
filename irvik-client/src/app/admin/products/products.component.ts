@@ -50,7 +50,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       price: new FormControl(null, Validators.required),
       isDiscount: new FormControl(false),
       isAvailable: new FormControl(false),
-      discount: new FormControl(null),
+      discountPercent: new FormControl(null),
       titleEn: new FormControl(null, Validators.required),
       titlePl: new FormControl(null, Validators.required),
       titleUk: new FormControl(null, Validators.required),
@@ -61,6 +61,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       descriptionEn: new FormControl(null, Validators.required),
       descriptionPl: new FormControl(null, Validators.required),
     });
+    this.productGroup.controls.discountPercent.disable();
   }
   ngAfterViewInit(): void {
     if (this.isGotProduct) {
@@ -84,7 +85,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   public addProduct(): void {
     const { category, unitId, width, height, length, price,
-      isAvailable, discount, titleEn, titlePl, titleUk, isDiscount,
+      isAvailable, discountPercent, titleEn, titlePl, titleUk, isDiscount,
       materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
     const product: IProduct = new Product(
       category,
@@ -95,7 +96,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       price,
       isAvailable,
       isDiscount,
-      discount || null,
+      discountPercent || null,
       titleEn,
       titlePl,
       titleUk,
@@ -118,7 +119,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   public updateProduct(): void {
     const { category, unitId, width, height, length, price,
-      isAvailable, discount, titleEn, titlePl, titleUk, isDiscount,
+      isAvailable, discountPercent, titleEn, titlePl, titleUk, isDiscount,
       materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
     const product: IProduct = new Product(
       category,
@@ -129,7 +130,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       price,
       isAvailable,
       isDiscount,
-      discount || null,
+      discountPercent || null,
       titleEn,
       titlePl,
       titleUk,
@@ -174,7 +175,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       materialPl: product.materialPl,
       materialUk: product.materialUk,
       price: product.price,
-      discount: product.isDiscount ? product.discount : '',
+      discountPercent: product.isDiscount ? product.discountPercent : '',
       isDiscount: product.isDiscount,
       isAvailable: product.isAvailable,
       width: product.width,
@@ -192,9 +193,9 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   public changeIsDiscount(): void {
     const { isDiscount } = this.productGroup.value;
     if (isDiscount) {
-      this.productGroup.controls.discount.enable();
+      this.productGroup.controls.discountPercent.enable();
     } else {
-      this.productGroup.controls.discount.disable();
+      this.productGroup.controls.discountPercent.disable();
     }
   }
 

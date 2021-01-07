@@ -12,7 +12,7 @@ export class Product implements IProduct {
     public price: number,
     public isAvailable: boolean,
     public isDiscount: boolean,
-    public discount: string | null,
+    public discountPercent: string | null,
     public titleEn: string,
     public titlePl: string,
     public titleUk: string,
@@ -31,8 +31,8 @@ export class Product implements IProduct {
   }
 
   private getTotalPrice(): number {
-    if (this.discount) {
-      return +(this.price - (this.price * parseFloat(this.discount)) / 100).toFixed(2);
+    if (this.discountPercent) {
+      return +(this.price - (this.price * parseFloat(this.discountPercent)) / 100).toFixed(2);
     } else {
       return this.price;
     }
@@ -43,6 +43,6 @@ export class Product implements IProduct {
       + this.width + this.height + this.length
       + this.descriptionEn + this.descriptionPl
       + this.descriptionUk + this.titleEn + this.titlePl + this.titleUk
-      + this.materialEn + this.materialPl + this.materialUk + this.discount || '';
+      + this.materialEn + this.materialPl + this.materialUk + this.discountPercent || '';
   }
 }
