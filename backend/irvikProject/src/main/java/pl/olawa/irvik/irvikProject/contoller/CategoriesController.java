@@ -9,6 +9,7 @@ import pl.olawa.irvik.irvikProject.domain.Categories;
 import pl.olawa.irvik.irvikProject.dto.CategoriesDto;
 import pl.olawa.irvik.irvikProject.service.CategoriesService;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -19,9 +20,9 @@ public class CategoriesController {
     private CategoriesService categoriesService;
 
 
-    @GetMapping("/test/categories")
-    public ResponseEntity test(){
-        return new ResponseEntity(HttpStatus.OK);
+    @GetMapping("/categories")
+    public List<Categories> allCategories(){
+        return categoriesService.getAllCategories();
     }
 
    @PostMapping("/test/categories")
@@ -29,14 +30,18 @@ public class CategoriesController {
        return  categoriesService.save(categories);
    }
 
-   @PutMapping("/categories/{id}")
+  
+   
+   @PutMapping("/test/categories/{id}")
     public  void update(@PathVariable("id") java.util.UUID id, @RequestBody  CategoriesDto categoriesDto){
          categoriesService.update(id,categoriesDto);
    }
-   @DeleteMapping("/categories/{id}")
+   
+   @DeleteMapping("/test/categories/{id}")
     void  daleteById (@PathVariable("id") UUID id){
        categoriesService.delete(id);
    }
 
 
+   
 }

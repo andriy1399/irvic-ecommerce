@@ -2,26 +2,62 @@ package pl.olawa.irvik.irvikProject.dto;
 
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class ProductsDto {
 
+
     private String titleEn;
+
     private String titlePl;
+
     private String titleUk;
+
     private String descriptionEn;
+
     private String descriptionPl;
+
     private String descriptionUk;
+
+    private boolean isDiscount;
+
+    private String unitId;
+
+    private int count;
+
+    private int price;
+
     private String materialUk;
+
     private String materialPl;
+
     private String materialEn;
-    private  String category;
-    private int discount;
-    private int totalPrice;
+
+    private String category;
+
+    private String discountPercent;
+
+private int totalPrice;
+
     private boolean isAvailable;
-    private int width;
-    private int length;
-    private  int height;
+
+    //    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "products")
+//    @Column(nullable = false)
+
+    private List<String> images;
+
+    private Date dateOfEdition;
+
+    private String width;
+
+    private String length;
+
+    private String height;
+
+    private String fullTextName;
 
     public ProductsDto() {
     }
@@ -74,6 +110,38 @@ public class ProductsDto {
         this.descriptionUk = descriptionUk;
     }
 
+    public boolean isDiscount() {
+        return isDiscount;
+    }
+
+    public void setDiscount(boolean discount) {
+        isDiscount = discount;
+    }
+
+    public String getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(String unitId) {
+        this.unitId = unitId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public String getMaterialUk() {
         return materialUk;
     }
@@ -106,20 +174,12 @@ public class ProductsDto {
         this.category = category;
     }
 
-    public int getDiscount() {
-        return discount;
+    public String getDiscountPercent() {
+        return discountPercent;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
-    }
-
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setDiscountPercent(String discountPercent) {
+        this.discountPercent = discountPercent;
     }
 
     public boolean isAvailable() {
@@ -130,28 +190,59 @@ public class ProductsDto {
         isAvailable = available;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
 
-    public int getWidth() {
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public Date getDateOfEdition() {
+        return dateOfEdition;
+    }
+
+    public void setDateOfEdition(Date dateOfEdition) {
+        this.dateOfEdition = dateOfEdition;
+    }
+
+    public String getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(String width) {
         this.width = width;
     }
 
-    public int getLength() {
+    public String getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(String length) {
         this.length = length;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
+    }
+
+    public String getFullTextName() {
+        return fullTextName;
+    }
+
+    public void setFullTextName(String fullTextName) {
+        this.fullTextName = fullTextName;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

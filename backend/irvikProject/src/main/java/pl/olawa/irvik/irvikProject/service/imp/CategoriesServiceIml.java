@@ -33,9 +33,9 @@ public class CategoriesServiceIml implements CategoriesService {
     @Override
     public ResponseEntity<Categories> update(UUID id, CategoriesDto categoriesDto) {
         Categories categories1 = categoriesJpaRepo.findById(id).orElseThrow(()-> new ProductnotFoundException("Categories not exist with id L" +id));
-        categories1.setCategoryUk(categoriesDto.getNameUA());
-        categories1.setCategoryEn(categoriesDto.getNameEU());
-        categories1.setCategoryPl(categoriesDto.getNamePL());
+        categories1.setCategoryUk(categoriesDto.getCategoryUk());
+        categories1.setCategoryEn(categoriesDto.getCategoryEn());
+        categories1.setCategoryPl(categoriesDto.getCategoryPl());
         Categories categoriesEmp = categoriesRepository.save(categories1);
         return ResponseEntity.ok(categoriesEmp);
     }

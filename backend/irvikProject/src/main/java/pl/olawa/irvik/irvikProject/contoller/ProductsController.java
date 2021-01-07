@@ -32,7 +32,7 @@ public class ProductsController {
     public ProductsController(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
+//
     @PostMapping("/test/products")
     public Products addProducts_DeleTe(@RequestBody Products products){
         return  productService.save(products);
@@ -50,23 +50,17 @@ public class ProductsController {
         return productRepository.findAll(pageable);
     }
     //crud Operation
-
-    @PostMapping("/products")
-    public Products addProducts(@RequestBody Products products){
-    return  productService.save(products);
-    }
-
-    @PutMapping("/admin/products/{id}")
+    @PutMapping("/test/products/{id}")
     public void updateProducts(@PathVariable("id") UUID id, @RequestBody ProductsDto products){
          productService.update(id,products);
     }
 
 
-    @DeleteMapping("/admin/products/{id}")
-    void deleteById(@PathVariable UUID id){
-
+    @DeleteMapping("/test/products/{id}")
+    void deleteById(@PathVariable("id") UUID id){
        productService.delete(id);
     }
+
 
     //get method
     @GetMapping("/productById/{id}")

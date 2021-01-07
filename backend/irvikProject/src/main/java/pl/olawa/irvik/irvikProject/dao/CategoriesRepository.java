@@ -10,5 +10,6 @@ public interface CategoriesRepository extends CrudRepository<Categories,UUID> {
 
 
         Optional<Categories> findById(UUID id);
+
         void deleteById(UUID id);
 }

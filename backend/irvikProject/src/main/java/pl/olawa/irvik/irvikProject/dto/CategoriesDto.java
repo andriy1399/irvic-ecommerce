@@ -6,33 +6,34 @@ import javax.persistence.Column;
 
 public class CategoriesDto {
 
-    private String nameUA;
+    private String categoryEn;
 
-    private String nameEU;
+    private String categoryUk;
 
-    private String namePL;
+    private String categoryPl;
 
-    public String getNameUA() {
-        return nameUA;
+
+    public String getCategoryEn() {
+        return categoryEn;
     }
 
-    public void setNameUA(String nameUA) {
-        this.nameUA = nameUA;
+    public void setCategoryEn(String categoryEn) {
+        this.categoryEn = categoryEn;
     }
 
-    public String getNameEU() {
-        return nameEU;
+    public String getCategoryUk() {
+        return categoryUk;
     }
 
-    public void setNameEU(String nameEU) {
-        this.nameEU = nameEU;
+    public void setCategoryUk(String categoryUk) {
+        this.categoryUk = categoryUk;
     }
 
-    public String getNamePL() {
-        return namePL;
+    public String getCategoryPl() {
+        return categoryPl;
     }
 
-    public void setNamePL(String namePL) {
-        this.namePL = namePL;
+    public void setCategoryPl(String categoryPl) {
+        this.categoryPl = categoryPl;
     }
 }

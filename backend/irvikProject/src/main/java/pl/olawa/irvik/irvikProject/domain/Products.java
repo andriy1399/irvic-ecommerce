@@ -12,8 +12,9 @@ import java.util.UUID;
 @Table
 public class Products {
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO,generator = "pg-uuid")
-    @GenericGenerator(name = "pg-uuid",strategy = "uuid2")
+    @GeneratedValue( generator = "uuid2" )
+    @GenericGenerator( name = "uuid2", strategy = "uuid2" )
+    @Column( name = "id", columnDefinition = "BINARY(16)" )
     private UUID id;
     @Column
     private String titleEn;

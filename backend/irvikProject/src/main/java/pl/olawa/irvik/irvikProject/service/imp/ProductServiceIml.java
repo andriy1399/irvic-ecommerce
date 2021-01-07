@@ -31,8 +31,7 @@ public class ProductServiceIml implements ProductService {
 
     @Override
     public void delete(UUID id) {
-        Products  products = productsCrudRepo.findById(id).orElseThrow(()-> new ProductnotFoundException("products not exist with id :" + id));
-        productsCrudRepo.delete(products);
+         productsCrudRepo.deleteById(id);
     }
 
     @Override
@@ -48,7 +47,22 @@ public class ProductServiceIml implements ProductService {
         products.setDescriptionPl(productsDto.getDescriptionPl());
         products.setDescriptionUk(productsDto.getDescriptionUk());
         products.setCategory(productsDto.getCategory());
+        products.setUnitId(productsDto.getUnitId());
+        products.setCount(productsDto.getCount());
+        products.setPrice(productsDto.getPrice());
         products.setTotalPrice(productsDto.getTotalPrice());
+        products.setDiscountPercent(productsDto.getDiscountPercent());
+        products.setDiscount(productsDto.isDiscount());
+        products.setAvailable(productsDto.isAvailable());
+        products.setImages(productsDto.getImages());
+        products.setDateOfEdition(productsDto.getDateOfEdition());
+        products.setWidth(productsDto.getWidth());
+        products.setLength(products.getLength());
+        products.setHeight(productsDto.getHeight());
+        products.setFullTextName(productsDto.getFullTextName());
+
+
+
         Products productsEmp = productRepository.save(products);
         return  ResponseEntity.ok(productsEmp);
 
