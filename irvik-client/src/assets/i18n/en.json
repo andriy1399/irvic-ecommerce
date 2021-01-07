@@ -3,5 +3,11 @@
     "home": "home",
     "store": "store",
     "aboutUs": "about us"
+  },
+  "store": {
+    "categories": "categories"
+  },
+  "categories": {
+    "all": "view all"
   }
 }
