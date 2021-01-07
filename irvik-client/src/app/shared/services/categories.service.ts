@@ -8,8 +8,8 @@ import { ICategory } from '../interfaces/category.interface';
 })
 export class CategoriesService {
   // private url = 'http://localhost:3000/categories';
-  private url = 'http://localshot:8080/api/test/categories';
-  private getCategoriesUrl = 'http://localshot:8080/api/products';
+  private url = 'http://localhost:8080/api/test/categories';
+  private getCategoriesUrl = 'http://localhost:8080/api/categories';
   public lang = new Subject<string>();
   constructor(private http: HttpClient) {}
 

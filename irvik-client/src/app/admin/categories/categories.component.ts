@@ -71,7 +71,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
   getCategories(): void {
     this.categoriesServ.getCategories().subscribe(data => {
       this.categories = data;
-      this.categoryForTranslate(data);
+      // this.categoryForTranslate(data);
       this.categorySource = new MatTableDataSource<ICategory>(data);
       this.categorySource.paginator = this.paginator || null;
     });
@@ -84,6 +84,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       categoryUk: this.nameUk,
       id: this.editingId
     };
+      console.log(updatedCategory);
     this.categoriesServ.updateCategory(updatedCategory).subscribe(() => {
       this.getCategories();
       this.isEdited = false;
@@ -114,23 +115,24 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
     return this.nameEn.trim() && this.namePl.trim() && this.nameUk.trim() ? true : false;
   }
 
-  public convertToSnakeCase(str: string): string {
-    return str.split(' ').join('_');
-  }
+  // public convertToSnakeCase(str: string): string {
+  //     return str.split(' ').join('_');
+  // }
 
-  private categoryForTranslate(data: ICategory[]): void {
-    const enCategories = new Map(data.map(v => ([[v.categoryEn.split(' ').join('_')], v.categoryEn])));
-    const ukCategories = new Map(data.map(v => ([[v.categoryEn.split(' ').join('_')], v.categoryUk])));
-    const plCategories = new Map(data.map(v => ([[v.categoryEn.split(' ').join('_')], v.categoryPl])));
-    this.translate.setTranslation('en', {
-      categories: Object.fromEntries(enCategories)
-    }, true);
-    this.translate.setTranslation('uk', {
-      categories: Object.fromEntries(ukCategories)
-    }, true);
-    this.translate.setTranslation('pl', {
-      categories: Object.fromEntries(plCategories)
-    }, true);
-  }
+  // private categoryForTranslate(data: ICategory[]): void {
+  //   const enCategories = new Map(data.map(v => ([[v.categoryEn.split(' ').join('_')], v.categoryEn])));
+  //   const ukCategories = new Map(data.map(v => ([[v.categoryEn.split(' ').join('_')], v.categoryUk])));
+  //   const plCategories = new Map(data.map(v => ([[v.categoryEn.split(' ').join('_')], v.categoryPl])));
+  //   console.log(enCategories);
+  //   this.translate.setTranslation('en', {
+  //     categories: Object.fromEntries(enCategories)
+  //   }, true);
+  //   this.translate.setTranslation('uk', {
+  //     categories: Object.fromEntries(ukCategories)
+  //   }, true);
+  //   this.translate.setTranslation('pl', {
+  //     categories: Object.fromEntries(plCategories)
+  //   }, true);
+  // }
 
 }

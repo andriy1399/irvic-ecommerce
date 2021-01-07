@@ -48,8 +48,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       height: new FormControl(null, Validators.required),
       length: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
-      isDiscount: new FormControl(false),
-      isAvailable: new FormControl(false),
+      discount: new FormControl(false),
+      available: new FormControl(false),
       discountPercent: new FormControl(null),
       titleEn: new FormControl(null, Validators.required),
       titlePl: new FormControl(null, Validators.required),
@@ -85,7 +85,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   public addProduct(): void {
     const { category, unitId, width, height, length, price,
-      isAvailable, discountPercent, titleEn, titlePl, titleUk, isDiscount,
+      available, discountPercent, titleEn, titlePl, titleUk, discount,
       materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
     const product: IProduct = new Product(
       category,
@@ -94,8 +94,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       height,
       length,
       price,
-      isAvailable,
-      isDiscount,
+      available,
+      discount,
       discountPercent || null,
       titleEn,
       titlePl,
@@ -111,6 +111,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     this.productServ.postProduct(product).subscribe(() => {
       this.productGroup.reset();
       this.arrFiles = [];
+      this.getProducts();
       Object.keys(this.productGroup.controls).forEach(key => {
         this.productGroup.get(key)?.setErrors(null);
       });
@@ -119,7 +120,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   public updateProduct(): void {
     const { category, unitId, width, height, length, price,
-      isAvailable, discountPercent, titleEn, titlePl, titleUk, isDiscount,
+      available, discountPercent, titleEn, titlePl, titleUk, discount,
       materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
     const product: IProduct = new Product(
       category,
@@ -128,8 +129,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       height,
       length,
       price,
-      isAvailable,
-      isDiscount,
+      available,
+      discount,
       discountPercent || null,
       titleEn,
       titlePl,
@@ -161,7 +162,6 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   public editProduct(product: IProduct): void {
-    console.log('sdd');
     this.productGroup.setValue({
       unitId: product.unitId,
       category: product.category,
@@ -175,9 +175,9 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       materialPl: product.materialPl,
       materialUk: product.materialUk,
       price: product.price,
-      discountPercent: product.isDiscount ? product.discountPercent : '',
-      isDiscount: product.isDiscount,
-      isAvailable: product.isAvailable,
+      discountPercent: product.discount ? product.discountPercent : '',
+      discount: product.discount,
+      available: product.available,
       width: product.width,
       length: product.length,
       height: product.height
@@ -186,13 +186,14 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     this.isEditing = true;
     this.editingProductId = product.id;
     this.arrFiles = product.images;
+    this.changeIsDiscount();
 
     this.tabsIndex = 0;
   }
 
   public changeIsDiscount(): void {
-    const { isDiscount } = this.productGroup.value;
-    if (isDiscount) {
+    const { discount } = this.productGroup.value;
+    if (discount) {
       this.productGroup.controls.discountPercent.enable();
     } else {
       this.productGroup.controls.discountPercent.disable();

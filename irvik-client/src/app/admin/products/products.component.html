@@ -38,9 +38,9 @@
             <input formControlName='price' matInput type="number" placeholder="example: 30">
           </mat-form-field>
           <div style="display: flex; flex-direction: column;">
-            <mat-checkbox color='primary' formControlName='isDiscount' (change)="changeIsDiscount()">Add discount?
+            <mat-checkbox color='primary' formControlName='discount' (change)="changeIsDiscount()">Add discount?
             </mat-checkbox>
-            <mat-checkbox color='primary' formControlName='isAvailable'>Is available?
+            <mat-checkbox color='primary' formControlName='available'>Is available?
             </mat-checkbox>
           </div>
           <mat-form-field class="form__control form__control--30" appearance="standard">
@@ -222,11 +222,11 @@
                 </div>
                 <mat-card *ngIf="element.discount" style="margin: 0.5em 0;">
                   <h4>Знижки</h4>
-                  <p><b>Проценти:</b> {{ element.discount }}</p>
+                  <p><b>Проценти:</b> {{ element.discountPercent }}</p>
                   <p><b>Ціна зі знижкою:</b> {{ element.totalPrice | number: '1.2-2' }}zl</p>
                 </mat-card>
 
-                <mat-card *ngIf="!element.isAvailable" style="margin: 0.5em 0;">
+                <mat-card *ngIf="!element.available" style="margin: 0.5em 0;">
                   <p>Немає в наявності</p>
                 </mat-card>
 

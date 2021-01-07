@@ -5,8 +5,8 @@ export interface IProduct {
   height: string;
   length: string;
   price: number;
-  isAvailable: boolean;
-  isDiscount: boolean;
+  available: boolean;
+  discount: boolean;
   discountPercent: string | null;
   totalPrice: number;
   titleEn: string;

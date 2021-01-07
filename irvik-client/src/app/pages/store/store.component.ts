@@ -29,7 +29,6 @@ export class StoreComponent implements OnInit {
     this.categoriesServ.getCategories().subscribe(categories => {
       this.categories = categories;
       this.categoryForTranslate(categories);
-      console.log(categories);
     });
   }
   public convertToSnakeCase(str: string): string {

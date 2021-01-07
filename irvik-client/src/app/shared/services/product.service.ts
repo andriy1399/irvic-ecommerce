@@ -8,8 +8,8 @@ import { IProduct } from '../interfaces/product.interface';
 })
 export class ProductService {
   // private url = 'http://localhost:3000/products';
-  private url = 'http://localshot:8080/api/test/products';
-  private getProductsUrl = 'http://localshot:8080/api/products';
+  private url = 'http://localhost:8080/api/test/products';
+  private getProductsUrl = 'http://localhost:8080/api/products';
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<IProduct[]> {

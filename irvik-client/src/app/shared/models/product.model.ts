@@ -10,8 +10,8 @@ export class Product implements IProduct {
     public height: string,
     public length: string,
     public price: number,
-    public isAvailable: boolean,
-    public isDiscount: boolean,
+    public available: boolean,
+    public discount: boolean,
     public discountPercent: string | null,
     public titleEn: string,
     public titlePl: string,
@@ -26,6 +26,7 @@ export class Product implements IProduct {
     public count: number = 1,
   ) {
     this.totalPrice = this.getTotalPrice();
+    console.log(this.getTotalPrice());
     this.dateOfEdition = new Date();
     this.convertFullTextName();
   }
