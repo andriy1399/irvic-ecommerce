@@ -22,7 +22,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/")
 public class ProductsController {
     @Autowired
@@ -32,6 +31,11 @@ public class ProductsController {
 
     public ProductsController(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+
+    @PostMapping("/test/products")
+    public Products addProducts_DeleTe(@RequestBody Products products){
+        return  productService.save(products);
     }
 
     //search Products

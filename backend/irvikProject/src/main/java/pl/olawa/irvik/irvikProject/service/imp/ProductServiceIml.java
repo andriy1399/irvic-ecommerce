@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
 import pl.olawa.irvik.irvikProject.dao.ProductsCrudRepo;
+import pl.olawa.irvik.irvikProject.domain.Images;
 import pl.olawa.irvik.irvikProject.domain.Products;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
@@ -23,7 +24,7 @@ public class ProductServiceIml implements ProductService {
     private ProductsCrudRepo productsCrudRepo;
 
     @Override
-    public Products save(Products products) {
+    public Products save( Products products) {
        return productsCrudRepo.save(products);
     }
 
@@ -48,7 +49,6 @@ public class ProductServiceIml implements ProductService {
         products.setDescriptionUk(productsDto.getDescriptionUk());
         products.setCategory(productsDto.getCategory());
         products.setTotalPrice(productsDto.getTotalPrice());
-        products.setAvailable(productsDto.isAvailable());
         Products productsEmp = productRepository.save(products);
         return  ResponseEntity.ok(productsEmp);
 
@@ -73,13 +73,7 @@ public class ProductServiceIml implements ProductService {
 
     @Override
     public List<Products> findByIsAvailable(boolean isAvailable) {
-        if(isAvailable== false){
-            throw new ProductnotFoundException("\n" +
-                    "not available ");
-
-        }
         return productRepository.findByIsAvailable(isAvailable);
-
         }
 
     @Override

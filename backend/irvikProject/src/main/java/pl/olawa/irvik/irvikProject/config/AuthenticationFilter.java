@@ -1,5 +1,6 @@
 package pl.olawa.irvik.irvikProject.config;
 
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -16,21 +17,19 @@ import java.util.Optional;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
-public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter  {
 
     AuthenticationFilter(final RequestMatcher requiresAuth) {
         super(requiresAuth);
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
+    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException {
+        String token = Optional.ofNullable(httpServletRequest.getHeader(AUTHORIZATION))
+                .orElseThrow(() -> new AuthenticationCredentialsNotFoundException("Please provide a token"));
 
-        Optional tokenParam = Optional.ofNullable(httpServletRequest.getHeader(AUTHORIZATION)); //Authorization: Bearer TOKEN
-        String token= httpServletRequest.getHeader(AUTHORIZATION);
-        if (token != null)
-        token= token.trim();
-        Authentication requestAuthentication = new UsernamePasswordAuthenticationToken(token, token);
-        return getAuthenticationManager().authenticate(requestAuthentication);
+        return getAuthenticationManager()
+                .authenticate(new UsernamePasswordAuthenticationToken(token, token));
 
     }
 

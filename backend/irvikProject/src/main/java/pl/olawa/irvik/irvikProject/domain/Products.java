@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -41,9 +42,9 @@ public class Products {
     @Column
     private String materialEn;
     @Column
-    private  String category;
+    private String category;
     @Column
-    private String discount;
+    private String discountPercent;
     @Column
     private int totalPrice;
     @Column
@@ -52,7 +53,7 @@ public class Products {
 //    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "products")
 //    @Column(nullable = false)
     @ElementCollection
-    private List<String>images;
+    private List<String> images;
     @Column
     private Date dateOfEdition;
     @Column
@@ -64,7 +65,10 @@ public class Products {
     @Column
     private String fullTextName;
 
-    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, boolean isDiscount, String unitId, int count, int price, String materialUk, String materialPl, String materialEn, String category, String discount, int totalPrice, boolean isAvailable, List<String> images, Date dateOfEdition, String width, String length, String height, String fullTextName) {
+    public Products() {
+    }
+
+    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, boolean isDiscount, String unitId, int count, int price, String materialUk, String materialPl, String materialEn, String category, String discountPercent, int totalPrice, boolean isAvailable, List<String> images, Date dateOfEdition, String width, String length, String height, String fullTextName) {
         this.titleEn = titleEn;
         this.titlePl = titlePl;
         this.titleUk = titleUk;
@@ -79,7 +83,7 @@ public class Products {
         this.materialPl = materialPl;
         this.materialEn = materialEn;
         this.category = category;
-        this.discount = discount;
+        this.discountPercent = discountPercent;
         this.totalPrice = totalPrice;
         this.isAvailable = isAvailable;
         this.images = images;
@@ -210,12 +214,12 @@ public class Products {
         this.category = category;
     }
 
-    public String getDiscount() {
-        return discount;
+    public String getDiscountPercent() {
+        return discountPercent;
     }
 
-    public void setDiscount(String discount) {
-        this.discount = discount;
+    public void setDiscountPercent(String discountPercent) {
+        this.discountPercent = discountPercent;
     }
 
     public int getTotalPrice() {

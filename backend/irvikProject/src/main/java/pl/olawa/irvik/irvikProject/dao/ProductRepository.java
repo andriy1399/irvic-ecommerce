@@ -15,6 +15,7 @@ public interface ProductRepository extends JpaRepository<Products, UUID>, JpaSpe
 
     Optional<Products> findById(UUID id);
 
+    List<Products> findAll();
 
     List<Products> findByTotalPrice(int totalPrice);
 

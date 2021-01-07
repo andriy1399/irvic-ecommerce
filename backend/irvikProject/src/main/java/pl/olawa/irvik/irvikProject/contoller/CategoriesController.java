@@ -2,6 +2,8 @@ package pl.olawa.irvik.irvikProject.contoller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.olawa.irvik.irvikProject.domain.Categories;
 import pl.olawa.irvik.irvikProject.dto.CategoriesDto;
@@ -17,9 +19,12 @@ public class CategoriesController {
     private CategoriesService categoriesService;
 
 
+    @GetMapping("/test/categories")
+    public ResponseEntity test(){
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
-
-   @PostMapping("/categories")
+   @PostMapping("/test/categories")
     public Categories addCategory(@RequestBody Categories categories){
        return  categoriesService.save(categories);
    }
