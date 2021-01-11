@@ -9,6 +9,12 @@
   },
   "categories": {
     "all": "Показати всі"
+  },
+  "product": {
+    "width": "ширина",
+    "length": "довжина",
+    "height": "висота",
+    "materials": "матеріали"
   }
 
 }

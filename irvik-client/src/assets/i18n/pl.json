@@ -9,5 +9,11 @@
   },
   "categories": {
     "all": "Pokaż wszystkie"
+  },
+  "product": {
+    "width": "szerokość",
+    "length": "długość",
+    "height": "wysokość",
+    "materials": "materiał"
   }
 }

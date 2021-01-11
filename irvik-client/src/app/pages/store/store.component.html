@@ -27,31 +27,38 @@
       </div>
 
       <div class="store__products">
-        <div class="store__product product">
+        <div class="store__product product" *ngFor="let product of products">
           <div class="product__image-wrapper">
-            <img
-              src="https://www.woodnthings.com/1387-thickbox_default/-16-inch-plant-stand-with-drawer.jpg"
-              alt="chair"
-            />
+            <img [src]="product.images[0]" [alt]="product.titleEn" />
             <button matRipple class="btn btn__icon btn__icon--favorite">
               <mat-icon>favorite_border</mat-icon>
             </button>
           </div>
-          <h4 class="product__title">Lorem ipsum dolor</h4>
+          <h4 class="product__title">
+            {{
+              "title." + convertToSnakeCase(product.titleEn)
+                | translate
+                | titlecase
+            }}
+          </h4>
 
           <div class="product__info">
-            <ng-container *ngIf="false">
+            <ng-container *ngIf="product.discount">
               <div class="product__price-info">
-                <span class="product__last-price">22.33$</span>
-                <span class="product__current-price">18.00$</span>
+                <span class="product__last-price"
+                  >{{ product.price | number: "1.2-2" }}zł</span
+                >
+                <span class="product__current-price"
+                  >{{ product.totalPrice | number: "1.2-2" }}zł</span
+                >
               </div>
               <button matRipple class="btn btn__icon">
                 <mat-icon>shopping_cart</mat-icon>
               </button>
             </ng-container>
-            <ng-container *ngIf="true">
+            <ng-container *ngIf="!product.discount">
               <div class="product__price">
-                <span>22.33$</span>
+                <span>{{ product.totalPrice }}</span>
               </div>
               <button matRipple class="btn btn__icon">
                 <mat-icon>shopping_cart</mat-icon>
@@ -59,251 +66,18 @@
             </ng-container>
           </div>
           <div class="product__description">
-            <p><b>Material: </b>wood, dub</p>
+            <p>
+              <b>{{ "product.materials" | translate | titlecase }}: </b>
+              {{
+                "materials." + convertToSnakeCase(product.materialEn)
+                  | translate
+                  | titlecase
+              }}
+            </p>
             <ul>
-              <li>width: 20cm</li>
-              <li>length: 30cm</li>
-              <li>height: 22cm</li>
-            </ul>
-          </div>
-        </div>
-        <div class="store__product product">
-          <div class="product__image-wrapper">
-            <img
-              src="https://lirp-cdn.multiscreensite.com/9e1bb53c/dms3rep/multi/opt/Australian+Made+Custom+Wooden+Box+With+Print-640w.png"
-              alt="chair"
-            />
-            <button matRipple class="btn btn__icon btn__icon--favorite">
-              <mat-icon>favorite_border</mat-icon>
-            </button>
-          </div>
-          <h4 class="product__title">Lorem ipsum dolor</h4>
-
-          <div class="product__info">
-            <ng-container *ngIf="false">
-              <div class="product__price-info">
-                <span class="product__last-price">22.33$</span>
-                <span class="product__current-price">18.00$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-            <ng-container *ngIf="true">
-              <div class="product__price">
-                <span>22.33$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-          </div>
-          <div class="product__description">
-            <p><b>Material: </b>wood, dub</p>
-            <ul>
-              <li>width: 20cm</li>
-              <li>length: 30cm</li>
-              <li>height: 22cm</li>
-            </ul>
-          </div>
-        </div>
-        <div class="store__product product">
-          <div class="product__image-wrapper">
-            <img
-              src="https://lirp-cdn.multiscreensite.com/9e1bb53c/dms3rep/multi/opt/Australian+Made+Custom+Wooden+Box+With+Print-640w.png"
-              alt="chair"
-            />
-            <button matRipple class="btn btn__icon btn__icon--favorite">
-              <mat-icon>favorite_border</mat-icon>
-            </button>
-          </div>
-          <h4 class="product__title">Lorem ipsum dolor</h4>
-
-          <div class="product__info">
-            <ng-container *ngIf="true">
-              <div class="product__price-info">
-                <span class="product__last-price">22.33$</span>
-                <span class="product__current-price">18.00$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-            <ng-container *ngIf="false">
-              <div class="product__price">
-                <span>22.33$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-          </div>
-          <div class="product__description">
-            <p><b>Material: </b>wood, dub</p>
-            <ul>
-              <li>width: 20cm</li>
-              <li>length: 30cm</li>
-              <li>height: 22cm</li>
-            </ul>
-          </div>
-        </div>
-        <div class="store__product product">
-          <div class="product__image-wrapper">
-            <img
-              src="https://lirp-cdn.multiscreensite.com/9e1bb53c/dms3rep/multi/opt/Australian+Made+Custom+Wooden+Box+With+Print-640w.png"
-              alt="chair"
-            />
-            <button matRipple class="btn btn__icon btn__icon--favorite">
-              <mat-icon>favorite_border</mat-icon>
-            </button>
-          </div>
-          <h4 class="product__title">Lorem ipsum dolor</h4>
-
-          <div class="product__info">
-            <ng-container *ngIf="false">
-              <div class="product__price-info">
-                <span class="product__last-price">22.33$</span>
-                <span class="product__current-price">18.00$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-            <ng-container *ngIf="true">
-              <div class="product__price">
-                <span>22.33$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-          </div>
-          <div class="product__description">
-            <p><b>Material: </b>wood, dub</p>
-            <ul>
-              <li>width: 20cm</li>
-              <li>length: 30cm</li>
-              <li>height: 22cm</li>
-            </ul>
-          </div>
-        </div>
-        <div class="store__product product">
-          <div class="product__image-wrapper">
-            <img
-              src="https://lirp-cdn.multiscreensite.com/9e1bb53c/dms3rep/multi/opt/Australian+Made+Custom+Wooden+Box+With+Print-640w.png"
-              alt="chair"
-            />
-            <button matRipple class="btn btn__icon btn__icon--favorite">
-              <mat-icon>favorite_border</mat-icon>
-            </button>
-          </div>
-          <h4 class="product__title">Lorem ipsum dolor</h4>
-
-          <div class="product__info">
-            <ng-container *ngIf="true">
-              <div class="product__price-info">
-                <span class="product__last-price">22.33$</span>
-                <span class="product__current-price">18.00$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-            <ng-container *ngIf="false">
-              <div class="product__price">
-                <span>22.33$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-          </div>
-          <div class="product__description">
-            <p><b>Material: </b>wood, dub</p>
-            <ul>
-              <li>width: 20cm</li>
-              <li>length: 30cm</li>
-              <li>height: 22cm</li>
-            </ul>
-          </div>
-        </div>
-        <div class="store__product product">
-          <div class="product__image-wrapper">
-            <img
-              src="https://lirp-cdn.multiscreensite.com/9e1bb53c/dms3rep/multi/opt/Australian+Made+Custom+Wooden+Box+With+Print-640w.png"
-              alt="chair"
-            />
-            <button matRipple class="btn btn__icon btn__icon--favorite">
-              <mat-icon>favorite_border</mat-icon>
-            </button>
-          </div>
-          <h4 class="product__title">Lorem ipsum dolor</h4>
-
-          <div class="product__info">
-            <ng-container *ngIf="false">
-              <div class="product__price-info">
-                <span class="product__last-price">22.33$</span>
-                <span class="product__current-price">18.00$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-            <ng-container *ngIf="true">
-              <div class="product__price">
-                <span>22.33$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-          </div>
-          <div class="product__description">
-            <p><b>Material: </b>wood, dub</p>
-            <ul>
-              <li>width: 20cm</li>
-              <li>length: 30cm</li>
-              <li>height: 22cm</li>
-            </ul>
-          </div>
-        </div>
-        <div class="store__product product">
-          <div class="product__image-wrapper">
-            <img
-              src="https://lirp-cdn.multiscreensite.com/9e1bb53c/dms3rep/multi/opt/Australian+Made+Custom+Wooden+Box+With+Print-640w.png"
-              alt="chair"
-            />
-            <button matRipple class="btn btn__icon btn__icon--favorite">
-              <mat-icon>favorite_border</mat-icon>
-            </button>
-          </div>
-          <h4 class="product__title">Lorem ipsum dolor</h4>
-
-          <div class="product__info">
-            <ng-container *ngIf="false">
-              <div class="product__price-info">
-                <span class="product__last-price">22.33$</span>
-                <span class="product__current-price">18.00$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-            <ng-container *ngIf="true">
-              <div class="product__price">
-                <span>22.33$</span>
-              </div>
-              <button matRipple class="btn btn__icon">
-                <mat-icon>shopping_cart</mat-icon>
-              </button>
-            </ng-container>
-          </div>
-          <div class="product__description">
-            <p><b>Material: </b>wood, dub</p>
-            <ul>
-              <li>width: 20cm</li>
-              <li>length: 30cm</li>
-              <li>height: 22cm</li>
+              <li>{{ "product.width" | translate | titlecase }}: {{ product.width }} cm</li>
+              <li>{{ 'product.length' | translate | titlecase }}: {{ product.length }} cm</li>
+              <li>{{ 'product.height' | translate | titlecase }}: {{ product.height }} cm</li>
             </ul>
           </div>
         </div>
