@@ -9,5 +9,11 @@
   },
   "categories": {
     "all": "view all"
+  },
+  "product": {
+    "width": "width",
+    "length": "length",
+    "height": "height",
+    "materials": "materials"
   }
 }

@@ -214,7 +214,7 @@
                   <mat-card style="margin: 0.5em 0;">
                     <div class="more-info__description">
                       <h4>Розміри</h4>
-                      <p> <b>Висота: </b>{{ element.hight }} cm</p>
+                      <p> <b>Висота: </b>{{ element.height }} cm</p>
                       <p><b>Довжина: </b>{{ element.length }} cm</p>
                       <p><b>Ширина: </b>{{ element.width }} cm</p>
                     </div>
@@ -222,7 +222,7 @@
                 </div>
                 <mat-card *ngIf="element.discount" style="margin: 0.5em 0;">
                   <h4>Знижки</h4>
-                  <p><b>Проценти:</b> {{ element.discountPercent }}</p>
+                  <p><b>Проценти:</b> {{ element.discountPercent }}%</p>
                   <p><b>Ціна зі знижкою:</b> {{ element.totalPrice | number: '1.2-2' }}zl</p>
                 </mat-card>
 

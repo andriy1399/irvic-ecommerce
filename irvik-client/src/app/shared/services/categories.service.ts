@@ -13,28 +13,39 @@ export class CategoriesService {
   public lang = new Subject<string>();
   constructor(private http: HttpClient) {}
 
+  // getCategories(): Observable<ICategory[]> {
+  //   return this.http.get<ICategory[]>(this.url);
+  // }
+  // postCategory(body: ICategory): Observable<ICategory> {
+  //   return this.http.post<ICategory>(this.url, body);
+  // }
+  // updateCategory(body: ICategory): Observable<ICategory> {
+  //   return this.http.put<ICategory>(`${this.url}/${body.id}`, body);
+  // }
+  // deleteCategory(id: number | string): Observable<void> {
+  //   return this.http.delete<void>(`${this.url}/${id}`);
+  // }
+
   getCategories(): Observable<ICategory[]> {
-    // return this.http.get<ICategory[]>(this.url);
     return this.http.get<ICategory[]>(this.getCategoriesUrl);
   }
   postCategory(body: ICategory): Observable<ICategory> {
-    // return this.http.post<ICategory>(this.url, body);
     return this.http.post<ICategory>(this.url, body, {
       headers: {
         Authorization: 'testToken',
       },
     });
   }
+
   updateCategory(body: ICategory): Observable<ICategory> {
-    // return this.http.put<ICategory>(`${this.url}/${body.id}`, body);
     return this.http.put<ICategory>(`${this.url}/${body.id}`, body, {
       headers: {
         Authorization: 'testToken',
       },
     });
   }
+
   deleteCategory(id: number | string): Observable<void> {
-    // return this.http.delete<void>(`${this.url}/${id}`);
     return this.http.delete<void>(`${this.url}/${id}`, {
       headers: {
         Authorization: 'testToken',

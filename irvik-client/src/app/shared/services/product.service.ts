@@ -12,12 +12,26 @@ export class ProductService {
   private getProductsUrl = 'http://localhost:8080/api/products';
   constructor(private http: HttpClient) {}
 
+  // getProducts(): Observable<IProduct[]> {
+  //   return this.http.get<IProduct[]>(this.url);
+  // }
+  // postProduct(body: IProduct): Observable<IProduct> {
+  //   return this.http.post<IProduct>(this.url, body);
+
+  // }
+  // updateProduct(body: IProduct): Observable<IProduct> {
+  //   return this.http.put<IProduct>(`${this.url}/${body.id}`, body);
+
+  // }
+  // deleteProduct(id: number | string): Observable<void> {
+  //   return this.http.delete<void>(`${this.url}/${id}`);
+  // }
+
+
   getProducts(): Observable<IProduct[]> {
-    // return this.http.get<IProduct[]>(this.url);
     return this.http.get<IProduct[]>(this.getProductsUrl);
   }
   postProduct(body: IProduct): Observable<IProduct> {
-    // return this.http.post<IProduct>(this.url, body);
     return this.http.post<IProduct>(this.url, body, {
       headers: {
         Authorization: 'testToken',
@@ -25,7 +39,6 @@ export class ProductService {
     });
   }
   updateProduct(body: IProduct): Observable<IProduct> {
-    // return this.http.put<IProduct>(`${this.url}/${body.id}`, body);
     return this.http.put<IProduct>(`${this.url}/${body.id}`, body, {
       headers: {
         Authorization: 'testToken',
@@ -33,7 +46,6 @@ export class ProductService {
     });
   }
   deleteProduct(id: number | string): Observable<void> {
-    // return this.http.delete<void>(`${this.url}/${id}`);
     return this.http.delete<void>(`${this.url}/${id}`, {
       headers: {
         Authorization: 'testToken',
