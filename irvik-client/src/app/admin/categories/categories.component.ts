@@ -84,7 +84,6 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       categoryUk: this.nameUk,
       id: this.editingId
     };
-      console.log(updatedCategory);
     this.categoriesServ.updateCategory(updatedCategory).subscribe(() => {
       this.getCategories();
       this.isEdited = false;
