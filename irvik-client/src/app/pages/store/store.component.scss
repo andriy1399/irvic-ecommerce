@@ -5,6 +5,7 @@
   margin-top: 3em;
   @include flex(row, wrap, space-between, flex-start);
   flex: 1;
+
   &__category-block {
     border-radius: 1.8em 0.3em 0.3em 1.8em;
     background: $store-bg;
@@ -13,11 +14,13 @@
     min-width: 17%;
     min-height: 500px;
   }
+
   &__category-title {
     h3 {
       font-size: 1.5rem;
       color: rgb(22, 22, 22);
     }
+
     margin-bottom: 2em;
   }
 
@@ -29,12 +32,14 @@
       display: block;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
+
       &:hover {
         color: rgb(0, 0, 0);
         text-shadow: 3px 1px 4px rgba(0, 0, 0, 0.19);
       }
     }
   }
+
   &__search-and-products-block {
     flex: 4;
     margin-left: 1.5em;
@@ -46,6 +51,7 @@
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px 30px 30px 5px;
     padding: 0.3em;
+
     input[type="text"] {
       padding: 0.6em;
       flex: 7;
@@ -73,9 +79,11 @@
 .product:nth-child(4n + 2) {
   margin: 1em 1.5% 0 3%;
 }
+
 .product:nth-child(4n + 3) {
   margin: 1em 3% 0 1.5%;
 }
+
 .product {
   padding: 0.2em 0.2em;
   margin-top: 1em;
@@ -86,12 +94,19 @@
   // overflow: hidden;
   transition: all 0.25s ease-in;
   position: relative;
+
   &__image-wrapper {
     width: 100%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    @include flex(row, wrap, center, stretch);
-    border-radius: 27px;
-    position: relative;
+
+    a {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      @include flex(row, wrap, center, stretch);
+      border-radius: 27px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
     img {
       border-radius: 27px;
       width: 100%;
@@ -129,11 +144,13 @@
 
   &__price {
     @include flex(row, wrap, space-between, center);
+
     span {
       font-size: 1.3rem;
       display: block;
     }
   }
+
   &__description {
     position: absolute;
     top: 102%;
@@ -146,7 +163,7 @@
     background: $store-bg;
     box-shadow: inset 0 0px 1px 1px rgba(0, 0, 0, 0.25), 0 0 2px 1px rgba(65, 65, 65, 0.308);
 
-    border-radius: 30px ;
+    border-radius: 30px;
   }
 
   &:hover .btn__icon--favorite {

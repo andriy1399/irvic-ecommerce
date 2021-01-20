@@ -28,6 +28,7 @@ import { MatRippleModule } from '@angular/material/core';
 
 import { LangDirective } from './shared/directives/lang.directive';
 import { SwiperComponent } from './components/swiper/swiper.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 // // root functions
 // export function HttpLoaderFactory(http: HttpClient): any {
@@ -48,6 +49,7 @@ import { SwiperComponent } from './components/swiper/swiper.component';
     ScrollBtnComponent,
     LangDirective,
     SwiperComponent,
+    ProductDetailsComponent,
 
   ],
   imports: [

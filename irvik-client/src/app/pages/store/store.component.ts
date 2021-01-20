@@ -14,6 +14,7 @@ import { ProductTranslate } from '../../shared/models/product-translate.model';
 export class StoreComponent implements OnInit {
   categories: ICategory[] = [];
   products: IProduct[] = [];
+  searchName!: string;
   constructor(
     private categoriesServ: CategoriesService,
     private translate: TranslateService,
@@ -45,6 +46,17 @@ export class StoreComponent implements OnInit {
       translatedProducts.prepareToTranslate();
     });
   }
+
+  public searchProductsByFullText(category?: string): void {
+    if (category) {
+      category = category.split('').join('');
+    }
+    this.productsService.getFullTextSearchProducts(this.searchName || category || '')
+      .subscribe(products => {
+        this.products = products;
+      });
+  }
+
   public convertToSnakeCase(str: string): string {
     return str.split(' ').join('_');
   }

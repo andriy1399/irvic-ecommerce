@@ -63,7 +63,7 @@ public class ProductsController {
 
 
     //get method
-    @GetMapping("/productById/{id}")
+    @GetMapping("/products/{id}")
     public Optional<Products> findById(@PathVariable("id") UUID id) throws ProductnotFoundException {
         return  productService.findById(id);
     }

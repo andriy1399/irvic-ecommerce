@@ -10,6 +10,7 @@ export class ProductService {
   // private url = 'http://localhost:3000/products';
   private url = 'http://localhost:8080/api/test/products';
   private getProductsUrl = 'http://localhost:8080/api/products';
+  private searchUrl = 'http://localhost:8080/api/searchByfullText';
   constructor(private http: HttpClient) {}
 
   // getProducts(): Observable<IProduct[]> {
@@ -51,5 +52,13 @@ export class ProductService {
         Authorization: 'testToken',
       },
     });
+  }
+
+  getFullTextSearchProducts(searchName: string): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(`${this.searchUrl}/${searchName}`);
+  }
+
+  getProductById(id: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.getProductsUrl}/${id}`);
   }
 }
