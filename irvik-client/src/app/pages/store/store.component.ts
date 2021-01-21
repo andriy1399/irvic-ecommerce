@@ -47,15 +47,15 @@ export class StoreComponent implements OnInit {
     });
   }
 
-  public searchProductsByFullText(category?: string): void {
-    if (category) {
-      category = category.split('').join('');
-    }
-    this.productsService.getFullTextSearchProducts(this.searchName || category || '')
-      .subscribe(products => {
-        this.products = products;
-      });
-  }
+  // public searchProductsByFullText(category?: string): void {
+  //   if (category) {
+  //     category = category.split('').join('');
+  //   }
+  //   this.productsService.getFullTextSearchProducts(this.searchName || category || '')
+  //     .subscribe(products => {
+  //       this.products = products;
+  //     });
+  // }
 
   public convertToSnakeCase(str: string): string {
     return str.split(' ').join('_');
