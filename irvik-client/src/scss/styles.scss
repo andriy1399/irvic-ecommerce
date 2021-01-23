@@ -94,7 +94,6 @@ input {
     transition: all 0.3s ease-in-out;
 
     &--favorite {
-
       position: absolute;
       top: 0.6em;
       right: 0.6em;
@@ -117,6 +116,32 @@ input {
     outline: none;
   }
 }
+
+// div.owl-nav {
+//   position: absolute;
+//   top: 50%;
+
+//   transform: translateY(-50%);
+//   // display: flex;
+//   // justify-content: space-between;
+
+
+// }
+// div.owl-nav.ng-star-inserted {
+//   margin: 0;
+// }
+
+
+// .owl-theme .owl-nav .owl-prev {
+//   position: absolute;
+//   left: 0;
+
+// }
+
+// .owl-theme .owl-nav .owl-prev {
+//   position: absolute;
+//   right: 0;
+// }
 // 59px padding for main container
 @media screen and (max-width: 1270px) {
   .container {

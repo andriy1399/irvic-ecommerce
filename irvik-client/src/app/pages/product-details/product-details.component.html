@@ -1,21 +1,58 @@
+<!-- <div class="container">
+  <div class="product-details">
+    <div class="product-details__images">
+      <div class="images-gallery">
+
+        <div class="images-gallery__wrapper">
+          <div class="images-gallery__arrow images-gallery__arrow--perv" (click)="slider.prev()">prev</div>
+          <a class="images-gallery__main-img" (click)="showGallery(slider.index)">
+            <img [src]="activeImage" alt="" />
+          </a>
+          <div class="images-gallery__arrow images-gallery__arrow--next" (click)="slider.next()">next</div>
+        </div>
+        <owl-carousel-o
+          class="images-gallery__row-of-images"
+          [options]="customOptions"
+          []="customOptions"
+        >
+          <ng-template
+            carouselSlide
+            *ngFor="let img of images; index as i"
+            [dataMerge]="i"
+          >
+            <a
+              class="images-gallery__img-wrapper slide"
+              (click)="openImage(img, i)"
+              
+              [ngClass]="{
+                'images-gallery__img-wrapper--clicked': img === activeImage
+              }"
+            >
+              <img [src]="img" />
+            </a>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+
+    <div class="product-details__info"></div>
+  </div>
+</div> -->
+
+
 <div class="container">
   <div class="product-details">
     <div class="product-details__images">
       <div class="images-gallery">
-        <a class="images-gallery__main-img" (click)="showGallery(0)">
-          <img [src]="activeImage" alt="" />
-        </a>
 
-        <div class="images-gallery__row-of-images">
-          <a
-            class="images-gallery__img-wrapper"
-            *ngFor="let img of images; index as i"
-            (click)="openImage(img, i)"
-            [ngClass]="{ 'images-gallery__img-wrapper--clicked': img === activeImage }"
-          >
-            <img [src]="img" />
+        <div class="images-gallery__wrapper">
+          <div class="images-gallery__arrow images-gallery__arrow--perv" >prev</div>
+          <a class="images-gallery__main-img" >
+            <img [src]="activeImage" alt="" />
           </a>
+          <div class="images-gallery__arrow images-gallery__arrow--next" >next</div>
         </div>
+       
       </div>
     </div>
 
