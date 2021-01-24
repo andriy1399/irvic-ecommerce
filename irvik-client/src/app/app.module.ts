@@ -26,7 +26,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { LangDirective } from './shared/directives/lang.directive';
 import { SwiperComponent } from './components/swiper/swiper.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
-import {IvyGalleryModule} from 'angular-gallery';
+import { IvyGalleryModule } from 'angular-gallery';
 // // root functions
 // export function HttpLoaderFactory(http: HttpClient): any {
 //   return new TranslateHttpLoader(http);
@@ -47,7 +47,6 @@ import {IvyGalleryModule} from 'angular-gallery';
     LangDirective,
     SwiperComponent,
     ProductDetailsComponent,
-
   ],
   imports: [
     SharedModule,
@@ -58,6 +57,6 @@ import {IvyGalleryModule} from 'angular-gallery';
     IvyGalleryModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

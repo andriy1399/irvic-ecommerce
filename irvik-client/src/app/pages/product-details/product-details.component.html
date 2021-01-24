@@ -1,58 +1,66 @@
-<!-- <div class="container">
-  <div class="product-details">
-    <div class="product-details__images">
-      <div class="images-gallery">
-
-        <div class="images-gallery__wrapper">
-          <div class="images-gallery__arrow images-gallery__arrow--perv" (click)="slider.prev()">prev</div>
-          <a class="images-gallery__main-img" (click)="showGallery(slider.index)">
-            <img [src]="activeImage" alt="" />
-          </a>
-          <div class="images-gallery__arrow images-gallery__arrow--next" (click)="slider.next()">next</div>
-        </div>
-        <owl-carousel-o
-          class="images-gallery__row-of-images"
-          [options]="customOptions"
-          []="customOptions"
-        >
-          <ng-template
-            carouselSlide
-            *ngFor="let img of images; index as i"
-            [dataMerge]="i"
-          >
-            <a
-              class="images-gallery__img-wrapper slide"
-              (click)="openImage(img, i)"
-              
-              [ngClass]="{
-                'images-gallery__img-wrapper--clicked': img === activeImage
-              }"
-            >
-              <img [src]="img" />
-            </a>
-          </ng-template>
-        </owl-carousel-o>
-      </div>
-    </div>
-
-    <div class="product-details__info"></div>
-  </div>
-</div> -->
-
-
 <div class="container">
   <div class="product-details">
     <div class="product-details__images">
       <div class="images-gallery">
-
         <div class="images-gallery__wrapper">
-          <div class="images-gallery__arrow images-gallery__arrow--perv" >prev</div>
-          <a class="images-gallery__main-img" >
+          <button
+            class="images-gallery__arrow images-gallery__arrow--prev"
+            (click)="slider.prev()"
+            [disabled]="isDisabledPrevArrow"
+          >
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+          <a
+            class="images-gallery__main-img"
+            (click)="showGallery(slider.index)"
+          >
             <img [src]="activeImage" alt="" />
           </a>
-          <div class="images-gallery__arrow images-gallery__arrow--next" >next</div>
+          <button
+            class="images-gallery__arrow images-gallery__arrow--next"
+            (click)="slider.next()"
+            [disabled]="isDisabledNextArrow"
+          >
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
         </div>
-       
+
+        <ng-container *ngIf="images.length > 3; else staticImages">
+          <owl-carousel-o
+            class="images-gallery__row-of-images"
+            [options]="customOptions"
+          >
+            <ng-template
+              carouselSlide
+              *ngFor="let img of images; index as i"
+              [dataMerge]="i"
+            >
+              <a
+                class="images-gallery__img-wrapper slide"
+                (click)="openImage(img)"
+                [ngClass]="{
+                  'images-gallery__img-wrapper--clicked': img === activeImage
+                }"
+              >
+                <img [src]="img" />
+              </a>
+            </ng-template>
+          </owl-carousel-o>
+        </ng-container>
+        <ng-template #staticImages>
+          <div class="images-gallery__row-of-images">
+            <a
+            *ngFor="let img of images; index as i"
+            class="images-gallery__img-wrapper images-gallery__img-wrapper--static"
+            (click)="openImage(img, i)"
+            [ngClass]="{
+              'images-gallery__img-wrapper--clicked': img === activeImage
+            }"
+          >
+            <img [src]="img" />
+          </a>
+          </div>
+        </ng-template>
       </div>
     </div>
 
