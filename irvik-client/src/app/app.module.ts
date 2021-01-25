@@ -22,14 +22,11 @@ import { ScrollBtnComponent } from './components/scroll-btn/scroll-btn.component
 import { MatRippleModule } from '@angular/material/core';
 
 // // Other libraries
-// import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-// import { LangDirective } from './shared/directives/lang.directive';
 
 import { LangDirective } from './shared/directives/lang.directive';
 import { SwiperComponent } from './components/swiper/swiper.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
-
+import { IvyGalleryModule } from 'angular-gallery';
 // // root functions
 // export function HttpLoaderFactory(http: HttpClient): any {
 //   return new TranslateHttpLoader(http);
@@ -50,7 +47,6 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     LangDirective,
     SwiperComponent,
     ProductDetailsComponent,
-
   ],
   imports: [
     SharedModule,
@@ -58,17 +54,9 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     AppRoutingModule,
     BrowserAnimationsModule,
     MatRippleModule,
-    // HttpClientModule,
-    // TranslateModule.forRoot({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: HttpLoaderFactory,
-    //     deps: [HttpClient]
-    //   },
-    //   defaultLanguage: 'pl'
-    // }),
+    IvyGalleryModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

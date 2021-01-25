@@ -14,6 +14,10 @@
     "width": "szerokość",
     "length": "długość",
     "height": "wysokość",
-    "materials": "materiał"
+    "materials": "materiał",
+    "price": "Cena"
+  },
+  "btn": {
+    "buy": "kupić"
   }
 }

@@ -26,7 +26,6 @@ export class Product implements IProduct {
     public count: number = 1,
   ) {
     this.totalPrice = this.getTotalPrice();
-    console.log(this.getTotalPrice());
     this.dateOfEdition = new Date();
     this.convertFullTextName();
   }
