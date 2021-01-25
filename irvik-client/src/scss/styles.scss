@@ -31,6 +31,9 @@ h5,
 h6 {
   font-family: "Questrial", sans-serif;
 }
+p {
+  letter-spacing: 0.04rem;
+}
 body {
   position: relative;
   &::before {
@@ -117,32 +120,29 @@ input {
   }
 }
 
-// div.owl-nav {
-//   position: absolute;
-//   top: 50%;
+.price {
+  margin-top: 1em;
+  &__wrapper {
+    @include flex(row, wrap, space-around, center);
+  }
+  p {
+    font-size: 1.25rem;
+  }
+  &__with-discount {
+    color: #d92354;
+  }
 
-//   transform: translateY(-50%);
-//   // display: flex;
-//   // justify-content: space-between;
-
-
-// }
-// div.owl-nav.ng-star-inserted {
-//   margin: 0;
-// }
-
-
-// .owl-theme .owl-nav .owl-prev {
-//   position: absolute;
-//   left: 0;
-
-// }
-
-// .owl-theme .owl-nav .owl-prev {
-//   position: absolute;
-//   right: 0;
-// }
-// 59px padding for main container
+  &__discount {
+    font-size: 1.25rem;
+    background-image: $border-gradient-for-btn;
+    color: #fafafa;
+    padding: .5em .9em;
+    border-radius: 5px;
+  }
+}
+p.price__with-discount {
+  font-size: 1.5rem;
+}
 @media screen and (max-width: 1270px) {
   .container {
     width: 92%;

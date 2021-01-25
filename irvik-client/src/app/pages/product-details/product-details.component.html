@@ -50,20 +50,150 @@
         <ng-template #staticImages>
           <div class="images-gallery__row-of-images">
             <a
-            *ngFor="let img of images; index as i"
-            class="images-gallery__img-wrapper images-gallery__img-wrapper--static"
-            (click)="openImage(img, i)"
-            [ngClass]="{
-              'images-gallery__img-wrapper--clicked': img === activeImage
-            }"
-          >
-            <img [src]="img" />
-          </a>
+              *ngFor="let img of images; index as i"
+              class="images-gallery__img-wrapper images-gallery__img-wrapper--static"
+              (click)="openImage(img)"
+              [ngClass]="{
+                'images-gallery__img-wrapper--clicked': img === activeImage
+              }"
+            >
+              <img [src]="img" />
+            </a>
           </div>
         </ng-template>
       </div>
     </div>
 
-    <div class="product-details__info"></div>
+    <div class="product-details__info">
+      <ng-container *ngIf="product">
+        <div>
+          <div class="product-details__title-wrapper">
+            <h2>
+              {{
+                "title." + convertToSnakeCase(product.titleEn)
+                  | translate
+                  | titlecase
+              }}
+            </h2>
+
+            <div style="flex: 2; display: flex; justify-content: flex-end;">
+              <div class="product-details__discount" *ngIf="product.discount">
+                -
+                {{
+                  product.discountPercent[
+                    product.discountPercent?.length - 1
+                  ] === "%"
+                    ? product.discountPercent
+                    : product.discountPercent! + "%"
+                }}
+              </div>
+            </div>
+          </div>
+
+          <div class="product-details__description">
+            <p>
+              {{
+                "description." + convertToSnakeCase(product.titleEn) | translate
+              }}
+            </p>
+          </div>
+
+          <div class="product-details__params">
+            <p>
+              <b>{{ "product.materials" | translate | titlecase }}:</b>
+              {{
+                "materials." + convertToSnakeCase(product.materialEn)
+                  | translate
+              }}
+            </p>
+          </div>
+
+          <div class="product-details__size">
+            <div>
+              <p>
+                <b>{{ "product.width" | translate | titlecase }}: </b>
+                {{ product.width }}cm.
+              </p>
+              <p>
+                <b>{{ "product.height" | translate | titlecase }}: </b>
+                {{ product.height }}cm.
+              </p>
+              <p>
+                <b>{{ "product.length" | translate | titlecase }}: </b>
+                {{ product.length }}cm.
+              </p>
+            </div>
+            <div>
+              <p><b>Id: </b> {{ product.unitId }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="product-details__bottom">
+          <div class="product-details__price price">
+            <ng-container *ngIf="product.discount; else withoutDiscount">
+              <div class="price__wrapper">
+                <p>
+                  <span style="text-decoration: line-through"
+                    >{{ product.price | number: "1.2-2" }}zł</span
+                  >
+                </p>
+                <p class="price__with-discount">
+                  {{
+                    product.price -
+                      (product.price * parse(product.discountPercent)) / 100
+                      | number: "1.2-2"
+                  }}zł
+                </p>
+              </div>
+            </ng-container>
+            <ng-template #withoutDiscount>
+              <p>{{ product.price | number: "1.2-2" }}zł</p>
+            </ng-template>
+          </div>
+          <div class="product-details__bottom-row">
+            <div class="product-details__counter">
+              <div class="product-details__total-price">
+                {{ +product.totalPrice * product.count | number: "1.2-2" }}zł
+              </div>
+              <mat-icon style="color: #767676">close</mat-icon>
+              <div class="product-details__count">
+                <div class="product-details__count-block">
+                  <input
+                    type="number"
+                    [(ngModel)]="product.count"
+                    (change)="checkCount()"
+                  />
+                </div>
+
+                <div class="product-details__count-buttons-wrapper">
+                  <button
+                    class="product-details__increment"
+                    (click)="product.count = product.count + 1"
+                  >
+                    +
+                  </button>
+                  <button
+                    class="product-details__decrement"
+                    (click)="
+                      product.count =
+                        product.count - 1 > 0
+                          ? (product.count = product.count - 1)
+                          : 1
+                    "
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="product-details__btn-wrapper">
+              <button class="btn btn__bg-white" mat-ripple>
+                {{ "btn.buy" | translate | uppercase }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>

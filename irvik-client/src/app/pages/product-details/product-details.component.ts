@@ -4,6 +4,8 @@ import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Gallery } from 'angular-gallery';
 import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { ProductTranslate } from 'src/app/shared/models/product-translate.model';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -15,6 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   images: string[] = [];
   isDisabledPrevArrow = false;
   isDisabledNextArrow = false;
+  title = '';
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
@@ -35,16 +38,30 @@ export class ProductDetailsComponent implements OnInit {
     margin: 10,
   };
   slider: any;
-  activeSlides!: SlidesOutputData;
-  imageRef!: ElementRef;
+  products: IProduct[] = [];
   constructor(
     private productsService: ProductService,
     private route: ActivatedRoute,
-    private gallery: Gallery
+    private gallery: Gallery,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
     this.getProduct();
+    this.getProducts();
+    setTimeout(() => {
+      this.translate.setDefaultLang(localStorage.getItem('lang') || 'pl');
+    }, 100);
+  }
+  private getProducts(): void {
+    this.productsService.getProducts().subscribe((products) => {
+      this.products = products;
+      const translatedProducts = new ProductTranslate(
+        products,
+        this.translate
+      );
+      translatedProducts.prepareToTranslate();
+    });
   }
 
   private getProduct(): void {
@@ -123,6 +140,24 @@ export class ProductDetailsComponent implements OnInit {
       this.slider = this.sliderImages(img);
     } else {
       this.activeImage = this.images[0];
+    }
+  }
+
+  public convertToSnakeCase(str: string): string {
+    return str.split(' ').join('_');
+  }
+
+  public parse(str: string): number {
+    if (typeof parseFloat(str) === 'number') {
+      return  parseFloat(str);
+    } else {
+      return 0;
+    }
+  }
+
+  public checkCount(): void {
+    if (this.product.count <= 0) {
+      this.product.count = 1;
     }
   }
 }
