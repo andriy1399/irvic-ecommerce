@@ -143,6 +143,10 @@ input {
 p.price__with-discount {
   font-size: 1.5rem;
 }
+
+.width-100 {
+  width: 100% ;
+}
 @media screen and (max-width: 1270px) {
   .container {
     width: 92%;

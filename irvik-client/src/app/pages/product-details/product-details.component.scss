@@ -23,13 +23,14 @@
   }
 
   &__title-wrapper {
-    @include flex (row, wrap, space-between, center);
+    @include flex(row, wrap, space-between, center);
 
     h2 {
       flex: 8;
       font-size: 2.3rem;
     }
     margin-bottom: 1em;
+
   }
 
   &__discount {
@@ -37,8 +38,9 @@
     font-size: 1.25rem;
     background-image: $border-gradient-for-btn;
     color: #fafafa;
-    padding: .5em .9em;
+    padding: 0.5em 0.9em;
     border-radius: 5px;
+
   }
 
   &__description {
@@ -116,7 +118,7 @@
       display: block;
       background: #ffffff;
       cursor: pointer;
-      transition: all .2s ease-in;
+      transition: all 0.2s ease-in;
       &:hover {
         background: #faf8f8;
       }
@@ -225,6 +227,23 @@
         border-radius: 5px;
         transform: scale(0.96);
       }
+    }
+  }
+}
+
+.carousel {
+  margin-top: 2em;
+  border-radius: 15px;
+  background-color: $bg-card;
+  padding: 1em 1em 0;
+  &__row-of-images {
+  }
+
+  &__img-wrapper {
+    border-radius: 5px;
+    overflow: hidden;
+    img {
+      border-radius: 5px;
     }
   }
 }
