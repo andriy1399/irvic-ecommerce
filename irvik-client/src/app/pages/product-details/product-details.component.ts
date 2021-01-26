@@ -39,6 +39,7 @@ export class ProductDetailsComponent implements OnInit {
   };
   slider: any;
   products: IProduct[] = [];
+  percent!: string | null;
   constructor(
     private productsService: ProductService,
     private route: ActivatedRoute,
@@ -56,10 +57,7 @@ export class ProductDetailsComponent implements OnInit {
   private getProducts(): void {
     this.productsService.getProducts().subscribe((products) => {
       this.products = products;
-      const translatedProducts = new ProductTranslate(
-        products,
-        this.translate
-      );
+      const translatedProducts = new ProductTranslate(products, this.translate);
       translatedProducts.prepareToTranslate();
     });
   }
@@ -72,6 +70,7 @@ export class ProductDetailsComponent implements OnInit {
       this.openImage();
       this.slider = this.sliderImages();
       this.isDisabledPrevArrow = true;
+      this.checkPercent(product);
     });
   }
 
@@ -149,7 +148,7 @@ export class ProductDetailsComponent implements OnInit {
 
   public parse(str: string): number {
     if (typeof parseFloat(str) === 'number') {
-      return  parseFloat(str);
+      return parseFloat(str);
     } else {
       return 0;
     }
@@ -158,6 +157,17 @@ export class ProductDetailsComponent implements OnInit {
   public checkCount(): void {
     if (this.product.count <= 0) {
       this.product.count = 1;
+    }
+  }
+
+  private checkPercent(product: IProduct): void {
+    console.log(product.discountPercent?.charAt(product.discountPercent.length - 1));
+    if (product.discount) {
+      this.percent =
+        product.discountPercent?.charAt(product.discountPercent.length - 1) ===
+        '%'
+          ? product.discountPercent
+          : product.discountPercent + '%';
     }
   }
 }

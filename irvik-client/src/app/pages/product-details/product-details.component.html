@@ -79,13 +79,7 @@
             <div style="flex: 2; display: flex; justify-content: flex-end;">
               <div class="product-details__discount" *ngIf="product.discount">
                 -
-                {{
-                  product.discountPercent[
-                    product.discountPercent?.length - 1
-                  ] === "%"
-                    ? product.discountPercent
-                    : product.discountPercent! + "%"
-                }}
+               {{ percent }}
               </div>
             </div>
           </div>
@@ -140,7 +134,7 @@
                 <p class="price__with-discount">
                   {{
                     product.price -
-                      (product.price * parse(product.discountPercent)) / 100
+                      (product.price * parse(percent!)) / 100
                       | number: "1.2-2"
                   }}zł
                 </p>
