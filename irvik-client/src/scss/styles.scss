@@ -75,7 +75,16 @@ input {
   border: none;
   background: transparent;
 }
-
+.btn-wrapper {
+  padding: 0.2em;
+  background-image: $border-gradient-for-btn;
+  border-radius: 30px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  transition: filter 0.3s ease-in;
+  &__disabled {
+    filter: grayscale(100%);
+  }
+}
 .btn {
   padding: 0.5em 1.5em;
   font-size: 1.2rem;
@@ -85,8 +94,15 @@ input {
     width: 100%;
     color: $active-color;
     background-color: #fafafa;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
+    transition: all 0.3s ease-in;
+    &--width-auto {
+      width: auto;
+    }
+    &:hover {
+      background-color: #ffffff;
+    }
+
   }
 
   &__icon {
@@ -120,6 +136,14 @@ input {
   }
 }
 
+.btn:disabled {
+  filter: grayscale(100%);
+  cursor: default;
+  &:hover {
+    background-color: #fafafa;
+  }
+}
+
 .price {
   margin-top: 1em;
   &__wrapper {
@@ -136,7 +160,7 @@ input {
     font-size: 1.25rem;
     background-image: $border-gradient-for-btn;
     color: #fafafa;
-    padding: .5em .9em;
+    padding: 0.5em 0.9em;
     border-radius: 5px;
   }
 }
@@ -145,7 +169,7 @@ p.price__with-discount {
 }
 
 .width-100 {
-  width: 100% ;
+  width: 100%;
 }
 @media screen and (max-width: 1270px) {
   .container {

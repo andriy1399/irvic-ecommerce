@@ -6,6 +6,7 @@ import { BagComponent } from './pages/bag/bag.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { StoreComponent } from './pages/store/store.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { LoginGuard } from './shared/guards/login.guard';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path: 'store', component: StoreComponent},
   {path: 'store/product/:id', component: ProductDetailsComponent},
   {
-    path: 'admin',
+    path: 'admin', canActivate: [LoginGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
 ];
