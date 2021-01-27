@@ -19,6 +19,10 @@
   },
   "btn": {
     "buy": "buy"
+  },
+  "signInLan": {
+    "login": "login",
+    "password": "password"
   }
 
 }

@@ -19,5 +19,9 @@
   },
   "btn": {
     "buy": "kupić"
+  },
+  "signInLan": {
+    "login": "Zaloguj sie",
+    "password": "hasło"
   }
 }
