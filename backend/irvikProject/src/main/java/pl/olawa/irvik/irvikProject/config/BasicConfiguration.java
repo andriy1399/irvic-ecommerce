@@ -1,11 +1,14 @@
 package pl.olawa.irvik.irvikProject.config;
 
 import com.google.common.collect.ImmutableList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.webmvc.config.CorsConfigurationAware;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -21,6 +24,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -31,11 +35,19 @@ import java.util.Map;
 @EnableWebSecurity
 public class BasicConfiguration extends  WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
+    @Autowired
+    private UserDetailServiceImpl customUserDetailsService;
+
+    @Autowired
+    private JwtFilter  jwtFilter;
+
+
     private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
             new AntPathRequestMatcher("/api/test/**")
     );
 
     AuthenticationProvider provider;
+
 
     public BasicConfiguration(final AuthenticationProvider authenticationProvider) {
         super();
@@ -51,6 +63,11 @@ public class BasicConfiguration extends  WebSecurityConfigurerAdapter implements
     public void configure(final WebSecurity webSecurity) {
         webSecurity.ignoring()
                 .antMatchers("/login/**");
+    }
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
@@ -79,11 +96,20 @@ public class BasicConfiguration extends  WebSecurityConfigurerAdapter implements
     }
 
     @Bean
-    AuthenticationFilter authenticationFilter() throws Exception {
+    AuthenticationFilter  authenticationFilter() throws Exception {
         final AuthenticationFilter filter = new AuthenticationFilter(PROTECTED_URLS);
         filter.setAuthenticationManager(authenticationManager());
         //filter.setAuthenticationSuccessHandler(successHandler());
         return filter;
+    }
+
+    @Bean
+    CharacterEncodingFilter characterEncodingFilter(){
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        return filter;
+
     }
 
     @Bean

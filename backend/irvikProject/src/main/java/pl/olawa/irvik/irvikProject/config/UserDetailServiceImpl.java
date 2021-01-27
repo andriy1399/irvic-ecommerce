@@ -1,5 +1,6 @@
 package pl.olawa.irvik.irvikProject.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.olawa.irvik.irvikProject.dao.UserSecurityController;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -17,17 +19,20 @@ import java.util.Optional;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    @Value("${token}")
-    private String token;
+    @Autowired
+    private UserSecurityController userSecurityController;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        if (!token.equals(s)) throw new AccessDeniedException("Not valid token");
-        PasswordEncoder encoder =
-                PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        PasswordEncoder encoder =
+//                PasswordEncoderFactories.createDelegatingPasswordEncoder();
         SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("ROLE_ADMIN");
-        return new User("admin", encoder.encode("admin"), Arrays.asList(simpleGrantedAuthority));
+     //   return new User("admin", encoder.encode("admin"), Arrays.asList(simpleGrantedAuthority));
+        pl.olawa.irvik.irvikProject.domain.User user = userSecurityController.findByUserName(userName);
+        return  new org.springframework.security.core.userdetails.User(user.getUserName(),user.getPassword(),Arrays.asList(simpleGrantedAuthority));
+
+
     }
 
 
