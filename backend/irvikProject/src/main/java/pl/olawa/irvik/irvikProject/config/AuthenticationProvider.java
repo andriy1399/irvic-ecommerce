@@ -17,6 +17,9 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
     @Autowired
     private UserDetailServiceImpl userDetailService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
         //
@@ -27,7 +30,7 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
 
         Object token = usernamePasswordAuthenticationToken.getCredentials();
         if (token == null) throw new UsernameNotFoundException("Cant find token");
-        UserDetails userDetails = userDetailService.loadUserByUsername(token.toString());
+        UserDetails userDetails = userDetailService.loadUserByUsername(userName);
         return userDetails;
     }
 

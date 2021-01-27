@@ -1,28 +1,45 @@
 package pl.olawa.irvik.irvikProject.contoller;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.olawa.irvik.irvikProject.dto.TokenDto;
+import pl.olawa.irvik.irvikProject.config.JwtUtil;
+import pl.olawa.irvik.irvikProject.dto.AuthRequesr;
 
 @RestController
 public class LoginController {
 
 
-    @Value("${token}")
-    private String token;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-    @PostMapping("/login")
-    public ResponseEntity getToken(@RequestParam("username") final String username, @RequestParam("password") final String password){
-        if(StringUtils.isEmpty(token)){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity(new TokenDto(token) , HttpStatus.OK);
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    /**
+     *
+     */
+
+    @RequestMapping("/hello")
+    public String hello(){
+        return "Hello world";
     }
 
 
+    @PostMapping("/login")
+    public  String generareToken(@RequestBody AuthRequesr authRequesr) throws Exception {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequesr.getUserName(), authRequesr.getPassword())
+            );
+        } catch (Exception exception){
+            throw exception;
+        }
+        return  jwtUtil.generateToken(authRequesr.getUserName());
+    }
 }
