@@ -70,7 +70,7 @@
           <div class="product-details__title-wrapper" >
             <h2 [ngStyle]="{'flex': product.discount ? 8 : 100}">
               {{
-                "title." + convertToSnakeCase(product?.titleEn)
+                "title." + convertToSnakeCase(product.titleEn)
                   | translate
                   | titlecase
               }}
@@ -87,7 +87,7 @@
           <div class="product-details__description">
             <p>
               {{
-                "description." + convertToSnakeCase(product?.titleEn) | translate
+                "description." + convertToSnakeCase(product.titleEn) | translate
               }}
             </p>
           </div>
@@ -106,47 +106,47 @@
             <div>
               <p>
                 <b>{{ "product.width" | translate | titlecase }}: </b>
-                {{ product?.width }}cm.
+                {{ product.width }}cm.
               </p>
               <p>
                 <b>{{ "product.height" | translate | titlecase }}: </b>
-                {{ product?.height }}cm.
+                {{ product.height }}cm.
               </p>
               <p>
                 <b>{{ "product.length" | translate | titlecase }}: </b>
-                {{ product?.length }}cm.
+                {{ product.length }}cm.
               </p>
             </div>
             <div>
-              <p><b>Id: </b> {{ product?.unitId }}</p>
+              <p><b>Id: </b> {{ product.unitId }}</p>
             </div>
           </div>
         </div>
         <div class="product-details__bottom">
           <div class="product-details__price price">
-            <ng-container *ngIf="product?.discount; else withoutDiscount">
+            <ng-container *ngIf="product.discount; else withoutDiscount">
               <div class="price__wrapper">
                 <p>
                   <span style="text-decoration: line-through"
-                    >{{ product?.price | number: "1.2-2" }}zł</span
+                    >{{ product.price | number: "1.2-2" }}zł</span
                   >
                 </p>
                 <p class="price__with-discount">
                   {{
-                    product?.price - (product?.price * parse(percent!)) / 100
+                    product.price - (product.price * parse(percent!)) / 100
                       | number: "1.2-2"
                   }}zł
                 </p>
               </div>
             </ng-container>
             <ng-template #withoutDiscount>
-              <p>{{ product?.price | number: "1.2-2" }}zł</p>
+              <p>{{ product.price | number: "1.2-2" }}zł</p>
             </ng-template>
           </div>
           <div class="product-details__bottom-row">
             <div class="product-details__counter">
               <div class="product-details__total-price">
-                {{ +product?.totalPrice * product?.count | number: "1.2-2" }}zł
+                {{ +product.totalPrice * product.count | number: "1.2-2" }}zł
               </div>
               <mat-icon style="color: #767676">close</mat-icon>
               <div class="product-details__count">
@@ -161,7 +161,7 @@
                 <div class="product-details__count-buttons-wrapper">
                   <button
                     class="product-details__increment"
-                    (click)="product.count = product?.count + 1"
+                    (click)="product.count = product.count + 1"
                   >
                     +
                   </button>
@@ -169,8 +169,8 @@
                     class="product-details__decrement"
                     (click)="
                       product.count =
-                        product?.count - 1 > 0
-                          ? (product.count = product?.count - 1)
+                        product.count - 1 > 0
+                          ? (product.count = product.count - 1)
                           : 1
                     "
                   >
