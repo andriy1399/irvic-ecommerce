@@ -9,16 +9,16 @@
       </div>
 
       <div *ngFor="let cat of categories; index as i" class="store__categories">
-        <!-- <a (click)="searchProductsByFullText(cat.categoryEn)">{{
-          "categories." + convertToSnakeCase(cat.categoryEn)
-            | translate
-            | titlecase
-        }}</a> -->
-        <a>{{
+        <a (click)="searchProductsByFullText(cat.categoryEn)">{{
           "categories." + convertToSnakeCase(cat.categoryEn)
             | translate
             | titlecase
         }}</a>
+        <!-- <a>{{
+          "categories." + convertToSnakeCase(cat.categoryEn)
+            | translate
+            | titlecase
+        }}</a> -->
       </div>
     </div>
 
@@ -26,12 +26,12 @@
       <div class="store__search">
         <input type="text" [(ngModel)]="searchName" />
 
-        <!-- <span>
-          <button matRipple class="btn btn__bg-white" (click)="searchProductsByFullText()">Search</button>
-        </span> -->
         <span>
-          <button matRipple class="btn btn__bg-white">Search</button>
+          <button matRipple class="btn btn__bg-white" (click)="searchProductsByFullText()">Search</button>
         </span>
+        <!-- <span>
+          <button matRipple class="btn btn__bg-white">Search</button>
+        </span> -->
       </div>
 
       <div class="store__products">
