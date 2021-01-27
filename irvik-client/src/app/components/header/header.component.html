@@ -19,7 +19,7 @@
       </ul>
       <ul class="header__menu-with-icon-list">
         <li routerLinkActive="active">
-          <a matRipple [routerLink]="['/admin']" routerLinkActive='active'>
+          <a matRipple (click)="loginService.openLoginModal.next(true)" style="cursor: pointer;" routerLinkActive='active'>
             <mat-icon class="header__icon">person</mat-icon>
           </a>
         </li>

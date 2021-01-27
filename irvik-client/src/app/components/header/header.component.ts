@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CategoriesService } from '../../shared/services/categories.service';
+import { LoginService } from '../../shared/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public translate: TranslateService,
-    private categoriesServ: CategoriesService
+    private categoriesServ: CategoriesService,
+    public loginService: LoginService
   ) { }
 
   ngOnInit(): void {
