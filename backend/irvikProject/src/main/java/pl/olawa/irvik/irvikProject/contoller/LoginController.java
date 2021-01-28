@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.olawa.irvik.irvikProject.config.JwtUtil;
+import pl.olawa.irvik.irvikProject.domain.Token;
 import pl.olawa.irvik.irvikProject.dto.AuthRequesr;
 
 @RestController
@@ -32,14 +33,18 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public  String generareToken(@RequestBody AuthRequesr authRequesr) throws Exception {
+    public Token generareToken(@RequestBody AuthRequesr authRequesr) throws Exception {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequesr.getUserName(), authRequesr.getPassword())
             );
-        } catch (Exception exception){
+        } catch (Exception exception) {
             throw new Exception("inavalid userna/passwrd");
         }
-        return  jwtUtil.generateToken(authRequesr.getUserName());
+
+            return new Token(jwtUtil.generateToken(authRequesr.getUserName()));
+
+        }
+
     }
-}
+

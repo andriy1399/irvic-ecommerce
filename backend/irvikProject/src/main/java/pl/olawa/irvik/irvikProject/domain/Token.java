@@ -1,11 +1,14 @@
 package pl.olawa.irvik.irvikProject.domain;
 
-public class TokenDelete {
+public class Token {
 
-    public String token;
+    private String token;
 
-    public TokenDelete(String token) {
+    public Token(String token) {
         this.token = token;
     }
 
+    public String getToken() {
+        return token;
+    }
 }
