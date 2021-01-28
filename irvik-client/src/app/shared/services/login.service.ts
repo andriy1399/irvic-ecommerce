@@ -1,18 +1,23 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ILogin } from '../interfaces/login.interface';
-import { tap } from 'rxjs/operators';
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-};
+import { map, tap } from 'rxjs/operators';
+export type ResponseType = 'arraybuffer' | 'blob' | 'json' | 'text';;
 
+// const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+
+// const httpOptions = {
+//   headers,
+//   responseType: 'text' as 'json'
+// }
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   loginUrl = 'http://localhost:8080/login';
   openLoginModal = new Subject<boolean>();
+  isAuth = new Subject<boolean>();
 
   get token(): string {
     const expDate = new Date(localStorage.getItem('expDate') || '');
@@ -25,28 +30,30 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  signIn(loginData: ILogin): void {
-    this.http
-      .post(this.loginUrl, loginData, httpOptions)
-      .pipe(tap(this.setToken));
+  signIn(loginData: ILogin): Observable<any> {
+    return this.http
+      .post<any>(this.loginUrl, loginData);
   }
 
   logout(): void {
     this.setToken(null);
+    this.isAuth.next(this.isAuthenticated());
   }
 
   isAuthenticated(): boolean {
     return !!this.token;
   }
 
-  private setToken(response: any): void {
+  public setToken(response: any): void {
     if (response) {
-      console.log(response);
       const expDate = new Date(new Date().getTime() + 36000000);
       localStorage.setItem('token', response.token);
-      localStorage.setItem('expDate', JSON.stringify(expDate));
+      localStorage.setItem('expDate', expDate.toString());
+      this.isAuth.next(this.isAuthenticated());
     } else {
-      localStorage.clear();
+      localStorage.removeItem('token');
+      localStorage.removeItem('expDate');
+
       // change this later
     }
   }

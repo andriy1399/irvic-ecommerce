@@ -9,7 +9,7 @@ import { LoginService } from '../../shared/services/login.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  isAuth = false;
   constructor(
     public translate: TranslateService,
     private categoriesServ: CategoriesService,
@@ -21,6 +21,10 @@ export class HeaderComponent implements OnInit {
     this.translate.use(lang);
     this.translate.setDefaultLang(lang);
     this.changeLang(null, lang);
+    if (localStorage.getItem('token')) {
+      this.isAuth = this.loginService.isAuthenticated();
+    }
+    this.loginService.isAuth.subscribe(bol => this.isAuth = bol);
   }
   changeLang(e: Event | null, language?: string): void {
     let lang;

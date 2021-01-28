@@ -21,16 +21,19 @@ export class SignInComponent implements OnInit {
       password: new FormControl('', Validators.required)
     });
   }
-  public login(): void {
-    console.log(this.signIn.value);
+  public login = (): void => {
     if (this.signIn.valid) {
-      this.loginService.signIn(this.signIn.value);
+      this.loginService.signIn(this.signIn.value)
+        .subscribe(data => {
+          this.loginService.setToken(data);
+          this.loginService.openLoginModal.next(false);
+          this.router.navigateByUrl('admin');
+        });
     }
-    this.signIn.reset();
-    this.loginService.openLoginModal.next(false);
-    this.router.navigateByUrl('admin');
+   
   }
 
+ 
   public closeModal(event: any): void {
     if (event.target.classList.value === 'shadow-wrapper') {
       this.loginService.openLoginModal.next(false);
