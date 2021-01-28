@@ -11,11 +11,11 @@
             <p>Write correct login and password</p>
           </div>
           <div class="sign-in__form-control" >
-            <input type="text" [placeholder]="'signInLan.login' | translate | titlecase" formControlName="login">
+            <input type="text" [placeholder]="'signInLan.login' | translate | titlecase" formControlName="userName" autocomplete="off">
           </div>
 
           <div class="sign-in__form-control">
-            <input type="password"[placeholder]="'signInLan.password' | translate | titlecase" formControlName="password" >
+            <input type="password"[placeholder]="'signInLan.password' | translate | titlecase" formControlName="password" autocomplete="off" >
           </div>
 
           <div class="sign-in__btn-wrapper">
