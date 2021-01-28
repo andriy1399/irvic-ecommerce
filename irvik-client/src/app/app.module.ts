@@ -1,7 +1,11 @@
 // Core modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgModule, Provider } from '@angular/core';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
@@ -27,10 +31,18 @@ import { LangDirective } from './shared/directives/lang.directive';
 import { SwiperComponent } from './components/swiper/swiper.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { IvyGalleryModule } from 'angular-gallery';
+import { LoginInterceptor } from './shared/interceptors/login.interceptor';
 // // root functions
 // export function HttpLoaderFactory(http: HttpClient): any {
 //   return new TranslateHttpLoader(http);
 // }
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: LoginInterceptor
+};
+
 
 @NgModule({
   declarations: [
@@ -56,7 +68,7 @@ import { IvyGalleryModule } from 'angular-gallery';
     MatRippleModule,
     IvyGalleryModule,
   ],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
