@@ -64,6 +64,11 @@
       width: 99%;
     }
   }
+
+  &__image-delete-btn-wrapper {
+    @include flex(row, wrap, center, center);
+    margin-top: .5em;
+  }
   &__right {
     width: 50%;
     border-left: 1px solid rgb(231, 231, 231);

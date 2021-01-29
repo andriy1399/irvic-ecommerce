@@ -218,6 +218,10 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
     }
   }
+
+  deleteImage(index: number): void {
+    console.log(index);
+  }
   public setTabs(event: number): void {
     this.tabsIndex = event;
   }
