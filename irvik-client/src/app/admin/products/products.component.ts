@@ -23,7 +23,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ProductsComponent implements OnInit, AfterViewInit {
   tabsIndex: number | undefined;
-  arrFiles: any[] = [];
+  arrFiles: string[] = [];
   productGroup!: FormGroup;
   isEditing = false;
   categories: ICategory[] = [];
@@ -220,7 +220,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   deleteImage(index: number): void {
-    console.log(index);
+    this.arrFiles = this.arrFiles.filter((_, i) => i !== index);
   }
   public setTabs(event: number): void {
     this.tabsIndex = event;

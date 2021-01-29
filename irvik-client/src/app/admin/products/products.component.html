@@ -61,7 +61,7 @@
           <mat-card *ngFor="let image of arrFiles; index as i">
             <img [src]="image">
             <div class="form__image-delete-btn-wrapper">
-              <button mat-stroked-button color="warn" (click)="deleteImage(i)">Delete</button>
+              <button mat-stroked-button type="button" color="warn" (click)="deleteImage(i)">Delete</button>
             </div>
           </mat-card>
         </div>
