@@ -22,9 +22,6 @@ export class LoginInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (this.loginService.isAuthenticated()) {
       req = req.clone({
-        // setParams: {
-        //   token: this.loginService.token,
-        // },
         setHeaders: {
           Authorization: this.loginService.token
         }

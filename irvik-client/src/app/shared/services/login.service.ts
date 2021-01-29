@@ -2,15 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ILogin } from '../interfaces/login.interface';
-import { map, tap } from 'rxjs/operators';
-export type ResponseType = 'arraybuffer' | 'blob' | 'json' | 'text';;
 
-// const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-
-// const httpOptions = {
-//   headers,
-//   responseType: 'text' as 'json'
-// }
 @Injectable({
   providedIn: 'root',
 })
@@ -53,8 +45,6 @@ export class LoginService {
     } else {
       localStorage.removeItem('token');
       localStorage.removeItem('expDate');
-
-      // change this later
     }
   }
 }
