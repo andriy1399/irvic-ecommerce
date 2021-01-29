@@ -68,20 +68,13 @@
 
   &__products {
     @include flex(row, wrap, flex-start, stretch);
+    column-gap: 3%;
     margin-top: 1em;
   }
 
   &__product {
     width: 22.75%;
   }
-}
-
-.product:nth-child(4n + 2) {
-  margin: 1em 1.5% 0 3%;
-}
-
-.product:nth-child(4n + 3) {
-  margin: 1em 3% 0 1.5%;
 }
 
 .product {
@@ -91,7 +84,6 @@
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
   z-index: 0;
-  // overflow: hidden;
   transition: all 0.25s ease-in;
   position: relative;
 
@@ -123,7 +115,6 @@
 
   &__info {
     padding: 0.2em 0.6em;
-    // margin-bottom: 0.5em;
     @include flex(row, wrap, space-between, center);
   }
 
@@ -157,7 +148,7 @@
     left: 0;
     right: 0;
     width: 100%;
-    padding: 1em;
+    padding: 1em 1.5em;
     transition: all 0.3s ease;
     display: none;
     background: $store-bg;
