@@ -7,49 +7,61 @@ import { ICategory } from '../interfaces/category.interface';
   providedIn: 'root',
 })
 export class CategoriesService {
-  // private url = 'http://localhost:3000/categories';
-  private url = 'http://localhost:8080/api/test/categories';
-  private getCategoriesUrl = 'http://localhost:8080/api/categories';
+  // * start urls for fake REST API
+  private url = 'http://localhost:3000/categories';
+  // * end urls for fake REST API
+
+  // * start urls for spring REST API
+  // private url = 'http://localhost:8080/api/test/categories';
+  // private getCategoriesUrl = 'http://localhost:8080/api/categories';
+  // * end urls for spring REST API
+
   public lang = new Subject<string>();
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  // getCategories(): Observable<ICategory[]> {
-  //   return this.http.get<ICategory[]>(this.url);
-  // }
-  // postCategory(body: ICategory): Observable<ICategory> {
-  //   return this.http.post<ICategory>(this.url, body);
-  // }
-  // updateCategory(body: ICategory): Observable<ICategory> {
-  //   return this.http.put<ICategory>(`${this.url}/${body.id}`, body);
-  // }
-  // deleteCategory(id: number | string): Observable<void> {
-  //   return this.http.delete<void>(`${this.url}/${id}`);
-  // }
-
+  // * start methods for fake REST API
   getCategories(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(this.getCategoriesUrl);
+    return this.http.get<ICategory[]>(this.url);
   }
   postCategory(body: ICategory): Observable<ICategory> {
-    return this.http.post<ICategory>(this.url, body, {
-      headers: {
-        Authorization: 'testToken',
-      },
-    });
+    return this.http.post<ICategory>(this.url, body);
   }
-
   updateCategory(body: ICategory): Observable<ICategory> {
-    return this.http.put<ICategory>(`${this.url}/${body.id}`, body, {
-      headers: {
-        Authorization: 'testToken',
-      },
-    });
+    return this.http.put<ICategory>(`${this.url}/${body.id}`, body);
   }
-
   deleteCategory(id: number | string): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`, {
-      headers: {
-        Authorization: 'testToken',
-      },
-    });
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
+  // * end methods for fake REST API
+
+
+  // * start methods for spring REST API
+  // getCategories(): Observable<ICategory[]> {
+  //   return this.http.get<ICategory[]>(this.getCategoriesUrl);
+  // }
+  // postCategory(body: ICategory): Observable<ICategory> {
+  //   return this.http.post<ICategory>(this.url, body, {
+  //     headers: {
+  //       Authorization: 'testToken',
+  //     },
+  //   });
+  // }
+
+  // updateCategory(body: ICategory): Observable<ICategory> {
+  //   return this.http.put<ICategory>(`${this.url}/${body.id}`, body, {
+  //     headers: {
+  //       Authorization: 'testToken',
+  //     },
+  //   });
+  // }
+
+  // deleteCategory(id: number | string): Observable<void> {
+  //   return this.http.delete<void>(`${this.url}/${id}`, {
+  //     headers: {
+  //       Authorization: 'testToken',
+  //     },
+  //   });
+  // }
+  // * end methods for spring REST API
+
 }
