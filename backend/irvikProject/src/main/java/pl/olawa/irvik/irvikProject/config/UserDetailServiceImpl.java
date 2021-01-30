@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import pl.olawa.irvik.irvikProject.dao.UserSecurityController;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -30,7 +31,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("ROLE_ADMIN");
      //   return new User("admin", encoder.encode("admin"), Arrays.asList(simpleGrantedAuthority));
         pl.olawa.irvik.irvikProject.domain.User user = userSecurityController.findByUserName(userName);
-        return  new org.springframework.security.core.userdetails.User(user.getUserName(),user.getPassword(),Arrays.asList(simpleGrantedAuthority));
+        return  new org.springframework.security.core.userdetails.User(user.getUserName(),user.getPassword(), Collections.singletonList(simpleGrantedAuthority));
 
 
     }

@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.olawa.irvik.irvikProject.config.JwtUtil;
+import pl.olawa.irvik.irvikProject.dao.UserSecurityController;
 import pl.olawa.irvik.irvikProject.domain.Token;
+import pl.olawa.irvik.irvikProject.domain.User;
 import pl.olawa.irvik.irvikProject.dto.AuthRequesr;
+import pl.olawa.irvik.irvikProject.exception.ProductErrorResponce;
+import pl.olawa.irvik.irvikProject.exception.ProductRestExceptionHandler;
+import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
 
 @RestController
 public class LoginController {
@@ -22,6 +27,8 @@ public class LoginController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private UserSecurityController userSecurityController;
     /**
      *
      */
@@ -34,17 +41,25 @@ public class LoginController {
 
     @PostMapping("/login")
     public Token generareToken(@RequestBody AuthRequesr authRequesr) throws Exception {
+        User user =userSecurityController.findByUserNameAndPassword(authRequesr.getUserName(),authRequesr.getPassword());
+
         try {
+
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequesr.getUserName(), authRequesr.getPassword())
+                    new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword())
             );
-        } catch (Exception exception) {
-            throw new Exception("inavalid userna/passwrd");
+            }
+        catch (Exception e){
+            throw new ProductnotFoundException("invalid username or password");
         }
 
-            return new Token(jwtUtil.generateToken(authRequesr.getUserName()));
+
+              String jwt = jwtUtil.generateToken(user.getUserName());
+            return new Token(jwt);
 
         }
+}
 
-    }
+
+
 
