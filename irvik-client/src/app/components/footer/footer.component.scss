@@ -2,13 +2,13 @@
 @import "../../../scss/mixins";
 .footer {
   background-image: $header-bg;
-  margin-top: 2em;
+  margin-top: 5em;
   &__row {
     @include flex(row, wrap, space-between, flex-start);
     height: 130px;
     padding: .3em 3em;
   }
-
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
   &__img--wrapper {
     height: 100%;
     img {
