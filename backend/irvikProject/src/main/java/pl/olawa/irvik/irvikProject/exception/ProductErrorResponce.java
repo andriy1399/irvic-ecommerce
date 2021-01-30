@@ -1,28 +1,26 @@
 package pl.olawa.irvik.irvikProject.exception;
 
 
+import java.util.Date;
 
 public class ProductErrorResponce {
 
-    private int status;
+    private Date timeStamp;
     private String message;
-    private long timeStamp;
+    private String details;
 
-    public ProductErrorResponce() {
-    }
-
-    public ProductErrorResponce(int status, String message, long timeStamp) {
-        this.status = status;
-        this.message = message;
+    public ProductErrorResponce(Date timeStamp, String message, String details) {
         this.timeStamp = timeStamp;
+        this.message = message;
+        this.details = details;
     }
 
-    public int getStatus() {
-        return status;
+    public Date getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setTimeStamp(Date timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
     public String getMessage() {
@@ -33,11 +31,11 @@ public class ProductErrorResponce {
         this.message = message;
     }
 
-    public long getTimeStamp() {
-        return timeStamp;
+    public String getDetails() {
+        return details;
     }
 
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setDetails(String details) {
+        this.details = details;
     }
 }
