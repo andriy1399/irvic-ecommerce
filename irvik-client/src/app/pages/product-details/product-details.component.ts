@@ -1,9 +1,9 @@
-import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Gallery } from 'angular-gallery';
-import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ProductTranslate } from 'src/app/shared/models/product-translate.model';
 import { TranslateService } from '@ngx-translate/core';
 @Component({

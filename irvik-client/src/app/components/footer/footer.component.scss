@@ -1,0 +1,58 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+.footer {
+  background-image: $header-bg;
+  margin-top: 2em;
+  &__row {
+    @include flex(row, wrap, space-between, flex-start);
+    height: 130px;
+    padding: .3em 3em;
+  }
+
+  &__img--wrapper {
+    height: 100%;
+    img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__info {
+    padding: 1em 0;
+    @include flex (column, wrap, space-between, center);
+    height: 100%;
+    p, a {
+      color: #FFFFFF;
+      font-size: 1.4rem;
+      text-decoration: underline;
+    }
+  }
+
+  &__reserved {
+    text-align: center;
+  }
+
+  &__list-of-links {
+    ul {
+      @include flex(row, wrap, space-around, center);
+      li {
+        margin: 0 1em;
+      }
+    }
+  }
+
+  &__social-media-links {
+    height: 100%;
+    @include flex (row, wrap, center, center);
+    a {
+      @include flex(row, wrap, center, center);
+      span {
+        img {
+          height: 100px;
+        }
+      }
+    }
+
+  }
+}
