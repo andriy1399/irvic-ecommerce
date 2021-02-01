@@ -7,7 +7,8 @@ import { ILogin } from '../interfaces/login.interface';
   providedIn: 'root',
 })
 export class LoginService {
-  loginUrl = 'http://localhost:8080/login';
+  // loginUrl = 'http://localhost:8080/login';
+  loginUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/login';
   openLoginModal = new Subject<boolean>();
   isAuth = new Subject<boolean>();
 

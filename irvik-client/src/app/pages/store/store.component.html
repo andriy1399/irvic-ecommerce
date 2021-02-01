@@ -12,19 +12,19 @@
 
       <div *ngFor="let cat of categories; index as i" class="store__categories">
         <!-- * start category for spring REST API -->
-        <!-- <a (click)="searchProductsByFullText(cat.categoryEn)">{{
-          "categories." + convertToSnakeCase(cat.categoryEn)
-            | translate
-            | titlecase
-        }}</a> -->
-        <!-- * end category for spring REST API -->
-
-        <!-- * start category for fake REST API -->
-        <a>{{
+        <a (click)="searchProductsByFullText(cat.categoryEn)">{{
           "categories." + convertToSnakeCase(cat.categoryEn)
             | translate
             | titlecase
         }}</a>
+        <!-- * end category for spring REST API -->
+
+        <!-- * start category for fake REST API -->
+        <!-- <a>{{
+          "categories." + convertToSnakeCase(cat.categoryEn)
+            | translate
+            | titlecase
+        }}</a> -->
         <!-- * end category for fake REST API -->
       </div>
     </div>
@@ -33,7 +33,7 @@
       <div class="store__search">
         <input type="text" [(ngModel)]="searchName" />
         <!-- * start search btn for spring REST API -->
-        <!-- <span>
+        <span>
           <button
             matRipple
             class="btn btn__bg-white"
@@ -41,13 +41,13 @@
           >
             Search
           </button>
-        </span> -->
+        </span>
         <!-- * end search btn for spring REST API -->
 
         <!-- * start search btn for fake REST API -->
-        <span>
+        <!-- <span>
           <button matRipple class="btn btn__bg-white">Search</button>
-        </span>
+        </span> -->
         <!-- * end search btn for fake REST API -->
 
       </div>
