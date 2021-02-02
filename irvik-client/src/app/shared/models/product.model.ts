@@ -3,6 +3,7 @@ export class Product implements IProduct {
   public totalPrice: number;
   public dateOfEdition: Date;
   public fullTextName: string | undefined;
+  percent!: string;
   constructor(
     public category: string,
     public unitId: string,
@@ -25,6 +26,7 @@ export class Product implements IProduct {
     public images: string[],
     public count: number = 1,
   ) {
+    this.checkPercent();
     this.totalPrice = this.getTotalPrice();
     this.dateOfEdition = new Date();
     this.convertFullTextName();
@@ -32,7 +34,7 @@ export class Product implements IProduct {
 
   private getTotalPrice(): number {
     if (this.discountPercent) {
-      return +(this.price - (this.price * parseFloat(this.discountPercent)) / 100).toFixed(2);
+      return this.price - ((this.price * this.parse(this.percent)) / 100);
     } else {
       return this.price;
     }
@@ -44,5 +46,22 @@ export class Product implements IProduct {
       + this.descriptionEn + this.descriptionPl
       + this.descriptionUk + this.titleEn + this.titlePl + this.titleUk
       + this.materialEn + this.materialPl + this.materialUk + this.discountPercent || '';
+  }
+  private parse(str: string): number {
+    if (typeof parseFloat(str) === 'number') {
+      return parseFloat(str);
+    } else {
+      return 0;
+    }
+  }
+
+  private checkPercent(): void {
+    if (this.discount) {
+      this.percent =
+        this.discountPercent?.charAt(this.discountPercent.length - 1) ===
+        '%'
+          ? this.discountPercent
+          : this.discountPercent + '%';
+    }
   }
 }
