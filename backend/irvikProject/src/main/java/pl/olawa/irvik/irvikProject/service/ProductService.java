@@ -1,9 +1,11 @@
 package pl.olawa.irvik.irvikProject.service;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 import pl.olawa.irvik.irvikProject.domain.Products;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -11,7 +13,7 @@ import java.util.UUID;
 public interface ProductService {
 
 
-    public Products save(Products products);
+    public Products save(Products products, MultipartFile image) throws IOException;
 
     void delete(UUID id);
 

@@ -11,12 +11,15 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
 import pl.olawa.irvik.irvikProject.domain.Products;
+import pl.olawa.irvik.irvikProject.dto.ProductsDTOHelper;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
 import pl.olawa.irvik.irvikProject.service.imp.ProductServiceIml;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,8 +37,8 @@ public class ProductsController {
     }
 //
     @PostMapping("/test/products")
-    public Products addProducts_DeleTe(@RequestBody Products products){
-        return  productService.save(products);
+    public Products addProducts_DeleTe(@RequestBody Products products, @ModelAttribute  MultipartFile image) throws IOException {
+        return  productService.save(products,image);
     }
 
     //search Products

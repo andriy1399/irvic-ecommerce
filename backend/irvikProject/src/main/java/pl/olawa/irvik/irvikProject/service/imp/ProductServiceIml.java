@@ -3,14 +3,16 @@ package pl.olawa.irvik.irvikProject.service.imp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
 import pl.olawa.irvik.irvikProject.dao.ProductsCrudRepo;
-import pl.olawa.irvik.irvikProject.domain.Images;
 import pl.olawa.irvik.irvikProject.domain.Products;
+import pl.olawa.irvik.irvikProject.dto.ProductsDTOHelper;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
 import pl.olawa.irvik.irvikProject.service.ProductService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,11 +25,14 @@ public class ProductServiceIml implements ProductService {
     @Autowired
     private ProductsCrudRepo productsCrudRepo;
 
-    @Override
-    public Products save( Products products) {
-       return productsCrudRepo.save(products);
-    }
 
+
+    @Override
+    public Products save(Products products, MultipartFile image) throws IOException {
+      products = ProductsDTOHelper.createProducts(products,image);
+        return productsCrudRepo.save(products);
+
+    }
 
     @Override
     public void delete(UUID id) {
