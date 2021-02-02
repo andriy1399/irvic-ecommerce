@@ -188,22 +188,25 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   counter(isIncrement: boolean = true): number {
+    let count: number;
     if (this.product) {
       if (isIncrement) {
-        return this.product.count++;
+        count = this.product.count++;
       } else {
-        return --this.product.count > 0 ? (this.product.count -= 1) : 1;
+        count = --this.product.count > 0 ? this.product.count : 1;
       }
+      this.checkCount();
+      return count;
     } else {
       return 1;
     }
   }
 
-  public checkCount(event: Event): void {
+  public checkCount(): void {
     if (this.product && this.product.count <= 0) {
       this.product.count = 1;
     }
-    if (this.product && this.product.count > 10000) {
+    if (this.product && this.product.count >= 10000) {
       this.product.count = 10000;
     }
   }
