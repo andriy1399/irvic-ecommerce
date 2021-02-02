@@ -9,5 +9,5 @@ public interface UserSecurityController extends JpaRepository<User,Long> {
 
     User findByUserName(String userName);
 
-    User findByUserNameAndPassword(String userName ,String passwrod);
+    User findByUserNameAndPassword(String userName ,String password);
 }
