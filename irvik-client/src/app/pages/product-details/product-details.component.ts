@@ -47,17 +47,17 @@ export class ProductDetailsComponent implements OnInit {
     autoplay: true,
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       420: {
-        items: 2
+        items: 2,
       },
       768: {
-        items: 3
+        items: 3,
       },
       1068: {
-        items: 4
-      }
+        items: 4,
+      },
     },
     nav: false,
     margin: 10,
@@ -97,7 +97,6 @@ export class ProductDetailsComponent implements OnInit {
 
   private getProduct(): void {
     const productId = this.route.snapshot.paramMap.get('id') || '';
-    console.log(productId);
     this.productsService.getProductById(productId).subscribe((product) => {
       this.product = product;
       this.images = product.images;
@@ -188,9 +187,27 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
+  counter(isIncrement: boolean = true): number {
+    let count: number;
+    if (this.product) {
+      if (isIncrement) {
+        count = this.product.count++;
+      } else {
+        count = --this.product.count > 0 ? this.product.count : 1;
+      }
+      this.checkCount();
+      return count;
+    } else {
+      return 1;
+    }
+  }
+
   public checkCount(): void {
     if (this.product && this.product.count <= 0) {
       this.product.count = 1;
+    }
+    if (this.product && this.product.count >= 10000) {
+      this.product.count = 10000;
     }
   }
 

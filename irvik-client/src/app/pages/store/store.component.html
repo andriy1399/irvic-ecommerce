@@ -30,14 +30,14 @@
     </div>
 
     <div class="store__search-and-products-block">
-      <div class="store__search">
-        <input type="text" [(ngModel)]="searchName" />
+      <form class="store__search" (ngSubmit)="searchProductsByFullText()">
+        <input type="text" [(ngModel)]="searchName" name="searchName"/>
         <!-- * start search btn for spring REST API -->
         <span>
           <button
+            type="submit"
             matRipple
             class="btn btn__bg-white"
-            (click)="searchProductsByFullText()"
           >
             Search
           </button>
@@ -50,7 +50,7 @@
         </span> -->
         <!-- * end search btn for fake REST API -->
 
-      </div>
+      </form>
 
       <div class="store__products">
         <div class="store__product product" *ngFor="let product of products">

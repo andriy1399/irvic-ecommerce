@@ -66,9 +66,9 @@
 
     <div class="product-details__info">
       <ng-container *ngIf="product">
-        <div>
-          <div class="product-details__title-wrapper" >
-            <h2 [ngStyle]="{'flex': product.discount ? 8 : 100}">
+        <div style="width: 100%">
+          <div class="product-details__title-wrapper">
+            <h2 [ngStyle]="{ flex: product.discount ? 8 : 100 }">
               {{
                 "title." + convertToSnakeCase(product.titleEn)
                   | translate
@@ -146,33 +146,32 @@
           <div class="product-details__bottom-row">
             <div class="product-details__counter">
               <div class="product-details__total-price">
-                {{ +product.totalPrice * product.count | number: "1.2-2" }}zł
+                {{ product.totalPrice * product.count | number: "1.2-2" }}zł
               </div>
               <mat-icon style="color: #767676">close</mat-icon>
               <div class="product-details__count">
                 <div class="product-details__count-block">
                   <input
                     type="number"
+                    [ngStyle]="{
+                      width: (product.count.toString().length + 3) * 15 + 'px'
+                    }"
                     [(ngModel)]="product.count"
                     (change)="checkCount()"
+
                   />
                 </div>
 
                 <div class="product-details__count-buttons-wrapper">
                   <button
                     class="product-details__increment"
-                    (click)="product.count = product.count + 1"
+                    (click)="counter()"
                   >
                     +
                   </button>
                   <button
                     class="product-details__decrement"
-                    (click)="
-                      product.count =
-                        product.count - 1 > 0
-                          ? (product.count = product.count - 1)
-                          : 1
-                    "
+                    (click)="counter(false)"
                   >
                     -
                   </button>
@@ -191,10 +190,7 @@
   </div>
 
   <div class="carousel">
-    <owl-carousel-o
-      class="carousel__row-of-images"
-      [options]="carouselOption"
-    >
+    <owl-carousel-o class="carousel__row-of-images" [options]="carouselOption">
       <ng-template
         carouselSlide
         *ngFor="let prod of products; index as i"

@@ -32,6 +32,7 @@ import { SwiperComponent } from './components/swiper/swiper.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { IvyGalleryModule } from 'angular-gallery';
 import { LoginInterceptor } from './shared/interceptors/login.interceptor';
+import { InputAutoWidthDirective } from './shared/directives/input-auto-width.directive';
 // // root functions
 // export function HttpLoaderFactory(http: HttpClient): any {
 //   return new TranslateHttpLoader(http);
@@ -59,6 +60,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     LangDirective,
     SwiperComponent,
     ProductDetailsComponent,
+    InputAutoWidthDirective
   ],
   imports: [
     SharedModule,
