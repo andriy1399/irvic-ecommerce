@@ -1,11 +1,8 @@
 package pl.olawa.irvik.irvikProject.dto;
 
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class ProductsDto {
 
@@ -28,7 +25,7 @@ public class ProductsDto {
 
     private int count;
 
-    private int price;
+    private double price;
 
     private String materialUk;
 
@@ -40,7 +37,7 @@ public class ProductsDto {
 
     private String discountPercent;
 
-private int totalPrice;
+private double totalPrice;
 
     private boolean isAvailable;
 
@@ -134,11 +131,11 @@ private int totalPrice;
         this.count = count;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -238,11 +235,11 @@ private int totalPrice;
         this.fullTextName = fullTextName;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 }

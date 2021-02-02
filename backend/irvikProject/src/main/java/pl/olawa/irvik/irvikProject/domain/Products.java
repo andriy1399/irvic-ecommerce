@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -35,7 +34,7 @@ public class Products {
     @Column
     private int count;
     @Column
-    private int price;
+    private double price;
     @Column
     private String materialUk;
     @Column
@@ -47,12 +46,13 @@ public class Products {
     @Column
     private String discountPercent;
     @Column
-    private int totalPrice;
+    private double totalPrice;
     @Column
     private boolean isAvailable;
 
 //    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "products")
 //    @Column(nullable = false)
+    @Lob
     @ElementCollection
     private List<String> images;
     @Column
@@ -175,11 +175,11 @@ public class Products {
         this.count = count;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -223,11 +223,11 @@ public class Products {
         this.discountPercent = discountPercent;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
