@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { ICategory } from '../../shared/interfaces/category.interface';
@@ -195,6 +201,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       descriptionPl,
       this.arrFiles
     );
+    console.log(product);
     this.productServ
       .updateProduct({ ...product, id: this.editingProductId })
       .subscribe(() => {
@@ -262,6 +269,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     const delImage = this.arrFiles.find((_, i) => i === index);
     this.uploadService.deleteFile(delImage!?.Key, delImage!?.Bucket);
     this.arrFiles = this.arrFiles.filter((_, i) => i !== index);
+    console.log(this.arrFiles);
   }
   public setTabs(event: number): void {
     this.tabsIndex = event;
@@ -271,6 +279,5 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.unSubUploadFile) {
       this.unSubUploadFile.unsubscribe();
     }
-    
   }
 }
