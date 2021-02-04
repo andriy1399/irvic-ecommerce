@@ -56,7 +56,7 @@
         <div class="store__product product" *ngFor="let product of products">
           <div class="product__image-wrapper">
             <a [routerLink]="['/store/product/', product.id]">
-              <img [src]="product.images[0]" [alt]="product.titleEn" />
+              <img [src]="product.images[0].Location" [alt]="product.titleEn" />
             </a>
             <button matRipple class="btn btn__icon btn__icon--favorite">
               <mat-icon>favorite_border</mat-icon>

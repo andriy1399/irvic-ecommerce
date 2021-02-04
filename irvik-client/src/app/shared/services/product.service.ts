@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ɵɵresolveBody } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IProduct } from '../interfaces/product.interface';
 
@@ -12,12 +12,12 @@ export class ProductService {
   // * end urls for fake REST API
 
   // * start urls for spring REST API
-  // private url = 'http://localhost:8080/api/test/products';
-  // private getProductsUrl = 'http://localhost:8080/api/products';
-  // private searchUrl = 'http://localhost:8080/api/searchByfullText';
-  private url = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/test/products';
-  private getProductsUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/products';
-  private searchUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/searchByfullText';
+  private url = 'http://localhost:5000/api/test/products';
+  private getProductsUrl = 'http://localhost:5000/api/products';
+  private searchUrl = 'http://localhost:5000/api/searchByfullText';
+  // private url = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/test/products';
+  // private getProductsUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/products';
+  // private searchUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/searchByfullText';
   // * end urls for spring REST API
 
   constructor(private http: HttpClient) { }
@@ -45,25 +45,13 @@ export class ProductService {
     return this.http.get<IProduct[]>(this.getProductsUrl);
   }
   postProduct(body: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(this.url, body, {
-      headers: {
-        Authorization: 'testToken',
-      },
-    });
+    return this.http.post<IProduct>(this.url, body);
   }
   updateProduct(body: IProduct): Observable<IProduct> {
-    return this.http.put<IProduct>(`${this.url}/${body.id}`, body, {
-      headers: {
-        Authorization: 'testToken',
-      },
-    });
+    return this.http.put<IProduct>(`${this.url}/${body.id}`, body);
   }
   deleteProduct(id: number | string): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`, {
-      headers: {
-        Authorization: 'testToken',
-      },
-    });
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 
   getFullTextSearchProducts(searchName: string): Observable<IProduct[]> {

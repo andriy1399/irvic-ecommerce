@@ -37,12 +37,12 @@
             >
               <a
                 class="images-gallery__img-wrapper slide"
-                (click)="openImage(img)"
+                (click)="openImage(img.Location)"
                 [ngClass]="{
-                  'images-gallery__img-wrapper--clicked': img === activeImage
+                  'images-gallery__img-wrapper--clicked': img.Location === activeImage
                 }"
               >
-                <img [src]="img" />
+                <img [src]="img.Location"  alt="img.Key"/>
               </a>
             </ng-template>
           </owl-carousel-o>
@@ -52,12 +52,12 @@
             <a
               *ngFor="let img of images; index as i"
               class="images-gallery__img-wrapper images-gallery__img-wrapper--static"
-              (click)="openImage(img)"
+              (click)="openImage(img.Location)"
               [ngClass]="{
-                'images-gallery__img-wrapper--clicked': img === activeImage
+                'images-gallery__img-wrapper--clicked': img.Location === activeImage
               }"
             >
-              <img [src]="img" />
+              <img [src]="img.Location" alt="img.Key" />
             </a>
           </div>
         </ng-template>
@@ -200,7 +200,7 @@
           class="carousel__img-wrapper slide"
           [routerLink]="['/store/product/', prod.id]"
         >
-          <img [src]="prod.images[0]" />
+          <img [src]="prod.images[0].Location" alt="product.images[0].Key"/>
         </a>
       </ng-template>
     </owl-carousel-o>

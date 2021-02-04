@@ -1,4 +1,5 @@
 import { IProduct } from '../interfaces/product.interface';
+import { IFileS3 } from '../interfaces/fileS3.interface';
 export class Product implements IProduct {
   public totalPrice: number;
   public dateOfEdition: Date;
@@ -23,7 +24,7 @@ export class Product implements IProduct {
     public descriptionUk: string,
     public descriptionEn: string,
     public descriptionPl: string,
-    public images: string[],
+    public images: IFileS3[],
     public count: number = 1,
   ) {
     this.checkPercent();

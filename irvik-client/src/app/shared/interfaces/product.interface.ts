@@ -1,3 +1,4 @@
+import {IFileS3} from './fileS3.interface';
 export interface IProduct {
   category: string;
   unitId: string;
@@ -18,7 +19,7 @@ export interface IProduct {
   descriptionEn: string;
   descriptionPl: string;
   descriptionUk: string;
-  images: string[];
+  images: IFileS3[];
   dateOfEdition: Date;
   count: number;
   id?: string | number;

@@ -1,14 +1,22 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { ICategory } from '../../shared/interfaces/category.interface';
 import { Product } from '../../shared/models/product.model';
 import { IProduct } from '../../shared/interfaces/product.interface';
 import { ProductService } from '../../shared/services/product.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-
+import { UploadService } from 'src/app/shared/services/upload.service';
+import { IFileS3 } from '../../shared/interfaces/fileS3.interface';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -17,13 +25,16 @@ import { MatPaginator } from '@angular/material/paginator';
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
       state('expanded', style({ height: '*' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
     ]),
   ],
 })
-export class ProductsComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   tabsIndex: number | undefined;
-  arrFiles: string[] = [];
+  arrFiles: IFileS3[] = [];
   productGroup!: FormGroup;
   isEditing = false;
   categories: ICategory[] = [];
@@ -33,10 +44,12 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   expandedElement!: IProduct | null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   editingProductId: string | number | undefined;
+  unSubUploadFile!: Subscription;
   constructor(
     private categoryServ: CategoriesService,
-    private productServ: ProductService
-  ) { }
+    private productServ: ProductService,
+    private uploadService: UploadService
+  ) {}
 
   ngOnInit(): void {
     this.getCategories();
@@ -69,24 +82,45 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     }
   }
   private getCategories(): void {
-    this.categoryServ.getCategories().subscribe(categories => {
+    this.categoryServ.getCategories().subscribe((categories) => {
       this.categories = categories;
     });
   }
 
   private getProducts(): void {
-    this.productServ.getProducts().subscribe(products => {
-      this.products = new MatTableDataSource<IProduct>(products);
-      this.isGotProduct = true;
-    }, err => console.log(err), () => {
-      this.products.paginator = this.paginator || null;
-    });
+    this.productServ.getProducts().subscribe(
+      (products) => {
+        this.products = new MatTableDataSource<IProduct>(products);
+        this.isGotProduct = true;
+      },
+      (err) => console.log(err),
+      () => {
+        this.products.paginator = this.paginator || null;
+      }
+    );
   }
 
   public addProduct(): void {
-    const { category, unitId, width, height, length, price,
-      available, discountPercent, titleEn, titlePl, titleUk, discount,
-      materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
+    const {
+      category,
+      unitId,
+      width,
+      height,
+      length,
+      price,
+      available,
+      discountPercent,
+      titleEn,
+      titlePl,
+      titleUk,
+      discount,
+      materialPl,
+      materialEn,
+      materialUk,
+      descriptionEn,
+      descriptionUk,
+      descriptionPl,
+    } = this.productGroup.value;
     const product: IProduct = new Product(
       category,
       unitId,
@@ -108,20 +142,38 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       descriptionPl,
       this.arrFiles
     );
+
     this.productServ.postProduct(product).subscribe(() => {
       this.productGroup.reset();
       this.arrFiles = [];
       this.getProducts();
-      Object.keys(this.productGroup.controls).forEach(key => {
+      Object.keys(this.productGroup.controls).forEach((key) => {
         this.productGroup.get(key)?.setErrors(null);
       });
     });
   }
 
   public updateProduct(): void {
-    const { category, unitId, width, height, length, price,
-      available, discountPercent, titleEn, titlePl, titleUk, discount,
-      materialPl, materialEn, materialUk, descriptionEn, descriptionUk, descriptionPl } = this.productGroup.value;
+    const {
+      category,
+      unitId,
+      width,
+      height,
+      length,
+      price,
+      available,
+      discountPercent,
+      titleEn,
+      titlePl,
+      titleUk,
+      discount,
+      materialPl,
+      materialEn,
+      materialUk,
+      descriptionEn,
+      descriptionUk,
+      descriptionPl,
+    } = this.productGroup.value;
     const product: IProduct = new Product(
       category,
       unitId,
@@ -143,16 +195,17 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       descriptionPl,
       this.arrFiles
     );
-    this.productServ.updateProduct({ ...product, id: this.editingProductId }).subscribe(() => {
-      this.productGroup.reset();
-      this.arrFiles = [];
-      this.isEditing = false;
-      Object.keys(this.productGroup.controls).forEach(key => {
-        this.productGroup.get(key)?.setErrors(null);
+    this.productServ
+      .updateProduct({ ...product, id: this.editingProductId })
+      .subscribe(() => {
+        this.productGroup.reset();
+        this.arrFiles = [];
+        this.isEditing = false;
+        Object.keys(this.productGroup.controls).forEach((key) => {
+          this.productGroup.get(key)?.setErrors(null);
+        });
+        this.getProducts();
       });
-      this.getProducts();
-    });
-
   }
 
   public deleteProduct(id: number): void {
@@ -180,7 +233,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       available: product.available,
       width: product.width,
       length: product.length,
-      height: product.height
+      height: product.height,
     });
 
     this.isEditing = true;
@@ -200,29 +253,24 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   uploadFiles(event: Event): void {
     const files = (event.target as HTMLInputElement).files;
-    // tslint:disable-next-line:no-non-null-assertion
-    for (let index = 0; index < files!.length; index++) {
-      const reader = new FileReader();
-      ((file) => {
-        if (file) {
-          const f = file as any;
-          reader.readAsDataURL(f);
-        }
-        reader.onload = (e: any) => {
-          this.arrFiles.push(e.target.result as string);
-        };
-      })(files?.item(index));
-
-    }
+    this.arrFiles = this.uploadService.uploadFiles(files);
   }
 
   deleteImage(index: number): void {
+    const delImage = this.arrFiles.find((_, i) => i === index);
+    this.uploadService.deleteFile(delImage!?.Key, delImage!?.Bucket);
     this.arrFiles = this.arrFiles.filter((_, i) => i !== index);
   }
   public setTabs(event: number): void {
     this.tabsIndex = event;
+  }
+
+  ngOnDestroy(): void {
+    if (this.unSubUploadFile) {
+      this.unSubUploadFile.unsubscribe();
+    }
+    
   }
 }

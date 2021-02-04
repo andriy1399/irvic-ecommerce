@@ -6,6 +6,7 @@ import { Gallery } from 'angular-gallery';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ProductTranslate } from 'src/app/shared/models/product-translate.model';
 import { TranslateService } from '@ngx-translate/core';
+import { IFileS3 } from '../../shared/interfaces/fileS3.interface';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -14,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ProductDetailsComponent implements OnInit {
   product!: IProduct | null;
   activeImage = '';
-  images: string[] = [];
+  images: IFileS3[] = [];
   isDisabledPrevArrow = false;
   isDisabledNextArrow = false;
   title = '';
@@ -109,7 +110,7 @@ export class ProductDetailsComponent implements OnInit {
 
   public showGallery(index: number): void {
     const prop = {
-      images: this.images.map((img) => ({ path: img })),
+      images: this.images.map((img) => ({ path: img.Location })),
       index,
     };
     this.gallery.load(prop);
@@ -120,7 +121,7 @@ export class ProductDetailsComponent implements OnInit {
     const imagesLength = this.images.length;
 
     if (img) {
-      index = this.images.findIndex((v) => img === v);
+      index = this.images.findIndex((v) => img === v.Location);
       if (index === imagesLength - 1) {
         this.isDisabledNextArrow = true;
         this.isDisabledPrevArrow = false;
@@ -136,7 +137,7 @@ export class ProductDetailsComponent implements OnInit {
       next: (): void => {
         if (index <= imagesLength - 2) {
           index++;
-          this.activeImage = this.images[index];
+          this.activeImage = this.images[index].Location;
           this.customOptions.slideBy = index;
           this.customOptions.startPosition = index;
           this.isDisabledNextArrow = false;
@@ -151,7 +152,7 @@ export class ProductDetailsComponent implements OnInit {
       prev: (): void => {
         if (index >= 1) {
           index--;
-          this.activeImage = this.images[index];
+          this.activeImage = this.images[index].Location;
           this.isDisabledPrevArrow = false;
           this.isDisabledNextArrow = false;
         } else {
@@ -171,7 +172,7 @@ export class ProductDetailsComponent implements OnInit {
       this.activeImage = img;
       this.slider = this.sliderImages(img);
     } else {
-      this.activeImage = this.images[0];
+      this.activeImage = this.images[0].Location;
     }
   }
 
