@@ -81,8 +81,8 @@ public class ProductServiceIml implements ProductService {
 
 
 
-        Products productsEmp = productRepository.save(products);
-        save(products);
+        Products productsEmp = save(products);
+
         return  ResponseEntity.ok(productsEmp);
 
     }
