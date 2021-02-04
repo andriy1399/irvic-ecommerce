@@ -3,19 +3,20 @@ package pl.olawa.irvik.irvikProject.service.imp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
+import pl.olawa.irvik.irvikProject.dao.FilesImageRepository;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
 import pl.olawa.irvik.irvikProject.dao.ProductsCrudRepo;
+import pl.olawa.irvik.irvikProject.domain.Filesimage;
 import pl.olawa.irvik.irvikProject.domain.Products;
-import pl.olawa.irvik.irvikProject.dto.ProductsDTOHelper;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
+import pl.olawa.irvik.irvikProject.service.FileImageService;
 import pl.olawa.irvik.irvikProject.service.ProductService;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.util.*;
 
 @Service
 public class ProductServiceIml implements ProductService {
@@ -24,23 +25,35 @@ public class ProductServiceIml implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ProductsCrudRepo productsCrudRepo;
-
+   @Autowired
+   private FilesImageRepository fileImageService;
 
 
     @Override
-    public Products save(Products products, MultipartFile image) throws IOException {
-      products = ProductsDTOHelper.createProducts(products,image);
-        return productsCrudRepo.save(products);
+    @Transactional
+    public Products save(Products product){
+
+     //   Filesimage filesimage = new Filesimage(products);
+
+        List<Filesimage> filesImageList =product.getImages();
+
+
+        for (Filesimage filesimage : filesImageList) {
+            filesimage.setProducts(product);
+        }
+        product = productRepository.save(product);
+        return product;
 
     }
 
+
     @Override
-    public void delete(UUID id) {
+    public void delete(Long id) {
          productsCrudRepo.deleteById(id);
     }
 
     @Override
-    public ResponseEntity<Products> update(UUID id, ProductsDto productsDto) {
+    public ResponseEntity<Products> update(Long id, ProductsDto productsDto) {
         Products products = productRepository.findById(id).orElseThrow(()-> new ProductnotFoundException("products not exist with id :" + id));
         products.setMaterialEn(productsDto.getMaterialEn());
         products.setMaterialPl(productsDto.getMaterialPl());
@@ -69,13 +82,14 @@ public class ProductServiceIml implements ProductService {
 
 
         Products productsEmp = productRepository.save(products);
+        save(products);
         return  ResponseEntity.ok(productsEmp);
 
     }
 
 
     @Override
-    public Optional<Products> findById(UUID productId) {
+    public Optional<Products> findById(Long productId) {
        return productRepository.findById(productId);
     }
 

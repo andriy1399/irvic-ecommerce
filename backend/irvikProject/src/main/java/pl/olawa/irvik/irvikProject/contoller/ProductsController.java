@@ -11,10 +11,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import pl.olawa.irvik.irvikProject.dao.FilesImageRepository;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
+import pl.olawa.irvik.irvikProject.domain.Filesimage;
 import pl.olawa.irvik.irvikProject.domain.Products;
-import pl.olawa.irvik.irvikProject.dto.ProductsDTOHelper;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
 import pl.olawa.irvik.irvikProject.service.imp.ProductServiceIml;
@@ -30,6 +30,9 @@ public class ProductsController {
     @Autowired
     private ProductServiceIml productService;
 
+    @Autowired
+    private FilesImageRepository filesImageRepository;
+
     private final ProductRepository productRepository;
 
     public ProductsController(ProductRepository productRepository) {
@@ -37,8 +40,8 @@ public class ProductsController {
     }
 //
     @PostMapping("/test/products")
-    public Products addProducts_DeleTe(@RequestBody Products products, @ModelAttribute  MultipartFile image) throws IOException {
-        return  productService.save(products,image);
+    public Products addProducts_DeleTe(@RequestBody Products products) throws IOException {
+        return  productService.save(products);
     }
 
     //search Products
@@ -54,26 +57,27 @@ public class ProductsController {
     }
     //crud Operation
     @PutMapping("/test/products/{id}")
-    public void updateProducts(@PathVariable("id") UUID id, @RequestBody ProductsDto products){
+    public void updateProducts(@PathVariable("id") Long id, @RequestBody ProductsDto products){
          productService.update(id,products);
     }
 
 
     @DeleteMapping("/test/products/{id}")
-    void deleteById(@PathVariable("id") UUID id){
+    void deleteById(@PathVariable("id") Long id){
        productService.delete(id);
     }
 
 
     //get method
     @GetMapping("/products/{id}")
-    public Optional<Products> findById(@PathVariable("id") UUID id) throws ProductnotFoundException {
+    public Optional<Products> findById(@PathVariable("id") Long id) throws ProductnotFoundException {
         return  productService.findById(id);
     }
 
     @GetMapping("/products")
     public  List<Products> findall(){
-        return  productRepository.findAll();
+
+        return productRepository.findAll();
     }
 
 

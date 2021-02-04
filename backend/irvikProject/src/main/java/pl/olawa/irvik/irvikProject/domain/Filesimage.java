@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "filesimage")
-public class String {
+public class Filesimage {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     private long id;
@@ -25,12 +25,20 @@ public class String {
     @Column
     private java.lang.String imageKeyTwo;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "products_id")
     @JsonIgnore
     private Products products;
 
-    public String(java.lang.String imageBucket, java.lang.String imageKey, java.lang.String imageLocation, java.lang.String imageKeyTwo, Products products) {
+
+    public Filesimage() {
+    }
+
+    public Filesimage(Products products) {
+        this.products = products;
+    }
+
+    public Filesimage(java.lang.String imageBucket, java.lang.String imageKey, java.lang.String imageLocation, java.lang.String imageKeyTwo, Products products) {
         this.imageBucket = imageBucket;
         this.imageKey = imageKey;
         this.imageLocation = imageLocation;

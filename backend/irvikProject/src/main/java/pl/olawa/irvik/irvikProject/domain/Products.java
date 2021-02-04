@@ -11,10 +11,8 @@ import java.util.UUID;
 @Table
 public class Products {
     @Id
-    @GeneratedValue( generator = "uuid2" )
-    @GenericGenerator( name = "uuid2", strategy = "uuid2" )
-    @Column( name = "id", columnDefinition = "BINARY(16)" )
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     private String titleEn;
     @Column
@@ -50,11 +48,11 @@ public class Products {
     @Column
     private boolean isAvailable;
 
-//    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "products")
-//    @Column(nullable = false)
-    @Lob
-    @ElementCollection
-    private List<String> images;
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, mappedBy = "products")
+    @Column(nullable = false)
+//    @Lob
+//    @ElementCollection
+    private List<Filesimage> images;
     @Column
     private Date dateOfEdition;
     @Column
@@ -69,7 +67,7 @@ public class Products {
     public Products() {
     }
 
-    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, boolean isDiscount, String unitId, int count, int price, String materialUk, String materialPl, String materialEn, String category, String discountPercent, int totalPrice, boolean isAvailable, List<String> images, Date dateOfEdition, String width, String length, String height, String fullTextName) {
+    public Products(String titleEn, String titlePl, String titleUk, String descriptionEn, String descriptionPl, String descriptionUk, boolean isDiscount, String unitId, int count, double price, String materialUk, String materialPl, String materialEn, String category, String discountPercent, double totalPrice, boolean isAvailable, List<Filesimage> images, Date dateOfEdition, String width, String length, String height, String fullTextName) {
         this.titleEn = titleEn;
         this.titlePl = titlePl;
         this.titleUk = titleUk;
@@ -95,14 +93,13 @@ public class Products {
         this.fullTextName = fullTextName;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
-
     public String getTitleEn() {
         return titleEn;
     }
@@ -239,11 +236,11 @@ public class Products {
         isAvailable = available;
     }
 
-    public List<String> getImages() {
+    public List<Filesimage> getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(List<Filesimage> images) {
         this.images = images;
     }
 

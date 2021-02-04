@@ -26,7 +26,7 @@ public class ProductRestExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ProductErrorResponce> handleException(Exception exception,WebRequest request){
         ProductErrorResponce  productErrorResponce = new ProductErrorResponce(new Date(),exception.getMessage(),request.getDescription(false));
-
+        exception.printStackTrace();
         return  new ResponseEntity<>(productErrorResponce, HttpStatus.BAD_REQUEST);
     }
 //

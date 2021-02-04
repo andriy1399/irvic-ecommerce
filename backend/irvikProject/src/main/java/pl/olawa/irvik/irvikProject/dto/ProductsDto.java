@@ -1,6 +1,8 @@
 package pl.olawa.irvik.irvikProject.dto;
 
 
+import pl.olawa.irvik.irvikProject.domain.Filesimage;
+
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +46,7 @@ private double totalPrice;
     //    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "products")
 //    @Column(nullable = false)
 
-    private List<String> images;
+    private List<Filesimage> images;
 
     private Date dateOfEdition;
 
@@ -187,11 +189,11 @@ private double totalPrice;
         isAvailable = available;
     }
 
-    public List<String> getImages() {
+    public List<Filesimage> getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(List<Filesimage> images) {
         this.images = images;
     }
 

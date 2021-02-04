@@ -13,13 +13,13 @@ import java.util.UUID;
 public interface ProductService {
 
 
-    public Products save(Products products, MultipartFile image) throws IOException;
+     Products save(Products products);
 
-    void delete(UUID id);
+    void delete(Long id);
 
-    ResponseEntity<Products> update(UUID id, ProductsDto products);
+    ResponseEntity<Products> update(Long id, ProductsDto products);
 
-    Optional<Products> findById(UUID productId);
+    Optional<Products> findById(Long productId);
 
 
     List<Products> getAllProducts();
