@@ -69,7 +69,6 @@ export class UploadService {
             if (err) {
               console.log('There was an error uploading your file: ', err);
             }
-            console.log('Successfully uploaded file.', data);
             arrImages.push(data);
           });
         }
@@ -91,7 +90,6 @@ export class UploadService {
     };
     bucket.deleteObject(params, (err, data) => {
       if (err) console.log(err);
-      else console.log('Successfully deleted myBucket/myKey');
     });
   }
 }

@@ -51,6 +51,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   editingProductId: string | number | undefined;
   unSubUploadFile!: Subscription;
+  productsArr: IProduct[] = [];
   constructor(
     private categoryServ: CategoriesService,
     private productServ: ProductService,
@@ -98,6 +99,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       (products) => {
         this.products = new MatTableDataSource<IProduct>(products);
         this.isGotProduct = true;
+        this.productsArr = products;
       },
       (err) => console.log(err),
       () => {
@@ -201,7 +203,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       descriptionPl,
       this.arrFiles
     );
-    console.log(product);
     this.productServ
       .updateProduct({ ...product, id: this.editingProductId })
       .subscribe(() => {
@@ -216,8 +217,10 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public deleteProduct(id: number): void {
+    const deletingImages = this.productsArr.find((p) => p.id === id)?.images || [];
     this.productServ.deleteProduct(id).subscribe(() => {
       this.getProducts();
+      this.deleteProductImages(deletingImages);
     });
   }
 
@@ -262,14 +265,28 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   uploadFiles(event: Event): void {
     const files = (event.target as HTMLInputElement).files;
-    this.arrFiles = this.uploadService.uploadFiles(files);
+    if (this.arrFiles.length) {
+      const fs = this.uploadService.uploadFiles(files);
+      setTimeout(() => {
+        for (const file of fs) {
+          this.arrFiles.push(file);
+        }
+      }, 1300);
+    } else {
+      this.arrFiles = this.uploadService.uploadFiles(files);
+    }
   }
 
   deleteImage(index: number): void {
     const delImage = this.arrFiles.find((_, i) => i === index);
     this.uploadService.deleteFile(delImage!?.Key, delImage!?.Bucket);
     this.arrFiles = this.arrFiles.filter((_, i) => i !== index);
-    console.log(this.arrFiles);
+  }
+
+  deleteProductImages(images: IFileS3[]) {
+    images.forEach((img) => {
+      this.uploadService.deleteFile(img.Key, img.Bucket);
+    });
   }
   public setTabs(event: number): void {
     this.tabsIndex = event;
