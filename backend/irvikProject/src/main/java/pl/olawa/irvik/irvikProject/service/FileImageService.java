@@ -7,6 +7,6 @@ public interface FileImageService {
 
     Filesimage save(Filesimage filesimage);
 
-
+    void deleteAllWhereProductNull();
 
 }

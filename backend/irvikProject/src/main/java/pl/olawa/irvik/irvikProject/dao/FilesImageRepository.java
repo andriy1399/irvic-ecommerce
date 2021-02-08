@@ -16,4 +16,6 @@ public interface FilesImageRepository extends JpaRepository<Filesimage,Long> {
     @Query(value = "SELECT * FROM filesimage where products_id = ?1" , nativeQuery = true)
     List<Filesimage> getAllByProducts(UUID prdoctId);
 
+    void deleteAllByProductsIsNull();
+
 }

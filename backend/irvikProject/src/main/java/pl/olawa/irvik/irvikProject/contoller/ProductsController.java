@@ -17,6 +17,7 @@ import pl.olawa.irvik.irvikProject.domain.Filesimage;
 import pl.olawa.irvik.irvikProject.domain.Products;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
+import pl.olawa.irvik.irvikProject.service.ProductService;
 import pl.olawa.irvik.irvikProject.service.imp.ProductServiceIml;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ import java.util.UUID;
 @RequestMapping("/api/")
 public class ProductsController {
     @Autowired
-    private ProductServiceIml productService;
+    private ProductService productService;
 
     @Autowired
     private FilesImageRepository filesImageRepository;
@@ -77,7 +78,7 @@ public class ProductsController {
     @GetMapping("/products")
     public  List<Products> findall(){
 
-        return productRepository.findAll();
+        return productService.getAllProducts();
     }
 
 

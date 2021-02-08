@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 @Table
 public class Products {
@@ -48,7 +50,7 @@ public class Products {
     @Column
     private boolean isAvailable;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, mappedBy = "products")
+    @OneToMany(fetch = FetchType.EAGER, cascade={ALL}, mappedBy = "products")
     @Column(nullable = false)
 //    @Lob
 //    @ElementCollection

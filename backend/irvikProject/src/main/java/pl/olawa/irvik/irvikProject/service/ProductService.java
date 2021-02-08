@@ -17,7 +17,7 @@ public interface ProductService {
 
     void delete(Long id);
 
-    ResponseEntity<Products> update(Long id, ProductsDto products);
+    Products update(Long id, ProductsDto products);
 
     Optional<Products> findById(Long productId);
 

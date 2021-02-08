@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "filesimage")
@@ -92,5 +93,21 @@ public class Filesimage {
 
     public void setProducts(Products products) {
         this.products = products;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Filesimage that = (Filesimage) o;
+        return id == that.id &&
+                Objects.equals(imageBucket, that.imageBucket) &&
+                Objects.equals(imageKey, that.imageKey) &&
+                Objects.equals(imageLocation, that.imageLocation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, imageBucket, imageKey, imageLocation);
     }
 }

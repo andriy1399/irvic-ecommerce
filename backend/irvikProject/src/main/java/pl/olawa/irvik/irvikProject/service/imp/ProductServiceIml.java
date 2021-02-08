@@ -3,6 +3,7 @@ package pl.olawa.irvik.irvikProject.service.imp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pl.olawa.irvik.irvikProject.dao.FilesImageRepository;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
@@ -25,17 +26,17 @@ public class ProductServiceIml implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ProductsCrudRepo productsCrudRepo;
-   @Autowired
-   private FilesImageRepository fileImageService;
+    @Autowired
+    private FilesImageRepository fileImageService;
 
 
     @Override
     @Transactional
-    public Products save(Products product){
+    public Products save(Products product) {
 
-     //   Filesimage filesimage = new Filesimage(products);
+        //   Filesimage filesimage = new Filesimage(products);
 
-        List<Filesimage> filesImageList =product.getImages();
+        List<Filesimage> filesImageList = product.getImages();
 
 
         for (Filesimage filesimage : filesImageList) {
@@ -49,12 +50,13 @@ public class ProductServiceIml implements ProductService {
 
     @Override
     public void delete(Long id) {
-         productsCrudRepo.deleteById(id);
+        productsCrudRepo.deleteById(id);
     }
 
     @Override
-    public ResponseEntity<Products> update(Long id, ProductsDto productsDto) {
-        Products products = productRepository.findById(id).orElseThrow(()-> new ProductnotFoundException("products not exist with id :" + id));
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public Products update(Long id, ProductsDto productsDto) {
+        Products products = productRepository.findById(id).orElseThrow(() -> new ProductnotFoundException("products not exist with id :" + id));
         products.setMaterialEn(productsDto.getMaterialEn());
         products.setMaterialPl(productsDto.getMaterialPl());
         products.setMaterialUk(productsDto.getMaterialUk());
@@ -72,7 +74,6 @@ public class ProductServiceIml implements ProductService {
         products.setDiscountPercent(productsDto.getDiscountPercent());
         products.setDiscount(productsDto.isDiscount());
         products.setAvailable(productsDto.isAvailable());
-        products.setImages(productsDto.getImages());
         products.setDateOfEdition(productsDto.getDateOfEdition());
         products.setWidth(productsDto.getWidth());
         products.setLength(products.getLength());
@@ -80,20 +81,36 @@ public class ProductServiceIml implements ProductService {
         products.setFullTextName(productsDto.getFullTextName());
 
 
+        List<Filesimage> filesImageList = productsDto.getImages();
+        List<Filesimage> images = products.getImages();
+        images.removeAll(filesImageList);
 
-        Products productsEmp = save(products);
+        for (Filesimage image : images) {
+            image.setProducts(null);
+        }
+        fileImageService.saveAll(images);
+        for (Filesimage imageFromDto : filesImageList) {
+            imageFromDto.setProducts(products);
+        }
 
-        return  ResponseEntity.ok(productsEmp);
 
+//        fileImageService.saveAll(filesImageList);
+        products.setImages(filesImageList);
+
+
+        Products saved = productRepository.save(products);
+
+        return saved;
     }
 
 
     @Override
     public Optional<Products> findById(Long productId) {
-       return productRepository.findById(productId);
+        return productRepository.findById(productId);
     }
 
     @Override
+    @Transactional
     public List<Products> getAllProducts() {
         return productRepository.findAll();
     }
@@ -107,7 +124,7 @@ public class ProductServiceIml implements ProductService {
     @Override
     public List<Products> findByIsAvailable(boolean isAvailable) {
         return productRepository.findByIsAvailable(isAvailable);
-        }
+    }
 
     @Override
     public List<Products> findByWidth(int width) {
