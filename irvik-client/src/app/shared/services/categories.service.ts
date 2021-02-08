@@ -12,10 +12,10 @@ export class CategoriesService {
   // * end urls for fake REST API
 
   // * start urls for spring REST API
-  private url = 'http://localhost:5000/api/test/categories';
-  private getCategoriesUrl = 'http://localhost:5000/api/categories';
-  // private url = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/test/categories';
-  // private getCategoriesUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/categories';
+  // private url = 'http://localhost:5000/api/test/categories';
+  // private getCategoriesUrl = 'http://localhost:5000/api/categories';
+  private url = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/test/categories';
+  private getCategoriesUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/categories';
   // * end urls for spring REST API
 
   public lang = new Subject<string>();

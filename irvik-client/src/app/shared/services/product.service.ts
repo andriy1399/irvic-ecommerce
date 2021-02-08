@@ -12,12 +12,12 @@ export class ProductService {
   // * end urls for fake REST API
 
   // * start urls for spring REST API
-  private url = 'http://localhost:5000/api/test/products';
-  private getProductsUrl = 'http://localhost:5000/api/products';
-  private searchUrl = 'http://localhost:5000/api/searchByfullText';
-  // private url = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/test/products';
-  // private getProductsUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/products';
-  // private searchUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/searchByfullText';
+  // private url = 'http://localhost:5000/api/test/products';
+  // private getProductsUrl = 'http://localhost:5000/api/products';
+  // private searchUrl = 'http://localhost:5000/api/searchByfullText';
+  private url = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/test/products';
+  private getProductsUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/products';
+  private searchUrl = 'http://irvik-env.eba-y4umewgk.us-east-2.elasticbeanstalk.com/api/searchByfullText';
   // * end urls for spring REST API
 
   constructor(private http: HttpClient) { }
