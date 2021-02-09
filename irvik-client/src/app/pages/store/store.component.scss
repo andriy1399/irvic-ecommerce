@@ -141,7 +141,10 @@
       display: block;
     }
   }
-
+  &__not-available {
+    text-align: center;
+    color: gray;
+  }
   &__description {
     position: absolute;
     top: 102%;

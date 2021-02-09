@@ -15,7 +15,8 @@
     "length": "length",
     "height": "height",
     "materials": "materials",
-    "price": "price"
+    "price": "price",
+    "available": "not available"
   },
   "btn": {
     "buy": "buy"

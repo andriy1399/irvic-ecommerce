@@ -15,7 +15,8 @@
     "length": "długość",
     "height": "wysokość",
     "materials": "materiał",
-    "price": "Cena"
+    "price": "Cena",
+    "available": "niedostępne"
   },
   "btn": {
     "buy": "kupić"

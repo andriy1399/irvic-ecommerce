@@ -126,6 +126,12 @@ input {
         line-height: 30px;
       }
     }
+    &:disabled {
+
+      mat-icon {
+        color: #7e7e7e;
+      }
+    }
     &:hover {
       background-color: #ffffff;
     }

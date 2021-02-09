@@ -31,14 +31,10 @@
 
     <div class="store__search-and-products-block">
       <form class="store__search" (ngSubmit)="searchProductsByFullText()">
-        <input type="text" [(ngModel)]="searchName" name="searchName"/>
+        <input type="text" [(ngModel)]="searchName" name="searchName" />
         <!-- * start search btn for spring REST API -->
         <span>
-          <button
-            type="submit"
-            matRipple
-            class="btn btn__bg-white"
-          >
+          <button type="submit" matRipple class="btn btn__bg-white">
             Search
           </button>
         </span>
@@ -49,7 +45,6 @@
           <button matRipple class="btn btn__bg-white">Search</button>
         </span> -->
         <!-- * end search btn for fake REST API -->
-
       </form>
 
       <div class="store__products">
@@ -69,7 +64,9 @@
                 | titlecase
             }}
           </h4>
-
+          <div *ngIf="!product.available" class="product__not-available">
+            {{ "product.available" | translate | titlecase }}
+          </div>
           <div class="product__info">
             <ng-container *ngIf="product.discount">
               <div class="product__price-info">
@@ -80,7 +77,7 @@
                   >{{ product.totalPrice | number: "1.2-2" }}zł</span
                 >
               </div>
-              <button matRipple class="btn btn__icon">
+              <button matRipple [disabled]="!product.available" class="btn btn__icon">
                 <mat-icon>shopping_cart</mat-icon>
               </button>
             </ng-container>
@@ -88,13 +85,13 @@
               <div class="product__price">
                 <span>{{ product.totalPrice | number: "1.2-2" }}zł</span>
               </div>
-              <button matRipple class="btn btn__icon">
+              <button matRipple [disabled]="!product.available" class="btn btn__icon">
                 <mat-icon>shopping_cart</mat-icon>
               </button>
             </ng-container>
           </div>
           <div class="product__description">
-            <p style="margin-bottom: .5em;">
+            <p style="margin-bottom: 0.5em">
               <b>{{ "product.materials" | translate | titlecase }}: </b>
               {{
                 "materials." + convertToSnakeCase(product.materialEn)
