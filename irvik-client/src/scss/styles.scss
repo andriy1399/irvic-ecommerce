@@ -183,6 +183,21 @@ p.price__with-discount {
 .width-100 {
   width: 100%;
 }
+
+.orders-content {
+
+  &__order {
+  }
+
+  &__order-img {
+  }
+
+  &__order-body {
+  }
+}
+
+
+
 @media screen and (max-width: 1270px) {
   .container {
     width: 92%;
