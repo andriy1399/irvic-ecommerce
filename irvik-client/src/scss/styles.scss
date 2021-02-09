@@ -169,6 +169,12 @@ input {
     padding: 0.5em 0.9em;
     border-radius: 5px;
   }
+
+  &__not-available {
+    color: gray;
+    font-size: 1rem;
+    padding: 0 1em;
+  }
 }
 p.price__with-discount {
   font-size: 1.5rem;
