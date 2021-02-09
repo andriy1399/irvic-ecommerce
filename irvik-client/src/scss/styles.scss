@@ -12,7 +12,6 @@
 ::-webkit-scrollbar-track {
   background: #e2e2e2;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-
 }
 
 /* Handle */
@@ -101,6 +100,23 @@ input {
   border-radius: 30px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   transition: filter 0.3s ease-in;
+  &__br-50 {
+    border-radius: 50%;
+    .btn {
+      border-radius: 50%;
+      padding: 0.3em;
+      @include flex(row, wrap, center, center);
+    }
+  }
+  &__delete {
+    background-image: none;
+    background-color: $error-color;
+    .btn {
+      mat-icon {
+        color: $error-color;
+      }
+    }
+  }
   &__disabled {
     filter: grayscale(100%);
   }
@@ -208,13 +224,13 @@ p.price__with-discount {
   width: 100%;
   height: 580px;
   overflow: auto;
-  &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb  {
-    border-radius: 30px
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    border-radius: 30px;
   }
 
   &__order {
     @include flex(row, wrap, space-between, stretch);
-
   }
   &__order + &__order {
     margin-top: 0.8em;
@@ -234,11 +250,74 @@ p.price__with-discount {
   }
 
   &__order-body {
-    padding: 1em 1.2em;
+    padding: 0.8em 0.5em 0 1.2em;
     width: 82%;
     background: #e2e2e2;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
+    @include flex (column, wrap, space-between, flex-start)
+  }
+  &__order-body-header {
+    @include flex (row, nowrap, space-between, flex-start);
+    margin-bottom: .4em;
+
+  }
+  &__title {
+    font-size: 1.8rem;
+  }
+
+  &__delete-btn {
+    margin-left: 1em;
+  }
+
+  &__description {
+
+    font-size: 1.2rem;
+  }
+
+  &__price {
+    width: 100%;
+    margin-bottom: 1em;
+    @include flex(row, wrap, space-between, center);
+
+    p + p {
+      margin-left: 1em;
+    }
+
+    p {
+      font-size: 2rem;
+    }
+  }
+
+  &__counter-content {
+    @include flex (row, wrap, flex-start, center);
+
+  }
+
+  &__counter {
+    @include flex (row, wrap, flex-start, center);
+    margin-right: 1em;
+    input {
+      background: #ffffff;
+      box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 0.7em 1em;
+      margin: 0 .5em;
+    }
+  }
+
+  &__btn {
+    background-color: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  &__total-price {
+    background: #ffffff;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: .7em 1em;
+    font-size: 1.2rem
   }
 }
 

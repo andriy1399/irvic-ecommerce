@@ -1,6 +1,9 @@
 <div class="container">
   <div class="bag">
-    <div class="bag__orders-wrapper orders-content" [ngStyle]="{'padding-right': true ? '.4em' : '0'}">
+    <div
+      class="bag__orders-wrapper orders-content"
+      [ngStyle]="{ 'padding-right': true ? '.4em' : '0' }"
+    >
       <div class="bag__order orders-content__order">
         <div class="orders-content__order-img">
           <img
@@ -8,7 +11,70 @@
             alt="product"
           />
         </div>
-        <div class="orders-content__order-body"></div>
+        <div class="orders-content__order-body">
+          <div class="orders-content__order-info">
+            <div
+              class="orders-content__order-body-header"
+              
+            >
+              <div class="orders-content__title">
+                <h3>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!
+                </h3>
+              </div>
+              <div
+                class="orders-content__delete-btn btn-wrapper btn-wrapper__br-50 btn-wrapper__delete"
+              >
+                <button mat-ripple class="btn btn__bg-white">
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="orders-content__description">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
+                vel sit exercitationem obcaecati accusamus, veritatis nulla
+                cumque, ad porro molestiae, excepturi enim voluptates incidunt.
+                Excepturi quae sint provident dolorum eum?
+              </p>
+            </div>
+          </div>
+          <div class="orders-content__price price">
+            <ng-container *ngIf="true; else withoutDiscount">
+              <div class="price__wrapper">
+                <p>
+                  <!-- <span style="text-decoration: line-through"
+                    >{{ product.price | number: "1.2-2" }}zł</span
+                  > -->
+                  <span style="text-decoration: line-through"
+                    >{{ 1234 | number: "1.2-2" }}zł</span
+                  >
+                </p>
+                <p class="price__with-discount">
+                  <!-- {{
+                    product.price - (product.price * parse(product.discountPercent)) / 100
+                      | number: "1.2-2"
+                  }}zł -->
+                  1414zl
+                </p>
+              </div>
+            </ng-container>
+            <ng-template #withoutDiscount>
+              <!-- <p>{{ product.price | number: "1.2-2" }}zł</p> -->
+              <p>{{ 312 | number: "1.2-2" }}zł</p>
+            </ng-template>
+
+            <div class="orders-content__counter-content">
+              <div class="orders-content__counter">
+                <button class="orders-content__btn">-</button>
+                <input type="number" style="width: 60px" />
+                <button class="orders-content__btn">+</button>
+              </div>
+
+              <div class="orders-content__total-price">314zl</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="bag__order orders-content__order">
         <div class="orders-content__order-img">
