@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/product.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BasketService {
-
-  constructor() { }
+  constructor() {}
 
   get orders(): IProduct[] {
     return JSON.parse(localStorage.getItem('orders') || '[]');
@@ -20,10 +19,18 @@ export class BasketService {
         const order = this.orders.find((o) => o.id === product.id);
         if (order) {
           order.count += product.count;
+          if (product.discount && product.discountPercent) {
+            const priceWithDiscount =
+              product.price -
+              (product.price * parseFloat(product.discountPercent)) / 100;
+            order.totalPrice = priceWithDiscount * order.count;
+          } else {
+            order.totalPrice = order.price * order.count;
+          }
           localStorage.setItem(
             'orders',
             JSON.stringify([
-              ...this.orders.map((o) => o.id === order.id ? order : o),
+              ...this.orders.map((o) => (o.id === order.id ? order : o)),
             ])
           );
         }
@@ -34,6 +41,14 @@ export class BasketService {
         );
       }
     } else {
+      if (product.discount && product.discountPercent) {
+        const priceWithDiscount =
+          product.price -
+          (product.price * parseFloat(product.discountPercent)) / 100;
+        product.totalPrice = priceWithDiscount * product.count;
+      } else {
+        product.totalPrice = product.price * product.count;
+      }
       localStorage.setItem('orders', JSON.stringify([product]));
     }
   }

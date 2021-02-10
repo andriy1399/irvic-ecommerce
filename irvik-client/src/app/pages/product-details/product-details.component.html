@@ -161,7 +161,6 @@
                     }"
                     [(ngModel)]="product.count"
                     (change)="checkCount()"
-
                   />
                 </div>
 
@@ -182,7 +181,7 @@
               </div>
             </div>
             <div class="product-details__btn-wrapper">
-              <button class="btn btn__bg-white" mat-ripple >
+              <button class="btn btn__bg-white" mat-ripple (click)="addToBasket()">
                 {{ "btn.buy" | translate | uppercase }}
               </button>
             </div>
