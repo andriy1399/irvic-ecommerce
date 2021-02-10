@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/product.interface';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BasketService {
+  basketTotalPrice = new Subject<number>();
   constructor() {}
 
   get orders(): IProduct[] {
@@ -12,8 +14,6 @@ export class BasketService {
   }
 
   addToBasket(product: IProduct): void {
-    console.log(product);
-    console.log(this.orders);
     if (this.orders.length) {
       if (this.orders.some((o) => o.id === product.id)) {
         const order = this.orders.find((o) => o.id === product.id);
@@ -51,5 +51,13 @@ export class BasketService {
       }
       localStorage.setItem('orders', JSON.stringify([product]));
     }
+    this.basketTotalPrice.next(this.sumPriceOfOrders());
+  }
+
+  public sumPriceOfOrders(): number {
+    if (this.orders.length) {
+      return this.orders.reduce((acc, o) => acc + o.totalPrice, 0);
+    }
+    return 0;
   }
 }
