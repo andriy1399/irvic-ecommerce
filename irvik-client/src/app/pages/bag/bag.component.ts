@@ -36,19 +36,15 @@ export class BagComponent implements OnInit {
 
   private getOrders(): void {
     this.orders = this.basketService.orders;
-    console.log(this.orders);
   }
   incrementOrderCount(order: IProduct): void {
     order.count++;
-    this.changeCount(order);
-    this.basketService.count.next('increment');
+    this.checkCount(order);
   }
 
   decrementOrderCount(order: IProduct): void {
     order.count--;
-    this.changeCount(order);
-
-    this.basketService.count.next('decrement');
+    this.checkCount(order);
   }
   private changeCount(order: IProduct): void {
     if (order.discount && order.discountPercent) {
@@ -61,8 +57,9 @@ export class BagComponent implements OnInit {
     }
 
     const orderIndex = this.orders.findIndex(o => o.id === order.id);
-    const orders = this.orders.splice(orderIndex, 1, order);
-    localStorage.setItem('orders', JSON.stringify(orders));
+    this.orders.splice(orderIndex, 1, order);
+
+    localStorage.setItem('orders', JSON.stringify(this.orders));
   }
   public parse(str: string): number {
     if (typeof parseFloat(str) === 'number') {
@@ -78,6 +75,10 @@ export class BagComponent implements OnInit {
     if (order && order.count >= 10000) {
       order.count = 10000;
     }
+
+    this.changeCount(order);
+    this.basketService.count.next('changed count');
+
   }
   public convertToSnakeCase(str: string): string {
     return str.split(' ').join('_');
