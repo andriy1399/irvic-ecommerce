@@ -27,7 +27,7 @@
                 <div
                   class="orders-content__delete-btn btn-wrapper btn-wrapper__br-50 btn-wrapper__delete"
                 >
-                  <button mat-ripple class="btn btn__bg-white">
+                  <button mat-ripple class="btn btn__bg-white" (click)="deleteOrder(order.id)">
                     <mat-icon>delete_forever</mat-icon>
                   </button>
                 </div>

@@ -30,12 +30,21 @@ export class BagComponent implements OnInit {
     }, 300);
     this.basketService.count.subscribe(() => {
       this.getOrders();
-      this.basketService.basketTotalPrice.next(this.basketService.sumPriceOfOrders());
+      this.basketService.basketTotalPrice.next(
+        this.basketService.sumPriceOfOrders()
+      );
     });
   }
 
   private getOrders(): void {
     this.orders = this.basketService.orders;
+  }
+  public deleteOrder(id: number): void {
+    this.basketService.deleteOrder(id);
+    this.getOrders();
+    this.basketService.basketTotalPrice.next(
+      this.basketService.sumPriceOfOrders()
+    );
   }
   incrementOrderCount(order: IProduct): void {
     order.count++;
@@ -49,14 +58,13 @@ export class BagComponent implements OnInit {
   private changeCount(order: IProduct): void {
     if (order.discount && order.discountPercent) {
       const priceWithDiscount =
-        order.price -
-        (order.price * parseFloat(order.discountPercent)) / 100;
+        order.price - (order.price * parseFloat(order.discountPercent)) / 100;
       order.totalPrice = priceWithDiscount * order.count;
     } else {
       order.totalPrice = order.price * order.count;
     }
 
-    const orderIndex = this.orders.findIndex(o => o.id === order.id);
+    const orderIndex = this.orders.findIndex((o) => o.id === order.id);
     this.orders.splice(orderIndex, 1, order);
 
     localStorage.setItem('orders', JSON.stringify(this.orders));
@@ -68,6 +76,7 @@ export class BagComponent implements OnInit {
       return 0;
     }
   }
+
   public checkCount(order: IProduct): void {
     if (order && order.count <= 0) {
       order.count = 1;
@@ -78,7 +87,6 @@ export class BagComponent implements OnInit {
 
     this.changeCount(order);
     this.basketService.count.next('changed count');
-
   }
   public convertToSnakeCase(str: string): string {
     return str.split(' ').join('_');
