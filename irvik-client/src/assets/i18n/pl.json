@@ -24,5 +24,8 @@
   "signInLan": {
     "login": "Zaloguj sie",
     "password": "hasło"
+  },
+  "basket": {
+    "emptyBasket": "kosz jest pusty"
   }
 }

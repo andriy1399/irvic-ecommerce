@@ -24,6 +24,9 @@
   "signInLan": {
     "login": "логін",
     "password": "пароль"
+  },
+  "basket": {
+    "emptyBasket": "кошик пустий"
   }
 
 }

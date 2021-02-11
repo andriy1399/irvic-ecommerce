@@ -24,6 +24,9 @@
   "signInLan": {
     "login": "login",
     "password": "password"
+  },
+  "basket": {
+    "emptyBasket": "the basket is empty"
   }
 
 }

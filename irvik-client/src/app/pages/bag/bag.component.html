@@ -101,7 +101,9 @@
         </div>
       </ng-container>
       <ng-template #emptyBasket>
-        <h5>Basket is Empty</h5>
+        <div class="empty-content">
+          <h3>{{ 'basket.emptyBasket' | translate | titlecase }}</h3>
+        </div>
       </ng-template>
     </div>
   </div>
