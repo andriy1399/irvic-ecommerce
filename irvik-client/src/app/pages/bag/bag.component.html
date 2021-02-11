@@ -42,7 +42,12 @@
               </div>
             </div>
             <div class="orders-content__price price">
-              <ng-container *ngIf="order.discount; else withoutDiscount">
+              <ng-container
+                *ngIf="
+                  order.discount && order.discountPercent;
+                  else withoutDiscount
+                "
+              >
                 <div class="price__wrapper price__small-font">
                   <p>
                     <span style="text-decoration: line-through"
@@ -64,7 +69,12 @@
 
               <div class="orders-content__counter-content">
                 <div class="orders-content__counter">
-                  <button class="orders-content__btn">-</button>
+                  <button
+                    class="orders-content__btn"
+                    (click)="decrementOrderCount(order)"
+                  >
+                    -
+                  </button>
                   <input
                     type="number"
                     style="width: 60px"
@@ -74,10 +84,17 @@
                     [(ngModel)]="order.count"
                     (change)="checkCount(order)"
                   />
-                  <button class="orders-content__btn">+</button>
+                  <button
+                    class="orders-content__btn"
+                    (click)="incrementOrderCount(order)"
+                  >
+                    +
+                  </button>
                 </div>
 
-                <div class="orders-content__total-price">{{ order.totalPrice | number: "1.2-2" }}</div>
+                <div class="orders-content__total-price">
+                  {{ order.totalPrice | number: "1.2-2" }}
+                </div>
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class BasketService {
   basketTotalPrice = new Subject<number>();
+  count = new Subject();
   constructor() {}
 
   get orders(): IProduct[] {

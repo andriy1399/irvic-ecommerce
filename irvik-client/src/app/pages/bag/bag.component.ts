@@ -18,7 +18,7 @@ export class BagComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.orders = this.basketService.orders;
+    this.getOrders();
     setTimeout(() => {
       if (this.orders.length) {
         const translatedProducts = new ProductTranslate(
@@ -28,8 +28,42 @@ export class BagComponent implements OnInit {
         translatedProducts.prepareToTranslate();
       }
     }, 300);
+    this.basketService.count.subscribe(() => {
+      this.getOrders();
+      this.basketService.basketTotalPrice.next(this.basketService.sumPriceOfOrders());
+    });
   }
 
+  private getOrders(): void {
+    this.orders = this.basketService.orders;
+    console.log(this.orders);
+  }
+  incrementOrderCount(order: IProduct): void {
+    order.count++;
+    this.changeCount(order);
+    this.basketService.count.next('increment');
+  }
+
+  decrementOrderCount(order: IProduct): void {
+    order.count--;
+    this.changeCount(order);
+
+    this.basketService.count.next('decrement');
+  }
+  private changeCount(order: IProduct): void {
+    if (order.discount && order.discountPercent) {
+      const priceWithDiscount =
+        order.price -
+        (order.price * parseFloat(order.discountPercent)) / 100;
+      order.totalPrice = priceWithDiscount * order.count;
+    } else {
+      order.totalPrice = order.price * order.count;
+    }
+
+    const orderIndex = this.orders.findIndex(o => o.id === order.id);
+    const orders = this.orders.splice(orderIndex, 1, order);
+    localStorage.setItem('orders', JSON.stringify(orders));
+  }
   public parse(str: string): number {
     if (typeof parseFloat(str) === 'number') {
       return parseFloat(str);
