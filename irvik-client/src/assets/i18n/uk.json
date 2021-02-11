@@ -15,7 +15,8 @@
     "length": "довжина",
     "height": "висота",
     "materials": "матеріали",
-    "price": "ціна"
+    "price": "ціна",
+    "available": "нема в наявності"
   },
   "btn": {
     "buy": "купити"
@@ -23,6 +24,9 @@
   "signInLan": {
     "login": "логін",
     "password": "пароль"
+  },
+  "basket": {
+    "emptyBasket": "кошик пустий"
   }
 
 }

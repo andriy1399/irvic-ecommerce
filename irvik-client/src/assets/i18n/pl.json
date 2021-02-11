@@ -15,7 +15,8 @@
     "length": "długość",
     "height": "wysokość",
     "materials": "materiał",
-    "price": "Cena"
+    "price": "Cena",
+    "available": "niedostępne"
   },
   "btn": {
     "buy": "kupić"
@@ -23,5 +24,8 @@
   "signInLan": {
     "login": "Zaloguj sie",
     "password": "hasło"
+  },
+  "basket": {
+    "emptyBasket": "kosz jest pusty"
   }
 }

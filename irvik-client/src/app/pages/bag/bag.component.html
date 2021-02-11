@@ -1,1 +1,110 @@
-<p>bag works!</p>
+<div class="container">
+  <div class="bag">
+    <div
+      class="bag__orders-wrapper orders-content"
+      [ngStyle]="{ 'padding-right': orders.length > 2 ? '.4em' : '0' }"
+    >
+      <ng-container *ngIf="orders.length; else emptyBasket">
+        <div
+          class="bag__order orders-content__order"
+          *ngFor="let order of orders"
+        >
+          <div class="orders-content__order-img">
+            <img [src]="order.images[0].Location" [alt]="order.titleEn" />
+          </div>
+          <div class="orders-content__order-body">
+            <div class="orders-content__order-info">
+              <div class="orders-content__order-body-header">
+                <div class="orders-content__title">
+                  <h3>
+                    {{
+                      "title." + convertToSnakeCase(order.titleEn)
+                        | translate
+                        | titlecase
+                    }}
+                  </h3>
+                </div>
+                <div
+                  class="orders-content__delete-btn btn-wrapper btn-wrapper__br-50 btn-wrapper__delete"
+                >
+                  <button mat-ripple class="btn btn__bg-white" (click)="deleteOrder(order.id)">
+                    <mat-icon>delete_forever</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="orders-content__description">
+                <p>
+                  {{
+                    "description." + convertToSnakeCase(order.titleEn)
+                      | translate
+                  }}
+                </p>
+              </div>
+            </div>
+            <div class="orders-content__price price">
+              <ng-container
+                *ngIf="
+                  order.discount && order.discountPercent;
+                  else withoutDiscount
+                "
+              >
+                <div class="price__wrapper price__small-font">
+                  <p>
+                    <span style="text-decoration: line-through"
+                      >{{ order.price | number: "1.2-2" }}zł</span
+                    >
+                  </p>
+                  <p class="price__with-discount">
+                    {{
+                      order.price -
+                        (order.price * parse(order.discountPercent)) / 100
+                        | number: "1.2-2"
+                    }}zł
+                  </p>
+                </div>
+              </ng-container>
+              <ng-template #withoutDiscount>
+                <p>{{ order.price | number: "1.2-2" }}zł</p>
+              </ng-template>
+
+              <div class="orders-content__counter-content">
+                <div class="orders-content__counter">
+                  <button
+                    class="orders-content__btn"
+                    (click)="decrementOrderCount(order)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    style="width: 60px"
+                    [ngStyle]="{
+                      width: (order.count.toString().length + 3) * 15 + 'px'
+                    }"
+                    [(ngModel)]="order.count"
+                    (change)="checkCount(order)"
+                  />
+                  <button
+                    class="orders-content__btn"
+                    (click)="incrementOrderCount(order)"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <div class="orders-content__total-price">
+                  {{ order.totalPrice | number: "1.2-2" }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #emptyBasket>
+        <div class="empty-content">
+          <h3>{{ 'basket.emptyBasket' | translate | titlecase }}</h3>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

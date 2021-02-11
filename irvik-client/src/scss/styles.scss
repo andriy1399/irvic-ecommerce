@@ -4,6 +4,25 @@
 @import "./mixins";
 @import "~ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
 @import "~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e2e2e2;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:hover {
+    background: rgb(240, 240, 240);
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -81,6 +100,23 @@ input {
   border-radius: 30px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   transition: filter 0.3s ease-in;
+  &__br-50 {
+    border-radius: 50%;
+    .btn {
+      border-radius: 50%;
+      padding: 0.3em;
+      @include flex(row, wrap, center, center);
+    }
+  }
+  &__delete {
+    background-image: none;
+    background-color: $error-color;
+    .btn {
+      mat-icon {
+        color: $error-color;
+      }
+    }
+  }
   &__disabled {
     filter: grayscale(100%);
   }
@@ -102,7 +138,6 @@ input {
     &:hover {
       background-color: #ffffff;
     }
-
   }
 
   &__icon {
@@ -124,6 +159,11 @@ input {
         height: 30px;
         font-size: 30px;
         line-height: 30px;
+      }
+    }
+    &:disabled {
+      mat-icon {
+        color: #7e7e7e;
       }
     }
     &:hover {
@@ -155,13 +195,23 @@ input {
   &__with-discount {
     color: #d92354;
   }
-
+  &__small-font {
+    p.price__with-discount, span {
+      font-size: 1.2rem;
+    }
+  }
   &__discount {
     font-size: 1.25rem;
     background-image: $border-gradient-for-btn;
     color: #fafafa;
     padding: 0.5em 0.9em;
     border-radius: 5px;
+  }
+
+  &__not-available {
+    color: gray;
+    font-size: 1rem;
+    padding: 0 1em;
   }
 }
 p.price__with-discount {
@@ -171,6 +221,124 @@ p.price__with-discount {
 .width-100 {
   width: 100%;
 }
+
+.orders-content {
+  margin: 2em 0;
+
+  width: 100%;
+  height: 580px;
+  overflow: auto;
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+  }
+
+  &__order {
+    @include flex(row, wrap, space-between, stretch);
+  }
+  &__order + &__order {
+    margin-top: 0.8em;
+  }
+
+  &__order-img {
+    width: 17%;
+    padding: 0.4em;
+    background: rgba(196, 196, 196, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    @include flex(row, wrap, center, center);
+    img {
+      width: 100%;
+      border-radius: 26px;
+    }
+  }
+
+  &__order-body {
+    padding: 0.8em 0.5em 0 1.2em;
+    width: 82%;
+    background: #e2e2e2;
+    box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    @include flex (column, wrap, space-between, flex-start)
+  }
+  &__order-info {
+    width: 100%
+  }
+  &__order-body-header {
+    @include flex (row, nowrap, space-between, flex-start);
+    margin-bottom: .4em;
+
+  }
+  &__title {
+    font-size: 1.8rem;
+  }
+
+  &__delete-btn {
+    margin-left: 1em;
+  }
+
+  &__description {
+
+    font-size: 1.2rem;
+  }
+
+  &__price {
+    width: 100%;
+    margin-bottom: 1em;
+    @include flex(row, wrap, space-between, center);
+
+    p + p {
+      margin-left: 1em;
+    }
+
+    p {
+      font-size: 2rem;
+    }
+  }
+
+  &__counter-content {
+    @include flex (row, wrap, flex-start, center);
+
+  }
+
+  &__counter {
+    @include flex (row, wrap, flex-start, center);
+    margin-right: 1em;
+    input {
+      background: #ffffff;
+      box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 0.5em .8em;
+      margin: 0 .5em;
+      font-size: 1.4rem;
+
+    }
+  }
+
+  &__btn {
+    background-color: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  &__total-price {
+    background: #ffffff;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: .7em 1em;
+    font-size: 1.5rem
+  }
+}
+
+.empty-content {
+  width: 100%;
+  height: 500px;
+  border-radius: 30px;
+  box-shadow:  0px 2px 2px rgba(0, 0, 0, 0.25);
+  background-color: #e9e9e9;
+  @include flex (row, wrap, center, center);
+}
+
 @media screen and (max-width: 1270px) {
   .container {
     width: 92%;

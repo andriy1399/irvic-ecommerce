@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProductService } from '../../shared/services/product.service';
 import { IProduct } from '../../shared/interfaces/product.interface';
 import { ProductTranslate } from '../../shared/models/product-translate.model';
+import { BasketService } from '../../shared/services/basket.service';
 
 @Component({
   selector: 'app-store',
@@ -18,7 +19,8 @@ export class StoreComponent implements OnInit {
   constructor(
     private categoriesServ: CategoriesService,
     private translate: TranslateService,
-    private productsService: ProductService
+    private productsService: ProductService,
+    private basketService: BasketService
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +57,10 @@ export class StoreComponent implements OnInit {
           this.products = products;
         });
     }
+  }
+
+  public addToBasket(product: IProduct): void {
+    this.basketService.addToBasket(product);
   }
 
   public convertToSnakeCase(str: string): string {

@@ -2,19 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { LoginService } from '../../shared/services/login.service';
+import { BasketService } from '../../shared/services/basket.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   isAuth = false;
+  basketTotalPrice = 0;
   constructor(
     public translate: TranslateService,
     private categoriesServ: CategoriesService,
-    public loginService: LoginService
-  ) { }
+    public loginService: LoginService,
+    private basketService: BasketService
+  ) {}
 
   ngOnInit(): void {
     const lang = localStorage.getItem('lang') || 'pl';
@@ -24,7 +27,11 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('token')) {
       this.isAuth = this.loginService.isAuthenticated();
     }
-    this.loginService.isAuth.subscribe(bol => this.isAuth = bol);
+    this.loginService.isAuth.subscribe((bol) => (this.isAuth = bol));
+    this.basketTotalPrice = this.basketService.sumPriceOfOrders();
+    this.basketService.basketTotalPrice.subscribe(
+      (price) => (this.basketTotalPrice = price)
+    );
   }
   changeLang(e: Event | null, language?: string): void {
     let lang;
@@ -41,6 +48,5 @@ export class HeaderComponent implements OnInit {
     if (e) {
       window.location.reload();
     }
-
   }
 }

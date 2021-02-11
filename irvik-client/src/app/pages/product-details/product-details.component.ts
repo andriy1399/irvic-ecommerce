@@ -7,6 +7,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ProductTranslate } from 'src/app/shared/models/product-translate.model';
 import { TranslateService } from '@ngx-translate/core';
 import { IFileS3 } from '../../shared/interfaces/fileS3.interface';
+import { BasketService } from '../../shared/services/basket.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -71,7 +72,8 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private gallery: Gallery,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private basketService: BasketService
   ) {}
 
   ngOnInit(): void {
@@ -106,6 +108,13 @@ export class ProductDetailsComponent implements OnInit {
       this.isDisabledPrevArrow = true;
       this.checkPercent(product);
     });
+  }
+
+  public addToBasket(): void {
+    if (this.product) {
+      this.basketService.addToBasket({ ...this.product });
+      this.product.count = 1;
+    }
   }
 
   public showGallery(index: number): void {

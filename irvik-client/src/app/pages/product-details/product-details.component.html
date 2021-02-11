@@ -142,8 +142,11 @@
             <ng-template #withoutDiscount>
               <p>{{ product.price | number: "1.2-2" }}zł</p>
             </ng-template>
+            <div class="price__not-available" *ngIf="!product.available">
+              {{"product.available" | translate | titlecase}}
+            </div>
           </div>
-          <div class="product-details__bottom-row">
+          <div class="product-details__bottom-row" *ngIf="product.available">
             <div class="product-details__counter">
               <div class="product-details__total-price">
                 {{ product.totalPrice * product.count | number: "1.2-2" }}zł
@@ -158,7 +161,6 @@
                     }"
                     [(ngModel)]="product.count"
                     (change)="checkCount()"
-
                   />
                 </div>
 
@@ -179,7 +181,7 @@
               </div>
             </div>
             <div class="product-details__btn-wrapper">
-              <button class="btn btn__bg-white" mat-ripple>
+              <button class="btn btn__bg-white" mat-ripple (click)="addToBasket()">
                 {{ "btn.buy" | translate | uppercase }}
               </button>
             </div>

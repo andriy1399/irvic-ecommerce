@@ -32,8 +32,8 @@
             </a>
           </li>
         </ng-template>
-        
-       
+
+
         <li routerLinkActive="active">
           <a matRipple [routerLink]="['/favorites']" routerLinkActive='active'>
             <mat-icon class="header__icon">favorite_border</mat-icon>
@@ -44,7 +44,7 @@
             <mat-icon class="header__icon">shopping_cart</mat-icon>
           </a>
         </li>
-        <li> <span>1234zl</span> </li>
+        <li *ngIf="basketTotalPrice"> <span>{{ basketTotalPrice | number: "1.2-2" }}zł</span> </li>
       </ul>
     </nav>
     <div class="header__languages">
