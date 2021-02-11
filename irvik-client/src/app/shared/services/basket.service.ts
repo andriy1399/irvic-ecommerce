@@ -55,9 +55,11 @@ export class BasketService {
     this.basketTotalPrice.next(this.sumPriceOfOrders());
   }
 
-  deleteOrder(id: number): void {
-    const orders = this.orders.filter(o => o.id !== id);
-    localStorage.setItem('orders', JSON.stringify(orders));
+  deleteOrder(id: string | number | undefined): void {
+    if (id) {
+      const orders = this.orders.filter(o => o.id !== id);
+      localStorage.setItem('orders', JSON.stringify(orders));
+    }
   }
 
   public sumPriceOfOrders(): number {

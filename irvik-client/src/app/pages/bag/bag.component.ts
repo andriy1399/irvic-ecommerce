@@ -39,12 +39,14 @@ export class BagComponent implements OnInit {
   private getOrders(): void {
     this.orders = this.basketService.orders;
   }
-  public deleteOrder(id: number): void {
-    this.basketService.deleteOrder(id);
-    this.getOrders();
-    this.basketService.basketTotalPrice.next(
-      this.basketService.sumPriceOfOrders()
-    );
+  public deleteOrder(id: string | number | undefined): void {
+    if (id) {
+      this.basketService.deleteOrder(id);
+      this.getOrders();
+      this.basketService.basketTotalPrice.next(
+        this.basketService.sumPriceOfOrders()
+      );
+    }
   }
   incrementOrderCount(order: IProduct): void {
     order.count++;
