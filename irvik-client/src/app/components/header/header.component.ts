@@ -9,7 +9,7 @@ import { mobileMenu } from '../../shared/animations/mobile-menu';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  animations: [mobileMenu]
+  animations: [mobileMenu],
 })
 export class HeaderComponent implements OnInit {
   isAuth = false;
@@ -53,4 +53,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  closeMobileMenu(event: Event): void {
+    const isClickOnShadow = (event.target as HTMLElement).className
+      .split(' ')
+      .some((v) => v === 'mobile-menu');
+    if (isClickOnShadow) {
+      this.mobileMenuOpen = false;
+    }
+  }
 }
