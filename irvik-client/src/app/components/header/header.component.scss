@@ -13,7 +13,7 @@
     @include flex(row, wrap, space-around, center);
   }
   &__icon {
-    a{
+    a {
       img {
         width: 130px;
       }
@@ -26,6 +26,14 @@
   &__menu-list {
     margin-right: 30px;
     @include flex(row, wrap, space-between, center);
+    &--mobile {
+      @include flex(column, wrap, space-between, center);
+      margin-right: 0;
+      li + li {
+        margin-left: 0px;
+        margin-top: 1em;
+      }
+    }
     li + li {
       margin-left: 30px;
     }
@@ -143,6 +151,15 @@
       border-radius: 50%;
     }
 
+    &--mobile {
+      span {
+        padding: 3px;
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
   }
 }
 .burger-menu {
@@ -152,7 +169,7 @@
   right: -30px;
   background-color: #ffffff;
   border: 2px solid #000;
-  padding: .9em;
+  padding: 0.9em;
   border-radius: 50%;
   box-shadow: $basic-shadow;
   z-index: 999;
@@ -164,9 +181,60 @@
     border-radius: 50%;
   }
   &__line + &__line {
-    margin-top: .6em;
+    margin-top: 0.6em;
+  }
+}
+
+.mobile-menu {
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #0000005e;
+  overflow: hidden;
+  &__menu {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    background-image: $menu-bg;
+    padding: 3em 1em;
+    box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.24)
+  }
+  &__options {
+    @include flex(row, wrap, space-between, center);
   }
 
+  &__buttons {
+    li {
+      button,
+      a {
+        border-radius: 50%;
+        padding: 6px;
+        background-color: white;
+        @include flex(row, wrap, center, center);
+        box-shadow: $basic-shadow, inset 0 2px 2px rgba(0, 0, 0, 0.25);
+        mat-icon {
+          width: 28px;
+          height: 28px;
+          font-size: 28px;
+          line-height: 28px;
+        }
+      }
+      button {
+        margin-bottom: 1em;
+      }
+    
+    }
+    &--row {
+      margin-top: 3.5em;
+      width: 100%;
+      @include flex(row, wrap, space-between, center);
+    }
+  }
 }
 
 @media screen and (max-width: 1270px) {
@@ -174,7 +242,7 @@
     padding: 0.625em 0;
 
     &__icon {
-      a{
+      a {
         img {
           width: 120px;
         }
@@ -217,8 +285,6 @@
         margin-left: 8px;
       }
     }
-
-
   }
 }
 
@@ -227,7 +293,7 @@
     padding: 0.625em 0 0.5em;
 
     &__icon {
-      a{
+      a {
         img {
           width: 120px;
         }
@@ -236,6 +302,21 @@
     nav {
       display: none;
     }
+    &__menu-list {
+      margin-top: 3.5em;
+      margin-right: 0;
+      li + li {
+        margin-left: 0;
+      }
+      li {
+        padding: 0.2em;
+        a {
+          font-size: 1.25rem;
+          padding: 0.5em 0;
+          width: 150px;
+        }
+      }
+    }
     &__languages {
       display: none;
     }
@@ -243,4 +324,8 @@
   .burger-menu {
     display: block;
   }
+}
+
+.show {
+  display: block;
 }

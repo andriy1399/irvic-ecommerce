@@ -12,6 +12,7 @@ import { BasketService } from '../../shared/services/basket.service';
 export class HeaderComponent implements OnInit {
   isAuth = false;
   basketTotalPrice = 0;
+  mobileMenuOpen = false;
   constructor(
     public translate: TranslateService,
     private categoriesServ: CategoriesService,
