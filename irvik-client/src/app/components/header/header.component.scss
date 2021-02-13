@@ -194,6 +194,7 @@
   bottom: 0;
   background-color: #0000005e;
   overflow: hidden;
+  animation: menu-shadow .2s ease-in;
   &__menu {
     position: absolute;
     top: 0;
@@ -202,7 +203,7 @@
     width: 300px;
     background-image: $menu-bg;
     padding: 3em 1em;
-    box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.24)
+    box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.24);
   }
   &__options {
     @include flex(row, wrap, space-between, center);
@@ -227,7 +228,6 @@
       button {
         margin-bottom: 1em;
       }
-    
     }
     &--row {
       margin-top: 3.5em;
@@ -236,6 +236,30 @@
     }
   }
 }
+// @keyframes menuOpen {
+//   0% {
+//     right: -300px;
+//   }
+//   100% {
+//     right: 0;
+//   }
+// }
+// @keyframes menuClose {
+//   0% {
+//     right: 0;
+//   }
+//   100% {
+//     right: -300px;
+//   }
+// }
+// @keyframes menu-shadow {
+//   0% {
+//     background-color: #00000000;
+//   }
+//   100% {
+//     background-color: #0000005e;
+//   }
+// }
 
 @media screen and (max-width: 1270px) {
   .header {

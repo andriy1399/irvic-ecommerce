@@ -3,11 +3,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { LoginService } from '../../shared/services/login.service';
 import { BasketService } from '../../shared/services/basket.service';
+import { mobileMenu } from '../../shared/animations/mobile-menu';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  animations: [mobileMenu]
 })
 export class HeaderComponent implements OnInit {
   isAuth = false;
@@ -50,4 +52,5 @@ export class HeaderComponent implements OnInit {
       window.location.reload();
     }
   }
+
 }

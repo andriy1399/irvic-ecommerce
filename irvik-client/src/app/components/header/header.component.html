@@ -110,13 +110,13 @@
     </div>
   </div>
 </header>
-<div class="mobile-menu" *ngIf="mobileMenuOpen">
+<div class="mobile-menu" *ngIf="mobileMenuOpen" @mobileMenu >
   <div class="mobile-menu__menu">
     <div class="mobile-menu__options">
       <div>
         <ul class="mobile-menu__buttons">
           <li>
-            <button matRipple class="" (click)="mobileMenuOpen = false">
+            <button matRipple class="" (click)="this.mobileMenuOpen = false">
               <mat-icon class="header__icon">clear</mat-icon>
             </button>
           </li>
