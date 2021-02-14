@@ -6,7 +6,7 @@
   &__row {
     @include flex(row, wrap, space-between, flex-start);
     height: 130px;
-    padding: .3em 3em;
+    padding: 0.3em 3em;
   }
   box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
   &__img--wrapper {
@@ -20,10 +20,11 @@
 
   &__info {
     padding: 1em 0;
-    @include flex (column, wrap, space-between, center);
+    @include flex(column, wrap, space-between, center);
     height: 100%;
-    p, a {
-      color: #FFFFFF;
+    p,
+    a {
+      color: #ffffff;
       font-size: 1.4rem;
       text-decoration: underline;
     }
@@ -44,7 +45,7 @@
 
   &__social-media-links {
     height: 100%;
-    @include flex (row, wrap, center, center);
+    @include flex(row, wrap, center, center);
     a {
       @include flex(row, wrap, center, center);
       span {
@@ -53,53 +54,123 @@
         }
       }
     }
-
   }
 }
 
-
 @media screen and (max-width: 1268px) {
-  .home {
-    &__btn-container {
-      width: 30%;
-    }
-  }
 }
 
 @media screen and (max-width: 768px) {
-  .home {
-    &__carousel-wrapper {
-      padding: 0.2em;
-      margin: 2em auto;
+  .footer {
+    margin-top: 3em;
+    &__row {
+      @include flex(row, wrap, space-between, flex-start);
+      height: 110px;
+      padding: 0.3em 1em;
     }
-
-    &__info-block {
-      margin: .4em auto 0;
-      width: 100%;
-      @include flex(column, wrap, center, center);
-
-      &--reverse {
-        flex-direction: row;
+    &__img--wrapper {
+      height: 100%;
+      img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
       }
     }
 
-    &__info-content {
-      height: 240px;
-      border-radius: 1em;
-      width: 100%;
-      @include flex(column-reverse, wrap, center, center);
-      &--reverse {
-        flex-direction: column-reverse;
+    &__info {
+      padding: 1em 0;
+      @include flex(column, wrap, space-between, center);
+      height: 100%;
+      p,
+      a {
+        color: #ffffff;
+        font-size: 1rem;
+        text-decoration: underline;
       }
     }
 
-
-    &__side-block {
-      width: 0%;
+    &__reserved {
+      text-align: center;
     }
 
-    &__header {
-      display: block;
+    &__list-of-links {
+      ul {
+        @include flex(row, wrap, space-around, center);
+        li {
+          margin: 0 0.5em;
+        }
+      }
+    }
+
+    &__social-media-links {
+      height: 100%;
+      @include flex(row, wrap, center, center);
+      a {
+        @include flex(row, wrap, center, center);
+        span {
+          font-size: 1.3rem;
+          img {
+            height: 60px;
+            margin-right: .7em;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 538px) {
+  .footer {
+    &__row {
+      @include flex(row, wrap, space-between, flex-start);
+      height: 100px;
+      padding: 0.3em 1em;
+    }
+    &__img--wrapper {
+      @include flex(row, wrap, center, center);
+      img {
+        height: 80%;
+      }
+    }
+
+    &__info {
+      padding: .5em 0;
+      @include flex(column, wrap, space-between, center);
+      height: 100%;
+      p,
+      a {
+        color: #ffffff;
+        font-size: .8rem;
+        text-decoration: underline;
+      }
+    }
+
+    &__reserved {
+      text-align: center;
+    }
+
+    &__list-of-links {
+      ul {
+        @include flex(column, wrap, space-around, center);
+        li {
+          margin: 0;
+        }
+      }
+    }
+
+    &__social-media-links {
+      height: 100%;
+      @include flex(row, wrap, center, center);
+      a {
+        @include flex(row, wrap, center, center);
+        span {
+          img {
+            height: 40px;
+            margin-right: 1em;
+          }
+          font-size: .8rem;
+        }
+      }
     }
   }
 }
