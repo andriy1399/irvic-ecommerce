@@ -196,7 +196,8 @@ input {
     color: #d92354;
   }
   &__small-font {
-    p.price__with-discount, span {
+    p.price__with-discount,
+    span {
       font-size: 1.2rem;
     }
   }
@@ -259,15 +260,14 @@ p.price__with-discount {
     background: #e2e2e2;
     box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-    @include flex (column, wrap, space-between, flex-start)
+    @include flex(column, wrap, space-between, flex-start);
   }
   &__order-info {
-    width: 100%
+    width: 100%;
   }
   &__order-body-header {
-    @include flex (row, nowrap, space-between, flex-start);
-    margin-bottom: .4em;
-
+    @include flex(row, nowrap, space-between, flex-start);
+    margin-bottom: 0.4em;
   }
   &__title {
     font-size: 1.8rem;
@@ -278,7 +278,6 @@ p.price__with-discount {
   }
 
   &__description {
-
     font-size: 1.2rem;
   }
 
@@ -297,21 +296,19 @@ p.price__with-discount {
   }
 
   &__counter-content {
-    @include flex (row, wrap, flex-start, center);
-
+    @include flex(row, wrap, flex-start, center);
   }
 
   &__counter {
-    @include flex (row, wrap, flex-start, center);
+    @include flex(row, wrap, flex-start, center);
     margin-right: 1em;
     input {
       background: #ffffff;
       box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
-      padding: 0.5em .8em;
-      margin: 0 .5em;
+      padding: 0.5em 0.8em;
+      margin: 0 0.5em;
       font-size: 1.4rem;
-
     }
   }
 
@@ -325,8 +322,8 @@ p.price__with-discount {
     background: #ffffff;
     box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
-    padding: .7em 1em;
-    font-size: 1.5rem
+    padding: 0.7em 1em;
+    font-size: 1.5rem;
   }
 }
 
@@ -334,9 +331,9 @@ p.price__with-discount {
   width: 100%;
   height: 500px;
   border-radius: 30px;
-  box-shadow:  0px 2px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   background-color: #e9e9e9;
-  @include flex (row, wrap, center, center);
+  @include flex(row, wrap, center, center);
 }
 
 .title-header {
@@ -365,5 +362,10 @@ p.price__with-discount {
 
   .title-header {
     display: block;
+  }
+
+  .btn {
+    padding: 0.4em 1.3em;
+    font-size: 1.1rem;
   }
 }
