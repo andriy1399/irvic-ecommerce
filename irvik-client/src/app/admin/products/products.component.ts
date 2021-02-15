@@ -69,7 +69,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       length: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
       discount: new FormControl(false),
-      available: new FormControl(false),
+      available: new FormControl(true),
       discountPercent: new FormControl(null),
       titleEn: new FormControl(null, Validators.required),
       titlePl: new FormControl(null, Validators.required),
@@ -217,7 +217,8 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public deleteProduct(id: number): void {
-    const deletingImages = this.productsArr.find((p) => p.id === id)?.images || [];
+    const deletingImages =
+      this.productsArr.find((p) => p.id === id)?.images || [];
     this.productServ.deleteProduct(id).subscribe(() => {
       this.getProducts();
       this.deleteProductImages(deletingImages);
@@ -279,11 +280,13 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   deleteImage(index: number): void {
     const delImage = this.arrFiles.find((_, i) => i === index);
-    this.uploadService.deleteFile(delImage!?.Key, delImage!?.Bucket);
-    this.arrFiles = this.arrFiles.filter((_, i) => i !== index);
+    if (delImage) {
+      this.uploadService.deleteFile(delImage.Key, delImage.Bucket);
+      this.arrFiles = this.arrFiles.filter((_, i) => i !== index);
+    }
   }
 
-  deleteProductImages(images: IFileS3[]) {
+  deleteProductImages(images: IFileS3[]): void {
     images.forEach((img) => {
       this.uploadService.deleteFile(img.Key, img.Bucket);
     });
