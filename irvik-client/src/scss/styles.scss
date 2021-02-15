@@ -339,6 +339,19 @@ p.price__with-discount {
   @include flex (row, wrap, center, center);
 }
 
+.title-header {
+  display: none;
+  margin-top: 2em;
+  h2 {
+    text-transform: uppercase;
+    color: #ff7c02;
+    text-align: center;
+    font-size: 30px;
+    text-decoration-line: underline;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+
 @media screen and (max-width: 1270px) {
   .container {
     width: 92%;
@@ -348,5 +361,9 @@ p.price__with-discount {
 @media screen and (max-width: 768px) {
   .container {
     width: 95%;
+  }
+
+  .title-header {
+    display: block;
   }
 }

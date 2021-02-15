@@ -176,3 +176,19 @@
     opacity: 1;
   }
 }
+
+.store-mobile {
+  display: none;
+}
+
+
+@media screen and (max-width: 1268px) {
+
+}
+
+@media screen and (max-width: 768px) {
+  .store-mobile {
+    display: block;
+  }
+
+}

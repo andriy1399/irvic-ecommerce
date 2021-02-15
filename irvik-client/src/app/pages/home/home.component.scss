@@ -78,19 +78,8 @@
     width: 15%;
     background-image: $header-bg;
   }
-
-  &__header {
-    display: none;
-    margin-top: 2em;
-    h2 {
-      color: #ff7c02;
-      text-align: center;
-      font-size: 30px;
-      text-decoration-line: underline;
-      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-  }
 }
+
 @media screen and (max-width: 1268px) {
   .home {
     &__btn-container {
@@ -107,7 +96,7 @@
     }
 
     &__info-block {
-      margin: .2em auto 0;
+      margin: 0.2em auto 0;
       width: 100%;
       @include flex(column, wrap, center, center);
 
@@ -127,19 +116,13 @@
     }
 
     &__btn-container {
-      padding: .5em;
+      padding: 0.5em;
       width: 250px;
     }
-
 
     &__side-block {
       width: 0%;
     }
-
-    &__header {
-      display: block;
-    }
   }
+
 }
-
-

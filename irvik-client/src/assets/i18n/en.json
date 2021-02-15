@@ -27,6 +27,13 @@
   },
   "basket": {
     "emptyBasket": "the basket is empty"
+  },
+  "page": {
+    "title": {
+      "home": "home",
+      "store": "store",
+      "aboutUs": "about us"
+    }
   }
 
 }
