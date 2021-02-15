@@ -27,7 +27,11 @@
                 <div
                   class="orders-content__delete-btn btn-wrapper btn-wrapper__br-50 btn-wrapper__delete"
                 >
-                  <button mat-ripple class="btn btn__bg-white" (click)="deleteOrder(order.id)">
+                  <button
+                    mat-ripple
+                    class="btn btn__bg-white"
+                    (click)="deleteOrder(order.id)"
+                  >
                     <mat-icon>delete_forever</mat-icon>
                   </button>
                 </div>
@@ -93,7 +97,7 @@
                 </div>
 
                 <div class="orders-content__total-price">
-                  {{ order.totalPrice | number: "1.2-2" }}
+                  {{ order.totalPrice | number: "1.2-2" }}zł
                 </div>
               </div>
             </div>
@@ -102,7 +106,7 @@
       </ng-container>
       <ng-template #emptyBasket>
         <div class="empty-content">
-          <h3>{{ 'basket.emptyBasket' | translate | titlecase }}</h3>
+          <h3>{{ "basket.emptyBasket" | translate | titlecase }}</h3>
         </div>
       </ng-template>
     </div>
