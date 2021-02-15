@@ -186,6 +186,7 @@
 }
 
 .mobile-menu {
+  display: none;
   z-index: 1000;
   position: fixed;
   left: 0;
@@ -194,7 +195,7 @@
   bottom: 0;
   background-color: #0000005e;
   overflow: hidden;
-  animation: menu-shadow .2s ease-in;
+  animation: menu-shadow 0.2s ease-in;
   &__menu {
     position: absolute;
     top: 0;
@@ -225,6 +226,13 @@
           line-height: 28px;
         }
       }
+      span {
+        background-color: white;
+        border-radius: 23px;
+        text-align: center;
+        padding: 0.5em 0.7em;
+        box-shadow: $basic-shadow, inset 0 2px 2px rgba(0, 0, 0, 0.25);
+      }
       button {
         margin-bottom: 1em;
       }
@@ -236,30 +244,15 @@
     }
   }
 }
-// @keyframes menuOpen {
-//   0% {
-//     right: -300px;
-//   }
-//   100% {
-//     right: 0;
-//   }
-// }
-// @keyframes menuClose {
-//   0% {
-//     right: 0;
-//   }
-//   100% {
-//     right: -300px;
-//   }
-// }
-// @keyframes menu-shadow {
-//   0% {
-//     background-color: #00000000;
-//   }
-//   100% {
-//     background-color: #0000005e;
-//   }
-// }
+
+@keyframes menu-shadow {
+  0% {
+    background-color: #00000000;
+  }
+  100% {
+    background-color: #0000005e;
+  }
+}
 
 @media screen and (max-width: 1270px) {
   .header {
@@ -346,6 +339,9 @@
     }
   }
   .burger-menu {
+    display: block;
+  }
+  .mobile-menu {
     display: block;
   }
 }

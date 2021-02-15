@@ -58,7 +58,16 @@ export class HeaderComponent implements OnInit {
       .split(' ')
       .some((v) => v === 'mobile-menu');
     if (isClickOnShadow) {
+      document.body.style.overflow = 'auto';
       this.mobileMenuOpen = false;
     }
+  }
+  closeMobileMenuBtn(): void {
+    document.body.style.overflow = 'auto';
+    this.mobileMenuOpen = false;
+  }
+  openMobileMenu(): void {
+    document.body.style.overflow = 'hidden';
+    this.mobileMenuOpen = true;
   }
 }
