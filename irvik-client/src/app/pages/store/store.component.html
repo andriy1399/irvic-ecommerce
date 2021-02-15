@@ -1,5 +1,39 @@
 <div class="container">
+  <div class="title-header">
+    <h2>{{ "page.title.store" | translate }}</h2>
+  </div>
   <div class="store">
+    <div class="store-mobile">
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h3>{{ "store.categories" | translate | titlecase }}:</h3>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="store__categories">
+            <a (click)="getProducts()">{{
+              "categories.all" | translate | titlecase
+            }}</a>
+          </div>
+          <div
+            *ngFor="let cat of categories; index as i"
+            class="store__categories"
+          >
+            <!-- * start category for spring REST API -->
+            <a (click)="searchProductsByFullText(cat.categoryEn)">{{
+              "categories." + convertToSnakeCase(cat.categoryEn)
+                | translate
+                | titlecase
+            }}</a>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
     <div class="store__category-block">
       <div class="store__category-title">
         <h3>{{ "store.categories" | translate | titlecase }}:</h3>
@@ -77,7 +111,12 @@
                   >{{ product.totalPrice | number: "1.2-2" }}zł</span
                 >
               </div>
-              <button matRipple [disabled]="!product.available" class="btn btn__icon" (click)="addToBasket(product)">
+              <button
+                matRipple
+                [disabled]="!product.available"
+                class="btn btn__icon"
+                (click)="addToBasket(product)"
+              >
                 <mat-icon>shopping_cart</mat-icon>
               </button>
             </ng-container>
@@ -85,7 +124,12 @@
               <div class="product__price">
                 <span>{{ product.totalPrice | number: "1.2-2" }}zł</span>
               </div>
-              <button matRipple [disabled]="!product.available" class="btn btn__icon" (click)="addToBasket(product)">
+              <button
+                matRipple
+                [disabled]="!product.available"
+                class="btn btn__icon"
+                (click)="addToBasket(product)"
+              >
                 <mat-icon>shopping_cart</mat-icon>
               </button>
             </ng-container>

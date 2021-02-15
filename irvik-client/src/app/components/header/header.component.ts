@@ -3,11 +3,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { LoginService } from '../../shared/services/login.service';
 import { BasketService } from '../../shared/services/basket.service';
+import { mobileMenu } from '../../shared/animations/mobile-menu';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  animations: [mobileMenu],
 })
 export class HeaderComponent implements OnInit {
   isAuth = false;
@@ -49,5 +51,23 @@ export class HeaderComponent implements OnInit {
     if (e) {
       window.location.reload();
     }
+  }
+
+  closeMobileMenu(event: Event): void {
+    const isClickOnShadow = (event.target as HTMLElement).className
+      .split(' ')
+      .some((v) => v === 'mobile-menu');
+    if (isClickOnShadow) {
+      document.body.style.overflow = 'auto';
+      this.mobileMenuOpen = false;
+    }
+  }
+  closeMobileMenuBtn(): void {
+    document.body.style.overflow = 'auto';
+    this.mobileMenuOpen = false;
+  }
+  openMobileMenu(): void {
+    document.body.style.overflow = 'hidden';
+    this.mobileMenuOpen = true;
   }
 }

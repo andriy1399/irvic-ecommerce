@@ -51,3 +51,22 @@
     right: 80px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .scroll-top {
+    right: 20px;
+    bottom: 50px;
+  }
+
+  @keyframes scroll-btn-animation {
+    0% {
+      bottom: 80px;
+    }
+    50% {
+      bottom: 85px;
+    }
+    100% {
+      bottom: 80px;
+    }
+  }
+}

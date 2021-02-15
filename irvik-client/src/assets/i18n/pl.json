@@ -27,5 +27,12 @@
   },
   "basket": {
     "emptyBasket": "kosz jest pusty"
+  },
+  "page": {
+    "title": {
+      "home": "Dom",
+      "store": "sklep",
+      "aboutUs": "o nas"
+    }
   }
 }

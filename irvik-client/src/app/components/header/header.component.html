@@ -110,13 +110,18 @@
     </div>
   </div>
 </header>
-<div class="mobile-menu" *ngIf="mobileMenuOpen">
+<div
+  class="mobile-menu"
+  *ngIf="mobileMenuOpen"
+  @mobileMenu
+  (click)="closeMobileMenu($event)"
+>
   <div class="mobile-menu__menu">
     <div class="mobile-menu__options">
       <div>
         <ul class="mobile-menu__buttons">
           <li>
-            <button matRipple class="" (click)="mobileMenuOpen = false">
+            <button matRipple (click)="closeMobileMenuBtn()">
               <mat-icon class="header__icon">clear</mat-icon>
             </button>
           </li>
@@ -127,6 +132,7 @@
                 [routerLink]="['/admin']"
                 routerLinkActive="active"
                 class="btn btn__icon"
+                (click)="this.mobileMenuOpen = false"
               >
                 <mat-icon class="">person</mat-icon>
               </a>
@@ -140,6 +146,7 @@
                 style="cursor: pointer"
                 routerLinkActive="active"
                 class="btn btn__icon"
+                (click)="this.mobileMenuOpen = false"
               >
                 <mat-icon class="">person</mat-icon>
               </a>
@@ -201,20 +208,29 @@
       <nav>
         <ul class="header__menu-list header__menu-list--mobile">
           <li routerLinkActive="active">
-            <a matRipple [routerLink]="['/home']" routerLinkActive="active">{{
-              "navbar.home" | translate | titlecase
-            }}</a>
+            <a
+              matRipple
+              (click)="closeMobileMenuBtn()"
+              [routerLink]="['/home']"
+              routerLinkActive="active"
+              >{{ "navbar.home" | translate | titlecase }}</a
+            >
           </li>
           <li routerLinkActive="active">
-            <a matRipple [routerLink]="['/store']" routerLinkActive="active">{{
-              "navbar.store" | translate | titlecase
-            }}</a>
+            <a
+              matRipple
+              (click)="closeMobileMenuBtn()"
+              [routerLink]="['/store']"
+              routerLinkActive="active"
+              >{{ "navbar.store" | translate | titlecase }}</a
+            >
           </li>
           <li routerLinkActive="active">
             <a
               matRipple
               [routerLink]="['/about-us']"
               routerLinkActive="active"
+              (click)="closeMobileMenuBtn()"
               >{{ "navbar.aboutUs" | translate | titlecase }}</a
             >
           </li>
@@ -224,12 +240,22 @@
     <div class="mobile-menu__options">
       <ul class="mobile-menu__buttons mobile-menu__buttons--row">
         <li routerLinkActive="active">
-          <a matRipple [routerLink]="['/favorites']" routerLinkActive="active">
+          <a
+            matRipple
+            (click)="closeMobileMenuBtn()"
+            [routerLink]="['/favorites']"
+            routerLinkActive="active"
+          >
             <mat-icon class="header__icon">favorite_border</mat-icon>
           </a>
         </li>
         <li routerLinkActive="active">
-          <a matRipple [routerLink]="['/bag']" routerLinkActive="active">
+          <a
+            matRipple
+            (click)="closeMobileMenuBtn()"
+            [routerLink]="['/bag']"
+            routerLinkActive="active"
+          >
             <mat-icon class="header__icon">shopping_cart</mat-icon>
           </a>
         </li>
@@ -240,7 +266,7 @@
     </div>
   </div>
 </div>
-<a class="burger-menu" (click)="mobileMenuOpen = true">
+<a class="burger-menu" (click)="openMobileMenu()">
   <span class="burger-menu__line" style="height: 1.5px"></span>
   <span class="burger-menu__line" style="height: 1.5px"></span>
   <span class="burger-menu__line" style="height: 1.5px"></span>

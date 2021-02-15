@@ -1,45 +1,62 @@
-
 @import "../../../scss/variables";
 @import "./../../../scss/mixins";
 
 .home {
-
   &__carousel-wrapper {
     background-image: $header-bg;
-    padding: .25em;
-    margin-top: 3em;
-    border-radius: .2em;
+    padding: 0.25em;
+    margin: 3em auto 0;
+    border-radius: 0.2em;
   }
 
   &__info-block {
-    margin-top: 2em;
-    @include flex (row, wrap, space-between, stretch );
-    background-color: rgb(238, 238, 238);
+    margin: 2em auto 0;
+
+    @include flex(row, wrap, space-between, stretch);
     border-radius: 1.2em;
-    width: 100%;
+    width: 90%;
     overflow: hidden;
+    background-image: $header-bg;
+    padding: 0.3em;
+    &--reverse {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__info-content {
+    width: 100%;
+    @include flex(row, wrap, space-between, stretch);
+    background-image: url("https://healthyhandyman.com/wp-content/uploads/2019/01/DIY-storage-kit-bin.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 280px;
+    border-radius: 1em;
+
+    &--reverse {
+      flex-direction: row-reverse;
+    }
   }
   &__btn-container {
     width: 25%;
-    @include flex (row, wrap, center, flex-end );
+    @include flex(row, wrap, center, flex-end);
     padding: 1.5em;
   }
   &__btn-more {
-    padding: .24em .27em;
+    padding: 0.24em 0.27em;
     width: 100%;
     background-image: $border-gradient-for-btn;
     border-radius: 1.8em;
     button {
       border-radius: 1.8em;
       width: 100%;
-      color: #BC5A00;
-      padding: .5em;
+      color: #bc5a00;
+      padding: 0.5em;
       background-color: #f0eeee;
       font-size: 1.5rem;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       cursor: pointer;
       line-height: 1.3;
-      transition: background-color .3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
       &:hover {
         background-color: #f7f2f2;
       }
@@ -50,23 +67,62 @@
     flex: 2;
     text-align: center;
     font-size: 3rem;
-    padding-top: 2em;
+    @include flex(row, wrap, center, center);
+    h3 {
+      color: #ff5c00;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
   }
 
-  &__img-block {
-    width: 25%;
-    padding: .2em;
+  &__side-block {
+    width: 15%;
     background-image: $header-bg;
-  
-    overflow: hidden;
-    img {
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-      height: 100%;
-      border-top-right-radius: 1em;
-      border-bottom-right-radius: 1em;
+  }
+}
+
+@media screen and (max-width: 1268px) {
+  .home {
+    &__btn-container {
+      width: 30%;
     }
   }
 }
 
+@media screen and (max-width: 768px) {
+  .home {
+    &__carousel-wrapper {
+      padding: 0.2em;
+      margin: 2em auto;
+    }
+
+    &__info-block {
+      margin: 0.2em auto 0;
+      width: 100%;
+      @include flex(column, wrap, center, center);
+
+      &--reverse {
+        flex-direction: row;
+      }
+    }
+
+    &__info-content {
+      height: 240px;
+      border-radius: 1em;
+      width: 100%;
+      @include flex(column-reverse, wrap, center, center);
+      &--reverse {
+        flex-direction: column-reverse;
+      }
+    }
+
+    &__btn-container {
+      padding: 0.5em;
+      width: 250px;
+    }
+
+    &__side-block {
+      width: 0%;
+    }
+  }
+
+}

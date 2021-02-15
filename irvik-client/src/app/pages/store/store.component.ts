@@ -16,6 +16,7 @@ export class StoreComponent implements OnInit {
   categories: ICategory[] = [];
   products: IProduct[] = [];
   searchName!: string;
+  panelOpenState = false;
   constructor(
     private categoriesServ: CategoriesService,
     private translate: TranslateService,

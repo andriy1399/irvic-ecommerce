@@ -27,6 +27,13 @@
   },
   "basket": {
     "emptyBasket": "кошик пустий"
+  },
+  "page": {
+    "title": {
+      "home": "головна",
+      "store": "магазин",
+      "aboutUs": "про нас"
+    }
   }
 
 }
