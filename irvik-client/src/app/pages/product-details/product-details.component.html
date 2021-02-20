@@ -39,10 +39,11 @@
                 class="images-gallery__img-wrapper slide"
                 (click)="openImage(img.Location)"
                 [ngClass]="{
-                  'images-gallery__img-wrapper--clicked': img.Location === activeImage
+                  'images-gallery__img-wrapper--clicked':
+                    img.Location === activeImage
                 }"
               >
-                <img [src]="img.Location"  alt="img.Key"/>
+                <img [src]="img.Location" alt="img.Key" />
               </a>
             </ng-template>
           </owl-carousel-o>
@@ -54,13 +55,30 @@
               class="images-gallery__img-wrapper images-gallery__img-wrapper--static"
               (click)="openImage(img.Location)"
               [ngClass]="{
-                'images-gallery__img-wrapper--clicked': img.Location === activeImage
+                'images-gallery__img-wrapper--clicked':
+                  img.Location === activeImage
               }"
             >
               <img [src]="img.Location" alt="img.Key" />
             </a>
           </div>
         </ng-template>
+      </div>
+    </div>
+    <div class="product-details__images-mobile">
+      <div class="images-gallery">
+        <swiper [config]="config">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let image of images">
+              <img [src]="image.Location" />
+            </div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </swiper>
       </div>
     </div>
 
@@ -143,7 +161,7 @@
               <p>{{ product.price | number: "1.2-2" }}zł</p>
             </ng-template>
             <div class="price__not-available" *ngIf="!product.available">
-              {{"product.available" | translate | titlecase}}
+              {{ "product.available" | translate | titlecase }}
             </div>
           </div>
           <div class="product-details__bottom-row" *ngIf="product.available">
@@ -181,7 +199,11 @@
               </div>
             </div>
             <div class="product-details__btn-wrapper">
-              <button class="btn btn__bg-white" mat-ripple (click)="addToBasket()">
+              <button
+                class="btn btn__bg-white"
+                mat-ripple
+                (click)="addToBasket()"
+              >
                 {{ "btn.buy" | translate | uppercase }}
               </button>
             </div>
@@ -202,7 +224,7 @@
           class="carousel__img-wrapper slide"
           [routerLink]="['/store/product/', prod.id]"
         >
-          <img [src]="prod.images[0].Location" alt="product.images[0].Key"/>
+          <img [src]="prod.images[0].Location" alt="product.images[0].Key" />
         </a>
       </ng-template>
     </owl-carousel-o>

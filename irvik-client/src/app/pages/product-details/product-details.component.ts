@@ -8,6 +8,7 @@ import { ProductTranslate } from 'src/app/shared/models/product-translate.model'
 import { TranslateService } from '@ngx-translate/core';
 import { IFileS3 } from '../../shared/interfaces/fileS3.interface';
 import { BasketService } from '../../shared/services/basket.service';
+import { SwiperOptions } from 'swiper';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -63,6 +64,14 @@ export class ProductDetailsComponent implements OnInit {
     },
     nav: false,
     margin: 10,
+  };
+  config: SwiperOptions = {
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 30,
   };
   slider: any;
   products: IProduct[] = [];

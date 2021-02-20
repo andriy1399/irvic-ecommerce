@@ -12,6 +12,9 @@
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px 5px 5px 5px;
   }
+  &__images-mobile {
+    display: none;
+  }
 
   &__info {
     @include flex(column, wrap, space-between, flex-start);
@@ -234,14 +237,321 @@
   margin-top: 2em;
   border-radius: 15px;
   background-color: $bg-card;
-  padding: 1em 1em 0;
-
+  padding: 1em;
 
   &__img-wrapper {
     border-radius: 5px;
     overflow: hidden;
     img {
       border-radius: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 1018px) {
+  .product-details {
+    margin-top: 2em;
+
+    &__images {
+      width: 35%;
+      background-color: $bg-card;
+      padding: 0.5em;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 30px 5px 5px 5px;
+    }
+
+    &__info {
+      width: 63.5%;
+      box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+      padding: 0.8em;
+    }
+
+    &__title-wrapper {
+      h2 {
+        font-size: 2rem;
+      }
+    }
+
+    &__discount {
+      font-size: 1.1rem;
+      padding: 0.5em 0.9em;
+      border-radius: 5px;
+    }
+
+    &__description {
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    &__params {
+      font-size: 1rem;
+    }
+
+    &__size {
+      font-size: 1rem;
+    }
+
+    &__price {
+      width: 100%;
+      margin-bottom: 0.7em;
+      @include flex(row, wrap, space-between, center);
+
+      p + p {
+        margin-left: 1em;
+      }
+
+      p {
+        font-size: 1.4rem;
+      }
+    }
+    &__bottom-row {
+      width: 100%;
+      @include flex(row, wrap, space-between, center);
+    }
+
+    &__counter {
+      @include flex(row, wrap, space-between, center);
+    }
+
+    &__total-price {
+      padding: 0.5em 0.8em;
+    }
+
+    &__count {
+      @include flex(row, wrap, flex-start, flex-start);
+    }
+
+    &__count-block {
+      input {
+        font-size: 1.2rem;
+
+        padding: 0.5em 0.7em;
+        width: 60px;
+      }
+    }
+    &__count-buttons-wrapper {
+      @include flex(column, wrap, flex-start, flex-start);
+      height: 100%;
+      width: 30px;
+      button {
+        font-size: 1.25rem;
+        width: 100%;
+        display: block;
+        background: #ffffff;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+        &:hover {
+          background: #faf8f8;
+        }
+      }
+    }
+    &__increment {
+      box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 0px 5px 0px 0px;
+    }
+
+    &__decrement {
+      box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 0px 0px 5px 0px;
+    }
+
+    &__btn-wrapper {
+      padding: 0.2em;
+      background-image: $border-gradient-for-btn;
+      border-radius: 30px;
+      transition: all 0.2s ease-in;
+
+      &:hover {
+        transform: translateY(2px);
+      }
+      .btn {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .images-gallery {
+    &__row-of-images {
+      margin-top: 0.6em;
+      @include flex(row, wrap, flex-start, flex-start);
+      row-gap: 0.5em;
+      column-gap: 2%;
+      overflow: hidden;
+    }
+  }
+
+  .carousel {
+    margin-top: 2em;
+    border-radius: 15px;
+    background-color: $bg-card;
+    padding: 1em;
+    &__img-wrapper {
+      border-radius: 5px;
+      overflow: hidden;
+      img {
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .product-details {
+    margin-top: 2em;
+
+    &__images {
+      display: none;
+    }
+    &__images-mobile {
+      display: block;
+      width: 90%;
+      margin: 0 auto;
+      padding: 0.5em;
+      background-color: #e2e2e2;
+      box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 5px;
+      margin-bottom: 1em;
+      img {
+        width: 100%;
+      }
+    }
+    &__info {
+      width: 90%;
+      margin: 0 auto;
+      box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+      padding: 0.8em;
+      border-radius: 5px;
+    }
+  }
+
+  .carousel {
+    margin-top: 2em;
+    border-radius: 15px;
+    background-color: $bg-card;
+    padding: 1em;
+    &__img-wrapper {
+      border-radius: 5px;
+      overflow: hidden;
+      img {
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 556px) {
+  .product-details {
+    &__images-mobile {
+      width: 100%;
+    }
+    &__info {
+      width: 100%;
+    }
+    &__discount {
+      font-size: 0.9rem;
+      padding: 0.4em 0.8em;
+      border-radius: 4px;
+    }
+
+    &__title-wrapper {
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__description {
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__params {
+      font-size: 0.9rem;
+    }
+
+    &__size {
+      font-size: 0.9rem;
+    }
+
+    &__price {
+      width: 100%;
+      margin-bottom: 0.7em;
+      @include flex(row, wrap, space-between, center);
+
+      p + p {
+        margin-left: 1em;
+      }
+
+      p {
+        font-size: 1.3rem;
+      }
+    }
+    &__bottom-row {
+      width: 100%;
+      @include flex(column, wrap, center, center);
+    }
+
+    &__counter {
+      @include flex(row, wrap, space-between, center);
+      margin-bottom: 1em;
+    }
+
+    &__total-price {
+      font-size: 1rem;
+      padding: 0.4em 0.7em;
+    }
+
+    &__count-block {
+      input {
+        font-size: 1rem;
+
+        padding: 0.5em 0.7em;
+        width: 60px;
+      }
+    }
+    &__count-buttons-wrapper {
+      @include flex(column, wrap, flex-start, flex-start);
+      height: 100%;
+      width: 30px;
+      button {
+        font-size: 1.1rem;
+        width: 100%;
+        display: block;
+        background: #ffffff;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+        &:hover {
+          background: #faf8f8;
+        }
+      }
+    }
+
+    &__btn-wrapper {
+      padding: 0.2em;
+      background-image: $border-gradient-for-btn;
+      border-radius: 30px;
+      transition: all 0.2s ease-in;
+
+      &:hover {
+        transform: translateY(2px);
+      }
+      .btn {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .carousel {
+    margin-top: 2em;
+    border-radius: 5px;
+    padding: 0.8em;
+    &__img-wrapper {
+      border-radius: 5px;
+      overflow: hidden;
+      img {
+        border-radius: 5px;
+      }
     }
   }
 }
