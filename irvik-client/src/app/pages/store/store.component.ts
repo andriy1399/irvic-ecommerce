@@ -6,7 +6,7 @@ import { ProductService } from '../../shared/services/product.service';
 import { IProduct } from '../../shared/interfaces/product.interface';
 import { ProductTranslate } from '../../shared/models/product-translate.model';
 import { BasketService } from '../../shared/services/basket.service';
-
+import { SwiperOptions } from 'swiper';
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
@@ -17,6 +17,14 @@ export class StoreComponent implements OnInit {
   products: IProduct[] = [];
   searchName!: string;
   panelOpenState = false;
+  config: SwiperOptions = {
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 30,
+  };
   constructor(
     private categoriesServ: CategoriesService,
     private translate: TranslateService,
