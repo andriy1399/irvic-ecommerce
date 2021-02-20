@@ -24,10 +24,13 @@
     "@angular/router": "~11.0.5",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "@types/swiper": "^5.4.2",
     "angular-gallery": "^1.0.2",
     "aws-sdk": "^2.834.0",
     "ngx-owl-carousel-o": "^5.0.0",
+    "ngx-useful-swiper": "^10.0.1",
     "rxjs": "~6.6.0",
+    "swiper": "^6.4.15",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

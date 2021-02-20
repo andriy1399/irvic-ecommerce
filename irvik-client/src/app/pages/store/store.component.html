@@ -91,6 +91,23 @@
               <mat-icon>favorite_border</mat-icon>
             </button>
           </div>
+
+          <div class="product__image-wrapper-mobile">
+            <swiper [config]="config">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" *ngFor="let image of product.images">
+                  <a [routerLink]="['/store/product/', product.id]">
+                    <img [src]="image.Location" [alt]="product.titleEn" />
+                  </a>
+                </div>
+              </div>
+              <!-- Add Pagination -->
+              <div class="swiper-pagination"></div>
+              <!-- Add Arrows -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </swiper>
+          </div>
           <h4 class="product__title">
             {{
               "title." + convertToSnakeCase(product.titleEn)

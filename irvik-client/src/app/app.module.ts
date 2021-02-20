@@ -25,7 +25,7 @@ import { ScrollBtnComponent } from './components/scroll-btn/scroll-btn.component
 // Angular materials modules
 import { MatRippleModule } from '@angular/material/core';
 
-// // Other libraries
+// Other libraries
 
 import { LangDirective } from './shared/directives/lang.directive';
 import { SwiperComponent } from './components/swiper/swiper.component';
@@ -33,6 +33,7 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 import { IvyGalleryModule } from 'angular-gallery';
 import { LoginInterceptor } from './shared/interceptors/login.interceptor';
 import { InputAutoWidthDirective } from './shared/directives/input-auto-width.directive';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 // // root functions
 // export function HttpLoaderFactory(http: HttpClient): any {
 //   return new TranslateHttpLoader(http);
@@ -41,9 +42,8 @@ import { InputAutoWidthDirective } from './shared/directives/input-auto-width.di
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
-  useClass: LoginInterceptor
+  useClass: LoginInterceptor,
 };
-
 
 @NgModule({
   declarations: [
@@ -60,7 +60,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     LangDirective,
     SwiperComponent,
     ProductDetailsComponent,
-    InputAutoWidthDirective
+    InputAutoWidthDirective,
   ],
   imports: [
     SharedModule,
@@ -69,6 +69,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserAnimationsModule,
     MatRippleModule,
     IvyGalleryModule,
+    NgxUsefulSwiperModule,
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
