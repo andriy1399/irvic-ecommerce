@@ -286,6 +286,10 @@
       font-size: 1.4rem;
     }
   }
+
+  .btn__icon--favorite {
+    @include flex(row, wrap, center, center);
+  }
 }
 
 @media screen and (max-width: 768px) {
