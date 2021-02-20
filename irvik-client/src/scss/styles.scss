@@ -355,6 +355,99 @@ p.price__with-discount {
   }
 }
 
+@media screen and (max-width: 1015px) {
+  .orders-content {
+    &__order-img {
+      width: 23%;
+      padding: 0.4em;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      img {
+        border-radius: 8px;
+      }
+    }
+
+    &__order-body {
+      border-radius: 10px;
+      padding: 0.8em 0.5em 0 1.2em;
+      width: 75%;
+      background: #e2e2e2;
+      box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
+      @include flex(column, wrap, space-between, flex-start);
+    }
+    &__order-info {
+      width: 100%;
+    }
+    &__order-body-header {
+      @include flex(row, nowrap, space-between, flex-start);
+      margin-bottom: 0.4em;
+    }
+    &__title {
+      font-size: 1.3rem;
+    }
+
+    &__delete-btn {
+      margin-left: 1em;
+    }
+
+    &__description {
+      font-size: 1rem;
+    }
+
+    &__price {
+      width: 100%;
+      margin-bottom: 1em;
+      @include flex(row, wrap, space-between, center);
+
+      p + p {
+        margin-left: 1em;
+      }
+
+      p {
+        font-size: 1.4rem;
+      }
+    }
+
+    &__counter-content {
+      @include flex(row, wrap, flex-start, center);
+    }
+
+    &__counter {
+      @include flex(row, wrap, flex-start, center);
+      margin-right: 1em;
+      input {
+        background: #ffffff;
+        box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        padding: 0.5em 0.8em;
+        margin: 0 0.5em;
+        font-size: 1rem;
+      }
+    }
+
+    &__btn {
+      background-color: transparent;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    &__total-price {
+      border-radius: 10px;
+      padding: 0.7em 1em;
+      font-size: 1rem;
+    }
+  }
+
+  .empty-content {
+    width: 100%;
+    height: 500px;
+    border-radius: 30px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    background-color: #e9e9e9;
+    @include flex(row, wrap, center, center);
+  }
+}
+
 @media screen and (max-width: 768px) {
   .container {
     width: 95%;
@@ -367,5 +460,209 @@ p.price__with-discount {
   .btn {
     padding: 0.4em 1.3em;
     font-size: 1.1rem;
+  }
+
+  .orders-content {
+    &__order {
+      align-items: flex-start;
+    }
+    &__order-img {
+      width: 20%;
+      padding: 0.2em;
+    }
+
+    &__order-body {
+      padding: 0.4em 0.4em 0 1em;
+      width: 79%;
+      box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    }
+    &__order-info {
+      width: 100%;
+    }
+    &__order-body-header {
+      @include flex(row, nowrap, space-between, flex-start);
+      margin-bottom: 0.4em;
+    }
+    &__title {
+      font-size: 1.3rem;
+    }
+
+    &__delete-btn {
+      margin-left: 1em;
+    }
+
+    &__description {
+      font-size: 1rem;
+    }
+
+    &__price {
+      width: 100%;
+      margin-bottom: 0.5em;
+      @include flex(row, wrap, space-between, center);
+
+      p + p {
+        margin-left: 1em;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    &__counter-content {
+      @include flex(row, wrap, flex-start, center);
+    }
+
+    &__counter {
+      @include flex(row, wrap, flex-start, center);
+      margin-right: 1em;
+      input {
+        background: #ffffff;
+        box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        padding: 0.4em 0.7em;
+        margin: 0 0.5em;
+        font-size: 1rem;
+      }
+    }
+
+    &__btn {
+      background-color: transparent;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    &__total-price {
+      border-radius: 10px;
+      padding: 0.5em 0.8em;
+      font-size: 1rem;
+    }
+  }
+
+  .empty-content {
+    width: 100%;
+    height: 500px;
+    border-radius: 30px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    background-color: #e9e9e9;
+    @include flex(row, wrap, center, center);
+  }
+
+  .btn-wrapper {
+    padding: 0.2em;
+    background-image: $border-gradient-for-btn;
+    border-radius: 30px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    transition: filter 0.3s ease-in;
+    &__br-50 {
+      border-radius: 50%;
+      .btn {
+        border-radius: 50%;
+        padding: 0.3em;
+        @include flex(row, wrap, center, center);
+      }
+    }
+    &__delete {
+      background-image: none;
+      background-color: $error-color;
+      .btn {
+        mat-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 16px;
+          color: $error-color;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 558px) {
+  .orders-content {
+    &__title {
+      font-size: 1.1rem;
+    }
+
+    &__delete-btn {
+      margin-left: 0.5em;
+    }
+
+    &__description {
+      font-size: 0.9rem;
+    }
+
+    &__price {
+      margin-bottom: 0.3em;
+
+      p + p {
+        margin-left: 0.7em;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__counter {
+      @include flex(row, wrap, flex-start, center);
+      margin-right: 1em;
+      input {
+        background: #ffffff;
+        box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        padding: 0.4em 0.7em;
+        margin: 0 0.5em;
+        font-size: 0.7rem;
+      }
+    }
+
+    &__btn {
+      background-color: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    &__total-price {
+      border-radius: 10px;
+      padding: 0.5em 0.8em;
+      font-size: 1rem;
+    }
+  }
+
+  .empty-content {
+    width: 100%;
+    height: 500px;
+    border-radius: 30px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    background-color: #e9e9e9;
+    @include flex(row, wrap, center, center);
+  }
+
+  .btn-wrapper {
+    padding: 0.2em;
+    background-image: $border-gradient-for-btn;
+    border-radius: 30px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    transition: filter 0.3s ease-in;
+    &__br-50 {
+      border-radius: 50%;
+      .btn {
+        border-radius: 50%;
+        padding: 0.3em;
+        @include flex(row, wrap, center, center);
+      }
+    }
+    &__delete {
+      background-image: none;
+      background-color: $error-color;
+      .btn {
+        mat-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 16px;
+          color: $error-color;
+        }
+      }
+    }
   }
 }
