@@ -8,7 +8,7 @@ import { mobileMenu } from '../../shared/animations/mobile-menu';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.scss', './header-mobile.component.scss'],
   animations: [mobileMenu],
 })
 export class HeaderComponent implements OnInit {

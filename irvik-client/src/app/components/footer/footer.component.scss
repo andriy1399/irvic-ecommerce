@@ -119,7 +119,7 @@
   }
 }
 
-@media screen and (max-width: 538px) {
+@media screen and (max-width: 560px) {
   .footer {
     &__row {
       @include flex(row, wrap, space-between, flex-start);
