@@ -1,9 +1,7 @@
 package pl.olawa.irvik.irvikProject.service.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pl.olawa.irvik.irvikProject.dao.FilesImageRepository;
 import pl.olawa.irvik.irvikProject.dao.ProductRepository;
@@ -12,12 +10,10 @@ import pl.olawa.irvik.irvikProject.domain.Filesimage;
 import pl.olawa.irvik.irvikProject.domain.Products;
 import pl.olawa.irvik.irvikProject.dto.ProductsDto;
 import pl.olawa.irvik.irvikProject.exception.ProductnotFoundException;
-import pl.olawa.irvik.irvikProject.service.FileImageService;
 import pl.olawa.irvik.irvikProject.service.ProductService;
 
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceIml implements ProductService {

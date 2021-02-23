@@ -50,7 +50,7 @@ public class Products {
     @Column
     private boolean isAvailable;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade={ALL}, mappedBy = "products")
+    @OneToMany(fetch = FetchType.EAGER, cascade = {ALL}, mappedBy = "products")
     @Column(nullable = false)
 //    @Lob
 //    @ElementCollection
@@ -102,6 +102,7 @@ public class Products {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getTitleEn() {
         return titleEn;
     }
