@@ -1,1 +1,87 @@
-<p>favorites works!</p>
+<div class="container">
+  <div class="favorites">
+    <div
+      class="favorites__orders-wrapper orders-content"
+      [ngStyle]="{ 'padding-right': favorites.length > 2 ? '.4em' : '0' }"
+    >
+      <ng-container *ngIf="favorites.length; else emptyBasket">
+        <div
+          class="favorites__order orders-content__order"
+          *ngFor="let fv of favorites"
+        >
+          <div class="orders-content__order-img">
+            <img [src]="fv.images[0].Location" [alt]="fv.titleEn" />
+          </div>
+          <div class="orders-content__order-body">
+            <div class="orders-content__order-info">
+              <div class="orders-content__order-body-header">
+                <div class="orders-content__title">
+                  <h3>
+                    {{
+                      "title." + convertToSnakeCase(fv.titleEn)
+                        | translate
+                        | titlecase
+                    }}
+                  </h3>
+                </div>
+                <div
+                  class="orders-content__delete-btn btn-wrapper btn-wrapper__br-50 btn-wrapper__delete"
+                >
+                  <button
+                    mat-ripple
+                    class="btn btn__bg-white"
+                    (click)="deleteOrder(fv.id)"
+                  >
+                    <mat-icon>delete_forever</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="orders-content__description">
+                <p>
+                  {{
+                    "description." + convertToSnakeCase(fv.titleEn)
+                      | translate
+                  }}
+                </p>
+              </div>
+            </div>
+            <div class="orders-content__price price">
+              <ng-container
+                *ngIf="
+                fv.discount && fv.discountPercent;
+                  else withoutDiscount
+                "
+              >
+                <div class="price__wrapper price__small-font">
+                  <p>
+                    <span style="text-decoration: line-through"
+                      >{{ fv.price | number: "1.2-2" }}zł</span
+                    >
+                  </p>
+                  <p class="price__with-discount">
+                    {{
+                      fv.price -
+                        (fv.price * parse(fv.discountPercent)) / 100
+                        | number: "1.2-2"
+                    }}zł
+                  </p>
+                </div>
+              </ng-container>
+              <ng-template #withoutDiscount>
+                <p>{{ fv.price | number: "1.2-2" }}zł</p>
+              </ng-template>
+
+
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #emptyBasket>
+        <div class="empty-content">
+          <h3>{{ "basket.emptyBasket" | translate | titlecase }}</h3>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
