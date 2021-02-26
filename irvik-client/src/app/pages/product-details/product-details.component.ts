@@ -12,7 +12,11 @@ import { SwiperOptions } from 'swiper';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss'],
+  styleUrls: [
+    './product-details.component.scss',
+    './image-gallery.component.scss',
+    './product-details-mobile.component.scss',
+  ],
 })
 export class ProductDetailsComponent implements OnInit {
   product!: IProduct | null;

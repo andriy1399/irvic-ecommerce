@@ -11,7 +11,7 @@ import { FavoritesService } from '../../shared/services/favorites.service';
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
-  styleUrls: ['./store.component.scss'],
+  styleUrls: ['./store.component.scss', './store-mobile.component.scss'],
 })
 export class StoreComponent implements OnInit {
   categories: ICategory[] = [];
