@@ -28,6 +28,9 @@
   "basket": {
     "emptyBasket": "the basket is empty"
   },
+  "favorites": {
+    "emptyFavorites": "the list of favorites is empty"
+  },
   "page": {
     "title": {
       "home": "home",
@@ -35,5 +38,4 @@
       "aboutUs": "about us"
     }
   }
-
 }

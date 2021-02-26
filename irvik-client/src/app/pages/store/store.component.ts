@@ -7,6 +7,7 @@ import { IProduct } from '../../shared/interfaces/product.interface';
 import { ProductTranslate } from '../../shared/models/product-translate.model';
 import { BasketService } from '../../shared/services/basket.service';
 import { SwiperOptions } from 'swiper';
+import { FavoritesService } from '../../shared/services/favorites.service';
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
@@ -29,7 +30,8 @@ export class StoreComponent implements OnInit {
     private categoriesServ: CategoriesService,
     private translate: TranslateService,
     private productsService: ProductService,
-    private basketService: BasketService
+    private basketService: BasketService,
+    private favoritesService: FavoritesService
   ) {}
 
   ngOnInit(): void {
@@ -66,6 +68,13 @@ export class StoreComponent implements OnInit {
           this.products = products;
         });
     }
+  }
+
+  public getStringOfIds(): (string | number | undefined)[] {
+    return this.favoritesService.getStringOfIds();
+  }
+  public addToFavorites(product: IProduct): void {
+    this.favoritesService.addToFavorites(product);
   }
 
   public addToBasket(product: IProduct): void {

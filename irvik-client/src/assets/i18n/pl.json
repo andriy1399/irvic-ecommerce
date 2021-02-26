@@ -28,6 +28,9 @@
   "basket": {
     "emptyBasket": "kosz jest pusty"
   },
+  "favorites": {
+    "emptyFavorites": "lista ulubionych jest pusta"
+  },
   "page": {
     "title": {
       "home": "Dom",

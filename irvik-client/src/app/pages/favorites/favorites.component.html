@@ -4,7 +4,7 @@
       class="favorites__orders-wrapper orders-content"
       [ngStyle]="{ 'padding-right': favorites.length > 2 ? '.4em' : '0' }"
     >
-      <ng-container *ngIf="favorites.length; else emptyBasket">
+      <ng-container *ngIf="favorites.length; else emptyFavorites">
         <div
           class="favorites__order orders-content__order"
           *ngFor="let fv of favorites"
@@ -30,7 +30,7 @@
                   <button
                     mat-ripple
                     class="btn btn__bg-white"
-                    (click)="deleteOrder(fv.id)"
+                    (click)="deleteFavorite(fv)"
                   >
                     <mat-icon>delete_forever</mat-icon>
                   </button>
@@ -39,18 +39,14 @@
               <div class="orders-content__description">
                 <p>
                   {{
-                    "description." + convertToSnakeCase(fv.titleEn)
-                      | translate
+                    "description." + convertToSnakeCase(fv.titleEn) | translate
                   }}
                 </p>
               </div>
             </div>
             <div class="orders-content__price price">
               <ng-container
-                *ngIf="
-                fv.discount && fv.discountPercent;
-                  else withoutDiscount
-                "
+                *ngIf="fv.discount && fv.discountPercent; else withoutDiscount"
               >
                 <div class="price__wrapper price__small-font">
                   <p>
@@ -60,8 +56,7 @@
                   </p>
                   <p class="price__with-discount">
                     {{
-                      fv.price -
-                        (fv.price * parse(fv.discountPercent)) / 100
+                      fv.price - (fv.price * parse(fv.discountPercent)) / 100
                         | number: "1.2-2"
                     }}zł
                   </p>
@@ -71,17 +66,26 @@
                 <p>{{ fv.price | number: "1.2-2" }}zł</p>
               </ng-template>
 
-
+              <div
+                class="orders-content__delete-btn btn-wrapper btn-wrapper__br-50"
+              >
+                <button
+                  mat-ripple
+                  class="btn btn__bg-white"
+                  (click)="addToBasket(fv)"
+                >
+                  <mat-icon>shopping_cart</mat-icon>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </ng-container>
-      <ng-template #emptyBasket>
+      <ng-template #emptyFavorites>
         <div class="empty-content">
-          <h3>{{ "basket.emptyBasket" | translate | titlecase }}</h3>
+          <h3>{{ "favorites.emptyFavorites" | translate | titlecase }}</h3>
         </div>
       </ng-template>
     </div>
   </div>
 </div>
-

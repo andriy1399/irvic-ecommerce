@@ -87,8 +87,21 @@
             <a [routerLink]="['/store/product/', product.id]">
               <img [src]="product.images[0].Location" [alt]="product.titleEn" />
             </a>
-            <button matRipple class="btn btn__icon btn__icon--favorite">
-              <mat-icon>favorite_border</mat-icon>
+            <button
+              matRipple
+              class="btn btn__icon btn__icon--favorite"
+              (click)="addToFavorites(product)"
+            >
+              <mat-icon
+                [ngStyle]="{
+                  color: getStringOfIds().includes(product.id) ? 'red' : 'black'
+                }"
+                >{{
+                  getStringOfIds().includes(product.id)
+                    ? "favorite"
+                    : "favorite_border"
+                }}</mat-icon
+              >
             </button>
           </div>
 

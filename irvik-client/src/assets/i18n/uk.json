@@ -28,6 +28,9 @@
   "basket": {
     "emptyBasket": "кошик пустий"
   },
+  "favorites": {
+    "emptyFavorites": "Список вподобаних товарів пустий"
+  },
   "page": {
     "title": {
       "home": "головна",
@@ -35,5 +38,4 @@
       "aboutUs": "про нас"
     }
   }
-
 }
