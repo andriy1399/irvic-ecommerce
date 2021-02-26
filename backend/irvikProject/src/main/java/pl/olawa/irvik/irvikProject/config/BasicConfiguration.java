@@ -43,7 +43,7 @@ public class BasicConfiguration extends  WebSecurityConfigurerAdapter implements
 
 
     private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
-            new AntPathRequestMatcher("/api/test/**")
+            new AntPathRequestMatcher("/api/sendEmail/**")
     );
 
     AuthenticationProvider provider;

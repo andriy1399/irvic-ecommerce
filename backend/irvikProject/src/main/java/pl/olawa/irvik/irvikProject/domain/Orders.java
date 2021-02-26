@@ -1,5 +1,7 @@
 package pl.olawa.irvik.irvikProject.domain;
 
-public class Orders {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Orders {
 }
