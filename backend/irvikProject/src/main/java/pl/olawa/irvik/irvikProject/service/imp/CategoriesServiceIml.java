@@ -2,6 +2,7 @@ package pl.olawa.irvik.irvikProject.service.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import pl.olawa.irvik.irvikProject.dao.CategoriesJpaRepo;
 import pl.olawa.irvik.irvikProject.dao.CategoriesRepository;
@@ -15,14 +16,18 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Repository
 public class CategoriesServiceIml implements CategoriesService {
 
-    @Autowired
-    private CategoriesRepository categoriesRepository;
+    private final CategoriesRepository categoriesRepository;
+
+    private final CategoriesJpaRepo categoriesJpaRepo;
 
     @Autowired
-    private CategoriesJpaRepo categoriesJpaRepo;
-
+    public CategoriesServiceIml(CategoriesRepository categoriesRepository, CategoriesJpaRepo categoriesJpaRepo) {
+        this.categoriesRepository = categoriesRepository;
+        this.categoriesJpaRepo = categoriesJpaRepo;
+    }
 
 
     @Override
